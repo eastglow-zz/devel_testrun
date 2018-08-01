@@ -310,8 +310,8 @@ eps = 0.01
 [Materials]
   [./constants]
     type = GenericConstantMaterial
-    prop_names = 'sig_LV sig_LS sig_VS M One negOne'
-    prop_values = '1     1      1      1 1   -1'
+    prop_names = 'sig_LV sig_LS      sig_VS M One negOne'
+    prop_values = '1     1.866025    1      1 1   -1'
   [../]
 
   [./kappa_LV]
@@ -362,6 +362,8 @@ eps = 0.01
     material_property_names = 'dwh_LV'
     args = 'cL cV'
     function = 'dwh_LV*(sqrt(cL^2+(${eps})^2)-${eps})*(sqrt(cV^2+(${eps})^2)-${eps})'
+    #outputs = exodus
+    derivative_order = 2
   [../]
 
   [./doublewell_LStw]
@@ -370,6 +372,8 @@ eps = 0.01
     material_property_names = 'dwh_LS'
     args = 'cL cS'
     function = 'dwh_LS*(sqrt(cL^2+(${eps})^2)-${eps})*(sqrt(cS^2+(${eps})^2)-${eps})'
+    #outputs = exodus
+    derivative_order = 2
   [../]
 
   [./doublewell_VStw]
@@ -378,6 +382,20 @@ eps = 0.01
     material_property_names = 'dwh_VS'
     args = 'cV cS'
     function = 'dwh_VS*(sqrt(cV^2+(${eps})^2)-${eps})*(sqrt(cS^2+(${eps})^2)-${eps})'
+    #outputs = exodus
+    derivative_order = 2
+  [../]
+
+  [./triple_well]
+    type = DerivativeParsedMaterial
+    f_name = ftriple
+    constant_names = 'triple_height'
+    constant_expressions = '25'
+    material_property_names = 'dwh_LV dwh_LS dwh_VS'
+    args = 'cL cV cS'
+    function = 'triple_height*max(dwh_LV,max(dwh_LS,dwh_VS))*(sqrt(cL^2+(${eps})^2)-${eps})*(sqrt(cV^2+(${eps})^2)-${eps})*(sqrt(cS^2+(${eps})^2)-${eps})'
+    derivative_order = 2
+    #outputs = exodus
   [../]
 
   [./MLV]
