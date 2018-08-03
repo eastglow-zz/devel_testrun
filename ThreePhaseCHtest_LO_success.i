@@ -2,7 +2,7 @@
 
 #Forward split method
 
-interwidth = 5 #Target full-interfacial Width
+interwidth = 4 #Target full-interfacial Width
 pi = 3.141592
 eps = 0.01
 
@@ -311,49 +311,49 @@ eps = 0.01
   [./constants]
     type = GenericConstantMaterial
     prop_names = 'sig_LV sig_LS      sig_VS M One negOne'
-    prop_values = '1     1.866025    1      1 1   -1'
+    prop_values = '1     1    1      1 1   -1'
   [../]
 
   [./kappa_LV]
     type = ParsedMaterial
     f_name = kappa_LV
     material_property_names = 'sig_LV'
-    function = 'sig_LV*2*${interwidth}/(${pi})^2'
+    function = 'sig_LV*4*${interwidth}/(${pi})^2'
   [../]
 
   [./kappa_LS]
     type = ParsedMaterial
     f_name = kappa_LS
     material_property_names = 'sig_LS'
-    function = 'sig_LS*2*${interwidth}/(${pi})^2'
+    function = 'sig_LS*4*${interwidth}/(${pi})^2'
   [../]
 
   [./kappa_VS]
     type = ParsedMaterial
     f_name = kappa_VS
     material_property_names = 'sig_VS'
-    function = 'sig_VS*2*${interwidth}/(${pi})^2'
+    function = 'sig_VS*4*${interwidth}/(${pi})^2'
   [../]
 
   [./dwh_LV]
     type = ParsedMaterial
     f_name = dwh_LV
     material_property_names = 'sig_LV'
-    function = 'sig_LV/${interwidth}'
+    function = '2*sig_LV/${interwidth}'
   [../]
 
   [./dwh_LS]
     type = ParsedMaterial
     f_name = dwh_LS
     material_property_names = 'sig_LS'
-    function = 'sig_LS/${interwidth}'
+    function = '2*sig_LS/${interwidth}'
   [../]
 
   [./dwh_VS]
     type = ParsedMaterial
     f_name = dwh_VS
     material_property_names = 'sig_VS'
-    function = 'sig_VS/${interwidth}'
+    function = '2*sig_VS/${interwidth}'
   [../]
 
   [./doublewell_LVtw]
