@@ -31,7 +31,9 @@ protected:
   /// Smoothing factor of Sgn function
   unsigned int _v_var;
   const VariableValue & _v;
+  const VariableGradient & _grad_v;
   const Real _eps;
+  const MaterialProperty<Real> & _L;
 };
 
 #endif // DISTANCEFUNCTION_H

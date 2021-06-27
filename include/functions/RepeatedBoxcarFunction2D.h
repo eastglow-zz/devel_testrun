@@ -25,7 +25,7 @@ class RepeatedBoxcarFunction2D : public Function
 public:
   RepeatedBoxcarFunction2D(const InputParameters & parameters);
 
-  virtual Real value(Real t, const Point & p) override;
+  virtual Real value(Real t, const Point & p);
 
 protected:
   /// Coordinate shift along x directions

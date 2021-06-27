@@ -22,6 +22,8 @@ validParams<VarAdvection>()
   params.addRequiredCoupledVar("vel_x","x_velocity_component");
   params.addCoupledVar("vel_y","y_velocity_component");
   params.addCoupledVar("vel_z","z_velocity_component");
+  params.addParam<Real>(
+      "coef", 1.0, "Coefficent ($\\sigma$) multiplier for the coupled force term.");
   return params;
 }
 
@@ -32,7 +34,8 @@ VarAdvection::VarAdvection(const InputParameters & parameters)
     _v_z(_mesh.dimension() >= 3 ? coupledValue("vel_z") : _zero), _v_z_var(_mesh.dimension() >= 2 ? coupled("vel_z") : _mesh.dimension()+1),
     _grad_u_vel(coupledGradient("vel_x")),
     _grad_v_vel(coupledGradient("vel_y")),
-    _grad_w_vel(coupledGradient("vel_z"))
+    _grad_w_vel(coupledGradient("vel_z")),
+    _coef(getParam<Real>("coef"))
 {
 }
 
@@ -63,7 +66,7 @@ VarAdvection::computeQpResidual()
 {
   const RealGradient v(_v_x[_qp], _v_y[_qp], _v_z[_qp]);
   // return -_u[_qp] * (_v * _grad_test[_i][_qp]);
-  return ( v * _grad_u[_qp] + _u[_qp] * div_u(_mesh.dimension()) ) * _test[_i][_qp];
+  return _coef * ( v * _grad_u[_qp] + _u[_qp] * div_u(_mesh.dimension()) ) * _test[_i][_qp];
 }
 
 Real
@@ -71,7 +74,7 @@ VarAdvection::computeQpJacobian()
 {
   const RealGradient v(_v_x[_qp], _v_y[_qp], _v_z[_qp]);
   // return -_phi[_j][_qp] * (_v * _grad_test[_i][_qp]);
-  return ( v * _grad_phi[_j][_qp] + _phi[_j][_qp] * div_u(_mesh.dimension()) ) * _test[_i][_qp];
+  return _coef * ( v * _grad_phi[_j][_qp] + _phi[_j][_qp] * div_u(_mesh.dimension()) ) * _test[_i][_qp];
 }
 
 Real
@@ -80,5 +83,5 @@ VarAdvection::computeQpOffDiagJacobian(unsigned int jvar)
   const RealGradient v(jvar == _v_x_var ? _phi[_j][_qp] : 0, jvar == _v_y_var ? _phi[_j][_qp] : 0, jvar == _v_z_var ? _phi[_j][_qp] : 0);
   const RealGradient dvdcvar(jvar == _v_x_var ? 1 : 0, jvar == _v_y_var ? 1 : 0, jvar == _v_z_var ? 1 : 0);
   // return -_u[_qp] * (_v * _grad_test[_i][_qp]);
-  return ( v * _grad_u[_qp] + _u[_qp] * (dvdcvar * _grad_phi[_j][_qp]) ) * _test[_i][_qp];
+  return _coef * ( v * _grad_u[_qp] + _u[_qp] * (dvdcvar * _grad_phi[_j][_qp]) ) * _test[_i][_qp];
 }

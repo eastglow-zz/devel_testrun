@@ -38,6 +38,7 @@ protected:
   const VariableGradient & _grad_u_vel;
   const VariableGradient & _grad_v_vel;
   const VariableGradient & _grad_w_vel;
+  Real _coef;
 
 };
 

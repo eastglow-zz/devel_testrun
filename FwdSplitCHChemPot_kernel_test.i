@@ -8,11 +8,9 @@ eps = 0.0001
 
 [Mesh]
   type = GeneratedMesh
-  dim = 2
-  nx = 100
-  ny = 100
+  dim = 1
+  nx = 4
   xmax = 100
-  ymax = 100
   #type = FileMesh
   #file = notch.msh
 []
@@ -31,10 +29,7 @@ eps = 0.0001
     order = FIRST
     family = MONOMIAL
   [../]
-  [./dcLy]
-    order = FIRST
-    family = MONOMIAL
-  [../]
+
 []
 
 [AuxKernels]
@@ -58,12 +53,7 @@ eps = 0.0001
     gradient_variable = cL
     component = x
   [../]
-  [./calc_dcLy]
-    type = VariableGradientComponent
-    variable = dcLy
-    gradient_variable = cL
-    component = y
-  [../]
+
 []
 
 [Variables]
@@ -102,17 +92,17 @@ eps = 0.0001
   [./cL_IC]
     type = FunctionIC
     variable = cL
-    function = TheCircle
+    function = line_inc
   [../]
   [./cS_IC]
     type = FunctionIC
     variable = cS
-    function = FlatSlab
+    function = OneConst
   [../]
   [./cV_IC]
     type = FunctionIC
     variable = cV
-    function = Background
+    function = line_dec
   [../]
   # [./cL_testIC]
   #   type = BoundingBoxIC
@@ -161,24 +151,14 @@ eps = 0.0001
     type = ConstantFunction
     value = 1
   [../]
-  [./TheCircle]
+
+  [./line_inc]
     type = ParsedFunction
-    vars = 'x0 y0 r0'
-    vals = '50 30 20'
-    value = 'r:=sqrt((x-x0)^2+(y-y0)^2);if(abs(r-r0) <= 0.5*${interwidth}, 0.5-0.5*sin(${pi}*(r-r0)/${interwidth}), if(r-r0 <= -0.5*${interwidth}, 1, 0))'
-    #value = 'r:=sqrt((x-x0)^2+(y-y0)^2),0.5-0.5*tanh(0.5*5.8889*(r-r0)/0.5)'
+    value = '0.01*x'
   [../]
-  [./FlatSlab]
+  [./line_dec]
     type = ParsedFunction
-    vars = 'y0'
-    vals = '10'
-    # value = 'if(abs(y-y0) <= 0.5*${interwidth}, 0.5-0.5*sin(${pi}*(y-y0)/${interwidth}), if(y-y0 <= -0.5*${interwidth}, 1, 0))'
-    value = '0'
-  [../]
-  [./Background]
-    type = LinearCombinationFunction
-    functions = 'OneConst TheCircle FlatSlab'
-    w =         '1        -1        1'
+    value = '1-0.01*x'
   [../]
 []
 
@@ -204,52 +184,52 @@ eps = 0.0001
   [../]
 
   # R_wL part
-  [./wL_neg_wL_term]
-    type = MassEigenKernel
-    variable = wL
-    eigen = false
-  [../]
-  [./wL_lap_cV_term]
-    type = SimpleCoupledACInterface
-    variable = wL
-    v = cV
-    kappa_name = kappa_LV
-    mob_name = negOne
-  [../]
-  [./wL_lap_cS_term]
-    type = SimpleCoupledACInterface
-    variable = wL
-    v = cS
-    kappa_name = kappa_LS
-    mob_name = negOne
-  [../]
-  [./wL_doublewell_LV_term]
-    type = CoupledAllenCahn
-    variable = wL
-    v = cL
-    f_name = fLV_LO
-    args = 'cL cV'
-    mob_name = One
-  [../]
-  [./wL_doublewell_LS_term]
-    type = CoupledAllenCahn
-    variable = wL
-    v = cL
-    f_name = fLS_LO
-    args = 'cL cS'
-    mob_name = One
-  [../]
-
-  # [./wL]
-  #   type = FwdSplitCHChemPot
+  # [./wL_neg_wL_term]
+  #   type = MassEigenKernel
   #   variable = wL
-  #   chempot_comp_cname = cL
-  #   c_names = 'cV cS'
-  #   kappa_names = 'kappa_LV kappa_LS'
-  #   fij_names = 'fLV_LO fLS_LO'
-  #   prefactor_dw_term = 1
-  #   prefactor_lap_term = 1
+  #   eigen = false
   # [../]
+  # [./wL_lap_cV_term]
+  #   type = SimpleCoupledACInterface
+  #   variable = wL
+  #   v = cV
+  #   kappa_name = kappa_LV
+  #   mob_name = negOne
+  # [../]
+  # [./wL_lap_cS_term]
+  #   type = SimpleCoupledACInterface
+  #   variable = wL
+  #   v = cS
+  #   kappa_name = kappa_LS
+  #   mob_name = negOne
+  # [../]
+  # [./wL_doublewell_LV_term]
+  #   type = CoupledAllenCahn
+  #   variable = wL
+  #   v = cL
+  #   f_name = fLV_LO
+  #   args = 'cL cV'
+  #   mob_name = One
+  # [../]
+  # [./wL_doublewell_LS_term]
+  #   type = CoupledAllenCahn
+  #   variable = wL
+  #   v = cL
+  #   f_name = fLS_LO
+  #   args = 'cL cS'
+  #   mob_name = One
+  # [../]
+
+  [./wL]
+    type = FwdSplitCHChemPot
+    variable = wL
+    chempot_comp_cname = cL
+    c_names = 'cV'
+    kappa_names = 'kappa_LV'
+    fij_names = 'fLV_LO'
+    prefactor_dw_term = 1
+    prefactor_lap_term = 1
+  [../]
 
   #R_cV part
   # [./cV_timederivative_term]
@@ -302,41 +282,41 @@ eps = 0.0001
   [../]
 
   # R_wV part
-  [./wV_neg_wV_term]
-    type = MassEigenKernel
-    variable = wV
-    eigen = false
-  [../]
-  [./wV_lap_cL_term]
-    type = SimpleCoupledACInterface
-    variable = wV
-    v = cL
-    kappa_name = kappa_LV
-    mob_name = negOne
-  [../]
-  [./wV_lap_cS_term]
-    type = SimpleCoupledACInterface
-    variable = wV
-    v = cS
-    kappa_name = kappa_VS
-    mob_name = negOne
-  [../]
-  [./wV_doublewell_LV_term]
-    type = CoupledAllenCahn
-    variable = wV
-    v = cV
-    f_name = fLV_LO
-    args = 'cL cV'
-    mob_name = One
-  [../]
-  [./wV_doublewell_VS_term]
-    type = CoupledAllenCahn
-    variable = wV
-    v = cV
-    f_name = fVS_LO
-    args = 'cV cS'
-    mob_name = One
-  [../]
+  # [./wV_neg_wV_term]
+  #   type = MassEigenKernel
+  #   variable = wV
+  #   eigen = false
+  # [../]
+  # [./wV_lap_cL_term]
+  #   type = SimpleCoupledACInterface
+  #   variable = wV
+  #   v = cL
+  #   kappa_name = kappa_LV
+  #   mob_name = negOne
+  # [../]
+  # [./wV_lap_cS_term]
+  #   type = SimpleCoupledACInterface
+  #   variable = wV
+  #   v = cS
+  #   kappa_name = kappa_VS
+  #   mob_name = negOne
+  # [../]
+  # [./wV_doublewell_LV_term]
+  #   type = CoupledAllenCahn
+  #   variable = wV
+  #   v = cV
+  #   f_name = fLV_LO
+  #   args = 'cL cV'
+  #   mob_name = One
+  # [../]
+  # [./wV_doublewell_VS_term]
+  #   type = CoupledAllenCahn
+  #   variable = wV
+  #   v = cV
+  #   f_name = fVS_LO
+  #   args = 'cV cS'
+  #   mob_name = One
+  # [../]
 
   # [./wV_compute]
   #   type = FwdSplitCHChemPot
@@ -348,10 +328,10 @@ eps = 0.0001
   #   prefactor_dw_term = 1
   #   prefactor_lap_term = 1
   # [../]
-  # [./wV_dummy]
-  #   type = TimeDerivative
-  #   variable = wV
-  # [../]
+  [./wV_dummy]
+    type = TimeDerivative
+    variable = wV
+  [../]
 
   # R_cS part
   [./cS_timederivative]
@@ -360,43 +340,43 @@ eps = 0.0001
   [../]
 
   # R_wS part
-  [./wS_neg_wV_term]
-    type = MassEigenKernel
-    variable = wS
-    eigen = false
-  [../]
-  [./wS_lap_cL_term]
-    type = SimpleCoupledACInterface
-    variable = wS
-    v = cL
-    kappa_name = kappa_LS
-    mob_name = negOne
-  [../]
-  [./wS_lap_cS_term]
-    type = SimpleCoupledACInterface
-    variable = wS
-    v = cV
-    kappa_name = kappa_VS
-    mob_name = negOne
-  [../]
-  [./wS_doublewell_LS_term]
-    type = CoupledAllenCahn
-    variable = wS
-    v = cL
-    f_name = fLS_LO
-    args = 'cL cS'
-    mob_name = One
-  [../]
-  [./wS_doublewell_VS_term]
-    type = CoupledAllenCahn
-    variable = wS
-    v = cV
-    f_name = fVS_LO
-    args = 'cV cS'
-    mob_name = One
-  [../]
+  # [./wS_neg_wV_term]
+  #   type = MassEigenKernel
+  #   variable = wS
+  #   eigen = false
+  # [../]
+  # [./wS_lap_cL_term]
+  #   type = SimpleCoupledACInterface
+  #   variable = wS
+  #   v = cL
+  #   kappa_name = kappa_LS
+  #   mob_name = negOne
+  # [../]
+  # [./wS_lap_cS_term]
+  #   type = SimpleCoupledACInterface
+  #   variable = wS
+  #   v = cV
+  #   kappa_name = kappa_VS
+  #   mob_name = negOne
+  # [../]
+  # [./wS_doublewell_LS_term]
+  #   type = CoupledAllenCahn
+  #   variable = wS
+  #   v = cL
+  #   f_name = fLS_LO
+  #   args = 'cL cS'
+  #   mob_name = One
+  # [../]
+  # [./wS_doublewell_VS_term]
+  #   type = CoupledAllenCahn
+  #   variable = wS
+  #   v = cV
+  #   f_name = fVS_LO
+  #   args = 'cV cS'
+  #   mob_name = One
+  # [../]
 
-  # [./wS_compute]
+  # [./wS]
   #   type = FwdSplitCHChemPot
   #   variable = wS
   #   chempot_comp_cname = cS
@@ -406,10 +386,10 @@ eps = 0.0001
   #   prefactor_dw_term = 1
   #   prefactor_lap_term = 1
   # [../]
-  # [./wS_dummy]
-  #   type = TimeDerivative
-  #   variable = wS
-  # [../]
+  [./wS_dummy]
+    type = TimeDerivative
+    variable = wS
+  [../]
 
 []
 
@@ -417,7 +397,7 @@ eps = 0.0001
   [./constants]
     type = GenericConstantMaterial
     prop_names = 'sig_LV sig_LS sig_VS M One negOne'
-    prop_values = '1     0.134      1      1 1   -1'
+    prop_values = '1     1      1      1 1   -1'
   [../]
 
   [./kappa_LV]
@@ -469,7 +449,7 @@ eps = 0.0001
     args = 'cL cV'
     # function = 'dwh_LV*(sqrt(cL^2+(${eps})^2)-${eps})*(sqrt(cV^2+(${eps})^2)-${eps})'
     function = 'dwh_LV * ABScL * ABScV'
-    #outputs = exodus
+    outputs = exodus
     derivative_order = 2
   [../]
 
@@ -480,7 +460,7 @@ eps = 0.0001
     args = 'cL cS'
     # function = 'dwh_LS*(sqrt(cL^2+(${eps})^2)-${eps})*(sqrt(cS^2+(${eps})^2)-${eps})'
     function = 'dwh_LS * ABScL * ABScS'
-    #outputs = exodus
+    outputs = exodus
     derivative_order = 2
   [../]
 
@@ -491,7 +471,7 @@ eps = 0.0001
     args = 'cV cS'
     # function = 'dwh_VS*(sqrt(cV^2+(${eps})^2)-${eps})*(sqrt(cS^2+(${eps})^2)-${eps})'
     function = 'dwh_VS * ABScV * ABScS'
-    #outputs = exodus
+    outputs = exodus
     derivative_order = 2
   [../]
 
@@ -499,7 +479,6 @@ eps = 0.0001
     type = DerivativeParsedMaterial
     f_name = ABScL
     args = 'cL'
-    # function = 'if(cL > 0, cL, -cL)'
     # function = '(sqrt(cL^2 + ${eps}^2) - ${eps})/(sqrt(1.0/9.0 + ${eps}^2) - ${eps})'
     function = 'if(cL >= 0, cL, 0.5*cL*(cL + 2*${eps})/${eps})'
     derivative_order = 2
@@ -509,7 +488,6 @@ eps = 0.0001
     type = DerivativeParsedMaterial
     f_name = ABScS
     args = 'cS'
-    # function = 'if(cS > 0, cS, -cS)'
     # function = '(sqrt(cS^2 + ${eps}^2) - ${eps})/(sqrt(1.0/9.0 + ${eps}^2) - ${eps})'
     function = 'if(cS >= 0, cS, 0.5*cS*(cS + 2*${eps})/${eps})'
     derivative_order = 2
@@ -519,7 +497,6 @@ eps = 0.0001
     type = DerivativeParsedMaterial
     f_name = ABScV
     args = 'cV'
-    # function = 'if(cV > 0, cV, -cV)'
     # function = '(sqrt(cV^2 + ${eps}^2) - ${eps})/(sqrt(1.0/9.0 + ${eps}^2) - ${eps})'
     function = 'if(cV >= 0, cV, 0.5*cV*(cV + 2*${eps})/${eps})'
     derivative_order = 2
@@ -537,13 +514,6 @@ eps = 0.0001
     #outputs = exodus
   [../]
 
-  [./MLV]
-    type = ParsedMaterial
-    f_name = MLV
-    material_property_names = 'M'
-    args = 'dcLx dcLy'
-    function = 'if(sqrt(dcLx^2+dcLy^2)> 1e-5,M,0)'
-  [../]
 []
 
 [Preconditioning]
@@ -576,10 +546,10 @@ eps = 0.0001
   #petsc_options_value = 'bjacobi  ilu          4'
 
   l_max_its = 50
-  l_tol = 2e-5
+  l_tol = 0.99
   nl_max_its = 20
-  nl_rel_tol = 2e-8
-  nl_abs_tol = 2e-8
+  nl_rel_tol = 0.99
+  nl_abs_tol = 0.99
 
   [./TimeStepper]
     type = IterationAdaptiveDT
@@ -589,8 +559,8 @@ eps = 0.0001
     optimal_iterations = 20
     iteration_window = 5
   [../]
-  # dtmax = 1
-  # end_time = 1.1e-6
+  dtmax = 1
+  end_time = 1.1e-6
   #end_time = 20.0
   #end_time = 2000.0
 

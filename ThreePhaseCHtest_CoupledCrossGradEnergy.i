@@ -2,9 +2,10 @@
 
 #Forward split method
 
-interwidth = 6 #Target full-interfacial Width
-pi = 3.141592
-eps = 0.0001
+interwidth = 5 #Target full-interfacial Width
+interwidth_i = 5 #Target full-interfacial Width
+# alpha = 9.1902397003  # 2*ln(0.99/0.01)
+alpha = 5.8888779583  # 2*ln(0.95/0.05)
 
 [Mesh]
   type = GeneratedMesh
@@ -26,15 +27,6 @@ eps = 0.0001
     order = FIRST
     family = LAGRANGE
   [../]
-
-  [./dcLx]
-    order = FIRST
-    family = MONOMIAL
-  [../]
-  [./dcLy]
-    order = FIRST
-    family = MONOMIAL
-  [../]
 []
 
 [AuxKernels]
@@ -51,18 +43,6 @@ eps = 0.0001
     variable = cV_constrained
     args = 'cL cS'
     function = '1 - cL - cS'
-  [../]
-  [./calc_dcLx]
-    type = VariableGradientComponent
-    variable = dcLx
-    gradient_variable = cL
-    component = x
-  [../]
-  [./calc_dcLy]
-    type = VariableGradientComponent
-    variable = dcLy
-    gradient_variable = cL
-    component = y
   [../]
 []
 
@@ -165,20 +145,19 @@ eps = 0.0001
     type = ParsedFunction
     vars = 'x0 y0 r0'
     vals = '50 30 20'
-    value = 'r:=sqrt((x-x0)^2+(y-y0)^2);if(abs(r-r0) <= 0.5*${interwidth}, 0.5-0.5*sin(${pi}*(r-r0)/${interwidth}), if(r-r0 <= -0.5*${interwidth}, 1, 0))'
+    value = 'r:=sqrt((x-x0)^2+(y-y0)^2);0.5-0.5*tanh(0.5*${alpha}*(r-r0)/${interwidth_i})'
     #value = 'r:=sqrt((x-x0)^2+(y-y0)^2),0.5-0.5*tanh(0.5*5.8889*(r-r0)/0.5)'
   [../]
   [./FlatSlab]
     type = ParsedFunction
     vars = 'y0'
     vals = '10'
-    # value = 'if(abs(y-y0) <= 0.5*${interwidth}, 0.5-0.5*sin(${pi}*(y-y0)/${interwidth}), if(y-y0 <= -0.5*${interwidth}, 1, 0))'
-    value = '0'
+    value = '0.5-0.5*tanh(0.5*${alpha}*(y-y0)/${interwidth_i})'
   [../]
   [./Background]
     type = LinearCombinationFunction
     functions = 'OneConst TheCircle FlatSlab'
-    w =         '1        -1        1'
+    w =         '1        -1        -1'
   [../]
 []
 
@@ -209,36 +188,52 @@ eps = 0.0001
     variable = wL
     eigen = false
   [../]
-  [./wL_lap_cV_term]
-    type = SimpleCoupledACInterface
+  # [./wL_lap_cV_term]
+  #   type = SimpleCoupledACInterface
+  #   variable = wL
+  #   v = cL
+  #   kappa_name = kappa_LV
+  #   mob_name = One
+  # [../]
+  # [./wL_lap_cV_term]
+  #   type = SimpleCoupledACInterface
+  #   variable = wL
+  #   v = cV
+  #   kappa_name = kappa_LV
+  #   mob_name = negOne
+  # [../]
+  # [./wL_lap_cS_term]
+  #   type = SimpleCoupledACInterface
+  #   variable = wL
+  #   v = cS
+  #   kappa_name = kappa_LS
+  #   mob_name = negOne
+  # [../]
+  [./wL_GradEterm]
+    type = CoupledCrossGradEnergy
     variable = wL
-    v = cV
-    kappa_name = kappa_LV
-    mob_name = negOne
-  [../]
-  [./wL_lap_cS_term]
-    type = SimpleCoupledACInterface
-    variable = wL
-    v = cS
-    kappa_name = kappa_LS
-    mob_name = negOne
+    chempot_comp_cname = 'cL'
+    c_names =     'cV       cS'
+    kappa_names = 'kappa_LV kappa_LS'
+    mobility_name = One
+    prefactor = 1.0
   [../]
   [./wL_doublewell_LV_term]
     type = CoupledAllenCahn
     variable = wL
     v = cL
-    f_name = fLV_LO
-    args = 'cL cV'
+    f_name = fDW
+    args = 'cL cV cS'
     mob_name = One
   [../]
-  [./wL_doublewell_LS_term]
-    type = CoupledAllenCahn
-    variable = wL
-    v = cL
-    f_name = fLS_LO
-    args = 'cL cS'
-    mob_name = One
-  [../]
+  # [./wL_doublewell_LS_term]
+  #   type = CoupledAllenCahn
+  #   variable = wL
+  #   v = cS
+  #   f_name = fLS_tw
+  #   args = 'cL cS cV'
+  #   mob_name = One
+  # [../]
 
   # [./wL]
   #   type = FwdSplitCHChemPot
@@ -246,12 +241,12 @@ eps = 0.0001
   #   chempot_comp_cname = cL
   #   c_names = 'cV cS'
   #   kappa_names = 'kappa_LV kappa_LS'
-  #   fij_names = 'fLV_LO fLS_LO'
+  #   fij_names = 'fLV fLS'
   #   prefactor_dw_term = 1
   #   prefactor_lap_term = 1
   # [../]
 
-  #R_cV part
+  # R_cV part
   # [./cV_timederivative_term]
   #   type = TimeDerivative
   #   variable = cV
@@ -270,8 +265,6 @@ eps = 0.0001
   #   kappa_name = M
   #   mob_name = negOne
   # [../]
-
-  # Calc. cV from the constraint; cL + cV + cS = 1
   # [./cV_itself]
   #   type = MassEigenKernel
   #   variable = cV
@@ -307,50 +300,54 @@ eps = 0.0001
     variable = wV
     eigen = false
   [../]
-  [./wV_lap_cL_term]
-    type = SimpleCoupledACInterface
+  # [./wV_lap_cL_term]
+  #   type = SimpleCoupledACInterface
+  #   variable = wV
+  #   v = cL
+  #   kappa_name = kappa_LV
+  #   mob_name = negOne
+  # [../]
+  # [./wV_lap_cS_term]
+  #   type = SimpleCoupledACInterface
+  #   variable = wV
+  #   v = cS
+  #   kappa_name = kappa_VS
+  #   mob_name = negOne
+  # [../]
+  [./wV_GradEterm]
+    type = CoupledCrossGradEnergy
     variable = wV
-    v = cL
-    kappa_name = kappa_LV
-    mob_name = negOne
-  [../]
-  [./wV_lap_cS_term]
-    type = SimpleCoupledACInterface
-    variable = wV
-    v = cS
-    kappa_name = kappa_VS
-    mob_name = negOne
+    chempot_comp_cname = 'cV'
+    c_names =     'cL       cS'
+    kappa_names = 'kappa_LV kappa_VS'
+    mobility_name = One
+    prefactor = 1.0
   [../]
   [./wV_doublewell_LV_term]
     type = CoupledAllenCahn
     variable = wV
     v = cV
-    f_name = fLV_LO
-    args = 'cL cV'
+    f_name = fDW
+    args = 'cL cV cS'
     mob_name = One
   [../]
-  [./wV_doublewell_VS_term]
-    type = CoupledAllenCahn
-    variable = wV
-    v = cV
-    f_name = fVS_LO
-    args = 'cV cS'
-    mob_name = One
-  [../]
-
+  # [./wV_doublewell_VS_term]
+  #   type = CoupledAllenCahn
+  #   variable = wV
+  #   v = cV
+  #   f_name = fVS_tw
+  #   args = 'cV cS cL'
+  #   mob_name = One
+  # [../]
   # [./wV_compute]
   #   type = FwdSplitCHChemPot
   #   variable = wV
   #   chempot_comp_cname = cV
   #   c_names = 'cL cS'
   #   kappa_names = 'kappa_LV kappa_VS'
-  #   fij_names = 'fLV_LO fVS_LO'
+  #   fij_names = 'fLV fVS'
   #   prefactor_dw_term = 1
   #   prefactor_lap_term = 1
-  # [../]
-  # [./wV_dummy]
-  #   type = TimeDerivative
-  #   variable = wV
   # [../]
 
   # R_cS part
@@ -359,56 +356,59 @@ eps = 0.0001
     variable = cS
   [../]
 
-  # R_wS part
-  [./wS_neg_wV_term]
+  # [./wS_compute]
+  [./wS_neg_wS_term]
     type = MassEigenKernel
     variable = wS
     eigen = false
   [../]
-  [./wS_lap_cL_term]
-    type = SimpleCoupledACInterface
+  # [./wS_lap_cL_term]
+  #   type = SimpleCoupledACInterface
+  #   variable = wS
+  #   v = cL
+  #   kappa_name = kappa_LS
+  #   mob_name = negOne
+  # [../]
+  # [./wS_lap_cV_term]
+  #   type = SimpleCoupledACInterface
+  #   variable = wS
+  #   v = cV
+  #   kappa_name = kappa_VS
+  #   mob_name = negOne
+  # [../]
+  [./wS_GradEterm]
+    type = CoupledCrossGradEnergy
     variable = wS
-    v = cL
-    kappa_name = kappa_LS
-    mob_name = negOne
-  [../]
-  [./wS_lap_cS_term]
-    type = SimpleCoupledACInterface
-    variable = wS
-    v = cV
-    kappa_name = kappa_VS
-    mob_name = negOne
+    chempot_comp_cname = 'cS'
+    c_names =     'cL       cV'
+    kappa_names = 'kappa_LS kappa_VS'
+    mobility_name = One
+    prefactor = 1.0
   [../]
   [./wS_doublewell_LS_term]
     type = CoupledAllenCahn
     variable = wS
-    v = cL
-    f_name = fLS_LO
-    args = 'cL cS'
+    v = cS
+    f_name = fDW
+    args = 'cL cV cS'
     mob_name = One
   [../]
-  [./wS_doublewell_VS_term]
-    type = CoupledAllenCahn
-    variable = wS
-    v = cV
-    f_name = fVS_LO
-    args = 'cV cS'
-    mob_name = One
-  [../]
-
-  # [./wS_compute]
+  # [./wS_doublewell_VS_term]
+  #   type = CoupledAllenCahn
+  #   variable = wS
+  #   v = cS
+  #   f_name = fVS_tw
+  #   args = 'cV cS'
+  #   mob_name = One
+  # [../]
   #   type = FwdSplitCHChemPot
   #   variable = wS
   #   chempot_comp_cname = cS
   #   c_names = 'cL cV'
   #   kappa_names = 'kappa_LS kappa_VS'
-  #   fij_names = 'fLS_LO fVS_LO'
+  #   fij_names = 'fLS fVS'
   #   prefactor_dw_term = 1
   #   prefactor_lap_term = 1
-  # [../]
-  # [./wS_dummy]
-  #   type = TimeDerivative
-  #   variable = wS
   # [../]
 
 []
@@ -416,133 +416,194 @@ eps = 0.0001
 [Materials]
   [./constants]
     type = GenericConstantMaterial
-    prop_names = 'sig_LV sig_LS sig_VS M One negOne'
-    prop_values = '1     0.134      1      1 1   -1'
+    prop_names = 'sig_LV sig_LS sig_VS M One negOne twh_factor'
+    prop_values = '1     1      1      1 1   -1     0'
+    # prop_values = '4     2    4      1 1   -1     0'
+    # prop_values = '1     0.134  1      1 1   -1     0'
   [../]
 
   [./kappa_LV]
     type = ParsedMaterial
     f_name = kappa_LV
     material_property_names = 'sig_LV'
-    function = 'sig_LV*4*${interwidth}/(${pi})^2'
+    function = '6*sig_LV*${interwidth}/${alpha}'
   [../]
 
   [./kappa_LS]
     type = ParsedMaterial
     f_name = kappa_LS
     material_property_names = 'sig_LS'
-    function = 'sig_LS*4*${interwidth}/(${pi})^2'
+    function = '6*sig_LS*${interwidth}/${alpha}'
   [../]
 
   [./kappa_VS]
     type = ParsedMaterial
     f_name = kappa_VS
     material_property_names = 'sig_VS'
-    function = 'sig_VS*4*${interwidth}/(${pi})^2'
+    function = '6*sig_VS*${interwidth}/${alpha}'
+  [../]
+
+  [./kappa_L]
+    type = ParsedMaterial
+    f_name = kappa_L
+    material_property_names = 'Sfac_L'
+    function = '6*${interwidth}/${alpha} * (-Sfac_L)'
+  [../]
+
+  [./kappa_V]
+    type = ParsedMaterial
+    f_name = kappa_V
+    material_property_names = 'Sfac_V'
+    function = '6*${interwidth}/${alpha} * (-Sfac_V)'
+  [../]
+
+  [./kappa_S]
+    type = ParsedMaterial
+    f_name = kappa_S
+    material_property_names = 'Sfac_S'
+    function = '6*${interwidth}/${alpha} * (-Sfac_S)'
   [../]
 
   [./dwh_LV]
     type = ParsedMaterial
     f_name = dwh_LV
     material_property_names = 'sig_LV'
-    function = '4*sig_LV/${interwidth}'
+    function = '3*${alpha}*sig_LV/${interwidth}'
   [../]
 
   [./dwh_LS]
     type = ParsedMaterial
     f_name = dwh_LS
     material_property_names = 'sig_LS'
-    function = '4*sig_LS/${interwidth}'
+    function = '3*${alpha}*sig_LS/${interwidth}'
   [../]
 
   [./dwh_VS]
     type = ParsedMaterial
     f_name = dwh_VS
     material_property_names = 'sig_VS'
-    function = '4*sig_VS/${interwidth}'
+    function = '3*${alpha}*sig_VS/${interwidth}'
+  [../]
+
+  [./Sfac_L]
+    type = ParsedMaterial
+    f_name = Sfac_L
+    material_property_names = 'sig_LV sig_LS sig_VS'
+    function = 'sig_VS - sig_LV - sig_LS'
+  [../]
+
+  [./Sfac_V]
+    type = ParsedMaterial
+    f_name = Sfac_V
+    material_property_names = 'sig_LV sig_LS sig_VS'
+    function = 'sig_LS - sig_LV - sig_VS'
+  [../]
+
+  [./Sfac_S]
+    type = ParsedMaterial
+    f_name = Sfac_S
+    material_property_names = 'sig_LV sig_LS sig_VS'
+    function = 'sig_LV - sig_LS - sig_VS'
   [../]
 
   [./doublewell_LVtw]
     type = DerivativeParsedMaterial
-    f_name = fLV_LO
-    material_property_names = 'dwh_LV ABScL(cL) ABScV(cV)'
-    args = 'cL cV'
-    # function = 'dwh_LV*(sqrt(cL^2+(${eps})^2)-${eps})*(sqrt(cV^2+(${eps})^2)-${eps})'
-    function = 'dwh_LV * ABScL * ABScV'
-    #outputs = exodus
-    derivative_order = 2
+    f_name = fLV_tw
+    material_property_names = 'dwh_LV twh_factor'
+    args = 'cL cV cS'
+    function = 'dwh_LV*cL^2*cV^2 + twh_factor*dwh_LV*cL^2*cV^2*cS^2'
   [../]
 
   [./doublewell_LStw]
     type = DerivativeParsedMaterial
-    f_name = fLS_LO
-    material_property_names = 'dwh_LS ABScL(cL) ABScS(cS)'
-    args = 'cL cS'
-    # function = 'dwh_LS*(sqrt(cL^2+(${eps})^2)-${eps})*(sqrt(cS^2+(${eps})^2)-${eps})'
-    function = 'dwh_LS * ABScL * ABScS'
-    #outputs = exodus
-    derivative_order = 2
+    f_name = fLS_tw
+    material_property_names = 'dwh_LS twh_factor dwh_LV'
+    args = 'cL cV cS'
+    function = 'dwh_LS*cL^2*cS^2 + twh_factor*dwh_LV*cL^2*cV^2*cS^2'
   [../]
 
   [./doublewell_VStw]
     type = DerivativeParsedMaterial
-    f_name = fVS_LO
-    material_property_names = 'dwh_VS ABScV(cV) ABScS(cS)'
-    args = 'cV cS'
-    # function = 'dwh_VS*(sqrt(cV^2+(${eps})^2)-${eps})*(sqrt(cS^2+(${eps})^2)-${eps})'
-    function = 'dwh_VS * ABScV * ABScS'
-    #outputs = exodus
-    derivative_order = 2
-  [../]
-
-  [./ABS_cL]
-    type = DerivativeParsedMaterial
-    f_name = ABScL
-    args = 'cL'
-    # function = 'if(cL > 0, cL, -cL)'
-    # function = '(sqrt(cL^2 + ${eps}^2) - ${eps})/(sqrt(1.0/9.0 + ${eps}^2) - ${eps})'
-    function = 'if(cL >= 0, cL, 0.5*cL*(cL + 2*${eps})/${eps})'
-    derivative_order = 2
-  [../]
-
-  [./ABS_cS]
-    type = DerivativeParsedMaterial
-    f_name = ABScS
-    args = 'cS'
-    # function = 'if(cS > 0, cS, -cS)'
-    # function = '(sqrt(cS^2 + ${eps}^2) - ${eps})/(sqrt(1.0/9.0 + ${eps}^2) - ${eps})'
-    function = 'if(cS >= 0, cS, 0.5*cS*(cS + 2*${eps})/${eps})'
-    derivative_order = 2
-  [../]
-
-  [./ABS_cV]
-    type = DerivativeParsedMaterial
-    f_name = ABScV
-    args = 'cV'
-    # function = 'if(cV > 0, cV, -cV)'
-    # function = '(sqrt(cV^2 + ${eps}^2) - ${eps})/(sqrt(1.0/9.0 + ${eps}^2) - ${eps})'
-    function = 'if(cV >= 0, cV, 0.5*cV*(cV + 2*${eps})/${eps})'
-    derivative_order = 2
-  [../]
-
-  [./triple_well]
-    type = DerivativeParsedMaterial
-    f_name = ftriple
-    constant_names = 'triple_height'
-    constant_expressions = '0'
-    material_property_names = 'dwh_LV dwh_LS dwh_VS'
+    f_name = fVS_tw
+    material_property_names = 'dwh_VS twh_factor dwh_LV'
     args = 'cL cV cS'
-    function = 'triple_height*max(dwh_LV,max(dwh_LS,dwh_VS))*(sqrt(cL^2+(${eps})^2)-${eps})*(sqrt(cV^2+(${eps})^2)-${eps})*(sqrt(cS^2+(${eps})^2)-${eps})'
+    function = 'dwh_VS*cV^2*cS^2 + twh_factor*dwh_LV*cL^2*cV^2*cS^2'
+  [../]
+
+  [./doublewell_LV]
+    type = DerivativeParsedMaterial
+    f_name = fLV
+    material_property_names = 'dwh_LV'
+    args = 'cL cV'
+    function = 'dwh_LV*cL^2*cV^2'
+    # function = 'dwh_LV*cL*(1-cL)*cV*(1-cV)'
+    # function = 'dwh_LV*(1-cL)^2*(1-cV)^2'
+    # function = '0.5*dwh_LV*(cL^2*(1-cL)^2 + cV^2*(1-cV)^2)'
+  [../]
+
+  [./doublewell_LS]
+    type = DerivativeParsedMaterial
+    f_name = fLS
+    material_property_names = 'dwh_LS'
+    args = 'cL cS'
+    function = 'dwh_LS*cL^2*cS^2'
+    # function = 'dwh_LS*cL*(1-cL)*cS*(1-cS)'
+    # function = 'dwh_LS*(1-cL)^2*(1-cS)^2'
+    # function = '0.5*dwh_LS*(cL^2*(1-cL)^2 + cS^2*(1-cS)^2)'
+  [../]
+
+  [./doublewell_VS]
+    type = DerivativeParsedMaterial
+    f_name = fVS
+    material_property_names = 'dwh_VS'
+    args = 'cV cS'
+    function = 'dwh_VS*cV^2*cS^2'
+    # function = 'dwh_VS*cV*(1-cV)*cS*(1-cS)'
+    # function = 'dwh_VS*(1-cV)^2*(1-cS)^2'
+    # function = '0.5*dwh_VS*(cV^2*(1-cV)^2 + cS^2*(1-cS)^2)'
+  [../]
+
+  [./triple_height]
+    type = ParsedMaterial
+    f_name = Lambda
+    material_property_names = 'dwh_LV dwh_LS dwh_VS'
+    function = 'max(dwh_LV,max(dwh_LS,dwh_VS))'
+  [../]
+
+  [./doublewell_f0]
+    type = DerivativeParsedMaterial
+    f_name = f0
+    material_property_names = 'Sfac_L Sfac_V Sfac_S fLV(cL,cV) fLS(cL,cS) fVS(cV,cS)'
+    args = 'cL cV cS'
+    function = 'fLV + fLS + fVS - 6*cL*cV*cS*(Sfac_L*cL + Sfac_V*cV + Sfac_S*cS)'
+    # function = 'fLV + fLS + fVS'
+  [../]
+
+  [./doublewell_ptriple]
+    type = DerivativeParsedMaterial
+    f_name = ptriple
+    material_property_names = 'Lambda'
+    args = 'cL cV cS'
+    function = '64 * Lambda * cL^2 * cV^2 * cS^2'
+  [../]
+
+  [./doublewell_all]
+    type = DerivativeParsedMaterial
+    f_name = fDW
+    material_property_names = 'f0(cL,cV,cS) ptriple(cL,cV,cS)'
+    args = 'cL cV cS'
+    # function = 'f0 + ptriple'
+    function = 'f0'
     derivative_order = 2
-    #outputs = exodus
+    outputs = exodus
   [../]
 
   [./MLV]
     type = ParsedMaterial
     f_name = MLV
     material_property_names = 'M'
-    args = 'dcLx dcLy'
-    function = 'if(sqrt(dcLx^2+dcLy^2)> 1e-5,M,0)'
+    args = 'cL'
+    function = 'if(cL>1e-5,if(cL<1-1e-5, M,0),0)'
   [../]
 []
 
@@ -552,10 +613,9 @@ eps = 0.0001
     full = true
   #  type = FDP
   #  full = true
-
   # Use with solve_type = NEWTON in Executioner block
-  petsc_options_iname = '-pc_type -ksp_type -ksp_gmres_restart'
-  petsc_options_value = 'bjacobi  gmres     30'  # default is 30, the higher the higher resolution but the slower
+  # petsc_options_iname = '-pc_type -ksp_type -ksp_gmres_restart'
+  # petsc_options_value = 'bjacobi  gmres     30'  # default is 30, the higher the higher resolution but the slower
   [../]
 []
 
@@ -565,8 +625,8 @@ eps = 0.0001
   solve_type = NEWTON
   scheme = bdf2
 
-  # petsc_options_iname = '-pc_type -pc_factor_mat_solver_package'
-  # petsc_options_value = 'lu superlu_dist'
+  petsc_options_iname = '-pc_type -pc_factor_mat_solver_package'
+  petsc_options_value = 'lu superlu_dist'
   #petsc_options_iname = '-pc_type -sub_pc_type'
   #petsc_options_value = 'asm      lu          '
   #petsc_options_iname = '-pc_type -pc_asm_overlap'
@@ -576,23 +636,22 @@ eps = 0.0001
   #petsc_options_value = 'bjacobi  ilu          4'
 
   l_max_its = 50
-  l_tol = 2e-5
+  l_tol = 1e-5
   nl_max_its = 20
-  nl_rel_tol = 2e-8
-  nl_abs_tol = 2e-8
+  nl_rel_tol = 1e-8
+  nl_abs_tol = 1e-8
 
   [./TimeStepper]
     type = IterationAdaptiveDT
-    dt = 1e-6
+    dt = 1e-3
     cutback_factor = 0.5
     growth_factor = 2.0
     optimal_iterations = 20
     iteration_window = 5
   [../]
-  # dtmax = 1
-  # end_time = 1.1e-6
+  dtmax = 1
   #end_time = 20.0
-  #end_time = 2000.0
+  end_time = 5000.0
 
   # adaptive mesh to resolve an interface
   # [./Adaptivity]
@@ -606,12 +665,7 @@ eps = 0.0001
   # [../]
 []
 
-[Debug]
-  #show_var_residual = true
-  show_var_residual_norms = true
-[]
-
 [Outputs]
   exodus = true
-  #interval = 20
+  # interval = 20
 []

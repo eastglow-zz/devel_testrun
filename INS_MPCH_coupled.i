@@ -13,7 +13,7 @@ eps = 0.01
 
 ML0 = 100.0
 MV0 = 100.0
-MS0 = 10000.0
+MS0 = 100000.0
 
 # rlx_time = 0.001
 
@@ -181,7 +181,8 @@ MS0 = 10000.0
   [./cS_IC]
     type = FunctionIC
     variable = cS
-    function = FlatSlab
+    # function = FlatSlab
+    function = TheSurface
   [../]
   [./cV_IC]
     type = FunctionIC
@@ -251,7 +252,7 @@ MS0 = 10000.0
   [./TheCircle]
     type = ParsedFunction
     vars = 'x0 y0 r0'
-    vals = '8  5  1'
+    vals = '8  2.5  1'
     value = 'r:=sqrt((x-x0)^2+(y-y0)^2);if(abs(r-r0) <= 0.5*${interwidth}, 0.5-0.5*sin(${pi}*(r-r0)/${interwidth}), if(r-r0 <= -0.5*${interwidth}, 1, 0))'
     #value = 'r:=sqrt((x-x0)^2+(y-y0)^2),0.5-0.5*tanh(0.5*5.8889*(r-r0)/0.5)'
   [../]
@@ -264,18 +265,18 @@ MS0 = 10000.0
   [./TheSurface]
     type = RepeatedBoxcarFunction2D
     xs = 0.25
-    ys = 0.5
-    nbumps = 8
+    ys = 0.25
+    nbumps = 16
     pitch_length = 1
-    bump_height = 0.5
+    bump_height = 0.75
     diffusive_length = 0.0001
     above_value = 0
     below_value = 1
   [../]
   [./Background]
     type = LinearCombinationFunction
-    # functions = 'OneConst TheCircle TheSurface'
-    functions = 'OneConst TheCircle FlatSlab'
+    functions = 'OneConst TheCircle TheSurface'
+    # functions = 'OneConst TheCircle FlatSlab'
     w =         '1        -1        -1'
   [../]
 []
@@ -326,7 +327,7 @@ MS0 = 10000.0
   [../]
   # [./v_x_symmetry]
   #   type = NeumannBC
-  #   boundary = 'left right'
+  #   boundary = 'left'
   #   variable = v_x
   #   value = 0
   # [../]
@@ -352,16 +353,23 @@ MS0 = 10000.0
   #   variable = v_y
   #   component = 1
   # [../]
-  # [./v_y_symmetry]
-  #   type = NeumannBC
-  #   boundary = 'left right'
-  #   variable = v_y
-  #   value = 0
-  # [../]
+  [./v_y_symmetry]
+    type = NeumannBC
+    boundary = 'left'
+    variable = v_y
+    value = 0
+  [../]
   # [./p_wall]
   #   type = DirichletBC
   #   boundary = 'bottom'
   #   #boundary = 'bottom left right'
+  #   variable = p
+  #   value = 0
+  # [../]
+
+  # [./p_symmetry]
+  #   type = NeumannBC
+  #   boundary = 'left'
   #   variable = p
   #   value = 0
   # [../]
@@ -717,7 +725,7 @@ MS0 = 10000.0
   [./constants]
     type = GenericConstantMaterial
     prop_names = 'sig_LV sig_LS sig_VS One negOne'
-    prop_values = '0.02e-3     0.02e-3    0.02e-3      1   -1'
+    prop_values = '0.02e-3     0.01e-3    0.02e-3      1   -1'
     #prop_values = '1     1.866025    1      1 1   -1'
   [../]
 
@@ -726,21 +734,21 @@ MS0 = 10000.0
     f_name = sigop_LV
     args = 'time'
     material_property_names = 'sig_LV'
-    function = 'if(time < 0, 0.01, sig_LV)'
+    function = 'if(time < 0, 0.01e-3, sig_LV)'
   [../]
   [./sigop_LS]
     type = ParsedMaterial
     f_name = sigop_LS
     args = 'time'
     material_property_names = 'sig_LS'
-    function = 'if(time < 0, 0.01, sig_LS)'
+    function = 'if(time < 0, 0.01e-3, sig_LS)'
   [../]
   [./sigop_VS]
     type = ParsedMaterial
     f_name = sigop_VS
     args = 'time'
     material_property_names = 'sig_VS'
-    function = 'if(time < 0, 0.01, sig_VS)'
+    function = 'if(time < 0, 0.01e-3, sig_VS)'
   [../]
 
   [./Operation_mobility_L]
@@ -1111,8 +1119,8 @@ MS0 = 10000.0
   [../]
   dtmax = 0.5
   #end_time = 20.0
-  # start_time = -0.01
-  start_time = 0.0
+  start_time = -0.01
+  # start_time = 0.0
   end_time = 170.0
 
   # adaptive mesh to resolve an interface
@@ -1135,4 +1143,5 @@ MS0 = 10000.0
 [Outputs]
   exodus = true
   #interval = 20
+  sync_times = '0'
 []
