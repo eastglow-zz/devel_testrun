@@ -1,0 +1,18 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/Users/donguk.kim/projects/DLTest/DLTestAPI.h
+
+/Users/donguk.kim/projects/DLTest/main.cpp
+iostream
+-
+dlfcn.h
+-
+DLTestAPI.h
+/Users/donguk.kim/projects/DLTest/DLTestAPI.h
+

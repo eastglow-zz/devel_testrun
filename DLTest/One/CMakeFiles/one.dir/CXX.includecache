@@ -1,0 +1,16 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/Users/donguk.kim/projects/DLTest/DLTestAPI.h
+
+/Users/donguk.kim/projects/DLTest/One/dostuff.cpp
+iostream
+-
+../DLTestAPI.h
+/Users/donguk.kim/projects/DLTest/DLTestAPI.h
+

@@ -1,0 +1,820 @@
+%% This is file `elsarticle-template-1a-num.tex',
+%%
+%% Copyright 2009 Elsevier Ltd
+%%
+%% This file is part of the 'Elsarticle Bundle'.
+%% ---------------------------------------------
+%%
+%% It may be distributed under the conditions of the LaTeX Project Public
+%% License, either version 1.2 of this license or (at your option) any
+%% later version.  The latest version of this license is in
+%%    http://www.latex-project.org/lppl.txt
+%% and version 1.2 or later is part of all distributions of LaTeX
+%% version 1999/12/01 or later.
+%%
+%% The list of all files belonging to the 'Elsarticle Bundle' is
+%% given in the file `manifest.txt'.
+%%
+%% Template article for Elsevier's document class `elsarticle'
+%% with numbered style bibliographic references
+%%
+%% $Id: elsarticle-template-1a-num.tex 151 2009-10-08 05:18:25Z rishi $
+%% $URL: http://lenova.river-valley.com/svn/elsbst/trunk/elsarticle-template-1a-num.tex $
+%%
+% \documentclass[twocolumn,3p,10pt,sort&compress]{elsarticle}
+\documentclass[3p,10pt,sort&compress]{elsarticle}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{hyperref}
+\usepackage{graphicx}
+%\usepackage[]{graphics}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{color}
+\usepackage{amsthm,enumitem}
+
+
+\newcommand{\etal}{\textit{et al}. }
+\newcommand{\ie}{\textit{i}.\textit{e}. }
+\newcommand{\eg}{\textit{e}.\textit{g}. }
+
+%Commands for comments
+\newcommand{\mrt}[1]{{\color{blue}#1}}
+%Commands for comments
+\definecolor{Ao}{rgb}{0.0, 0.5, 0.0}
+\newcommand{\dkimadd}[1]{{\color{red}#1}}
+\newcommand{\dkimdel}[1]{{\color{yellow}#1}}
+\newcommand{\dkimcom}[1]{{\color{Ao}#1}}
+
+% \journal{Journal of the Mechanics and Physics of Solids}
+
+\begin{document}
+\begin{frontmatter}
+
+\title{A phase field model of crack propagation in anisotropic brittle materials}
+
+\author[uf,psu]{Shuaifang Zhang}
+\ead{zhang.s@ufl.edu}
+
+\author[uf]{Dong-Uk Kim}
+\ead{donguk.kim@ufl.edu}
+
+% \author[uw]{Izabela Szlufarska}
+% \ead{szlufarska@wisc.edu}
+
+\author[uf,psu]{Michael Tonks\corref{cor}}
+\ead{michael.tonks@ufl.edu}
+
+\cortext[cor]{Corresponding author}
+
+\address[uf]{University of Florida, Gainesville, FL}
+\address[psu]{The Pennsylvania State University, State College, PA}
+\address[inl]{Idaho National Laboratory, Idaho Falls, ID}
+% \address[uw]{University of Wisconsin-Madison, Madison, WI}
+
+\begin{abstract}
+
+Phase field modeling has been used in numerical simulation of crack propagation since it does not require to track the fracture surfaces. In this work, a phase field model including anisotropic elasticity and anisotropic fracture energy is proposed to predict fracture behavior and crack paths. The strain energy will include the influence of anisotropic elasticity, where the strain energy will be decomposed into positive and negative parts from which the tensile and compressive stress contributes respectively. Due to the nature of crack propagation, the tensile stress, contributing to the positive part of strain energy, is considered to drive crack propagation, while the compressive stress has no contribution on driving crack propagation. We also propose an easy way of considering the crack paths by including anisotropic fracture energy. Specifically, the interfacial energy, as a part of fracture energy, is considered anisotropic in this model, and it contributes to crack propagation along different paths from isotropic cases. To validate our model, Mode I and Mode II fracture simulation considering anisotropic elasticity tensor is conducted with isotropic fracture energy, Mode I fracture examples with different crack preference energy with isotropic elasticity are applied to validate our model including anisotropic fracture interfacial energy. A single crystal with both anisotropic fracture interfacial energy and anisotropic elasticity, where different crystal orientations are performed, is studied for validation of our model that works well by coupling both anisotropic fracture interfacial energy and anisotropic elasticity. Then, a bi-crystal structure is implemented to study the crack behaviors with different crack preference energy. Finally, a polycrystal structure with randomly picked crystal orientations performed on different crystals are studied.
+
+\end{abstract}
+
+\begin{keyword}
+
+Phase field \sep Fracture mechanics \sep Anisotropic materials \sep Brittle fracture \sep Anisotropic elasticity \sep Anisotropic fracture energy \sep MOOSE framework
+
+\end{keyword}
+
+\end{frontmatter}
+
+\section{Introduction}
+\label{sec:introduction}
+Fracture simulations with phase field methods have been dated since late 1990s, where the variational formulations of brittle fracture have been developed by Francfort \cite{francfort1998revisiting} and Bourdin(2000) \cite{bourdin2000numerical}. Due to those convenience and simplicity, phase field models have been renowned as efficient methods to simulate crack propagation in solids and structures. Aranson et al.\cite{aranson2000continuum} presented the phase field model to simulate a mode I fracture. Karma et al.\cite{karma2001phase,hakim2009laws} then modified and improved Aranson's model\cite{aranson2000continuum} to simulate mode III fracture, while Henry et al.\cite{henry2004dynamic} get the mode I and mode II fracture model to work by building a different energy function.
+
+In 2008, Kuhn and Muller \cite{kuhn2008phase} built the first thermodynamically consistent phase field fracture model, where a continuous variable field was used to describe the crack behaviors in materials, at the same time, equilibrium equation and phase field evolution equation were firstly coupled together to simulate the crack propagaiton process. Since the tensile stress is supposed to drive crack propagation, Amor et al. \cite{amor2009regularized} separated the strain energy density function into positve and negative parts, which depend on the hydrostatic and deviatoric parts of the strain tensor, to avoid the  contribution of negative strain energy driving crack propagation. Miehe and collaborators\cite{miehe2010phase,miehe2010thermodynamically} then proposed one of the most influential phase field fracture models in isotropic materials by splitting strain energy into positive parts and negative parts to include the contribution of only tensile stress on crack propagation. Borden et al\cite{borden2012phase} built a dynamic fracture model based on Miehe et al\cite{miehe2010phase,miehe2010thermodynamically} and revealed that their model efficiently captured the dynamic fracture behaviors, Borden et al\cite{borden2014higher} also built a higher order phase field fracture model for a finite element method with higher order shape functions to improve compute efficiency. Chakraborty et al.\cite{chakraborty2016multi,chakraborty2016phase} also applied Miehe's model to capature the transgranular and intergranular fracture behaviors in polycrystal structures. Due to the sucess of these phase field models, they have been applied in many research areas, including hydraulic fracturing\cite{wilson2016phase,miehe2016phase}, thermo-mechanical fracture models\cite{bourdin2014morphogenesis,schluter2017phase,miehe2015phase,chu2017study}, chemo-mechanical fracture models\cite{zhang2016variational,zuo2016phase},thin film fracture\cite{baldelli2013fracture,sicsic2014initiation} and so on.
+
+However, all these phase field fracture models only worked in isotropic materials. In 2005, Hakim and Karma(2005) derived a force balance condition, which includes directional fracture energy, to predict crack paths in anisotropic materials. Li et al. \cite{li2015phase} developed a phase field model including strongly anisotropic fracture energy with Taylor series approximation, to predict crack paths, but this model does not avoid the contribution of compressive stress on driving crack propagation. Also Li et at. \cite{li2018variational} built a variational model of fracture including anisotropic surface energy using the variational fracture model built by Bourdin et al. \cite{bourdin2008variational}. Clayton and Knap(2014) \cite{clayton2014geometrically} proposed a model with the anisotropic surface fracture energy, and then in 2015\cite{clayton2015phase} they modified the elastictity tensor to include the influence of the damage parameter.  Nguyen et al.(2017) \cite{nguyen2017phase} proposed a rank two order tensor to represent anisotropic fracture energy. Teichtmeister and Miehe \cite{teichtmeister2015phase,teichtmeister2017phase} built rank-fourth and rank-two order tensors to represent the anisotropic fracture energies in different anisotropic materials, and successfully captured the crack paths. Most of these models used either rank two tensor or rank four tensor to represent the crack surface energy, which requires too many parameters that might diminish the best advantage of phase field methods, convenient implementations of models.
+
+In this manuscript, a phase filed model of describing brittle fracture behaviors in anisotropic materials is proposed, which employs not only the full fourth order elastic tensor to include elastic anisotropy, but also the anisotropic interfacial fracture energy to include fracture anisotropy. The strain energy is decomposed into tensile and compressive parts so that the compressive stress is avoided to contribute to crack propagation.The anisotropic interfacial energy includes only three basic parameters which can be easily implemented to render various anisotropic fracture energies. Mode I and Mode II fracture simulations are performed by including anisotropic elasticity with an isotropic fracture energy, and Mode I fracture simulations with various anisotropic fracture energies  are performed to validate our model. Then, the model is applied in bi-crystal and polycrystal structures to capture the fracture behaviors. The model was developed with an open source software, Multiphysics Object-Oriented Simulation Environment (MOOSE) framework\cite{gaston2009moose}.
+
+
+\section{Phase field fracture model in anisotropic brittle materials}
+\label{sec:phasefieldmodel}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%2.1 Phase field approximation of crack %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+Different from traditional discrete description of sharp cracks, phase field models apply a diffuse-interface description of crack, which is based on a continuous variable.
+\subsection{Phase field approximation of crack}
+\label{ssec:phasefieldcrack}
+A continuous variable $d$ ranging from 0 to 1 is used to characterize material crack status, where $d = 0$ shows the intact material and $d = 1.0$ means fully cracked state, while the material is considered as damaged when $0 < d < 1.0$. The variable $d$ as a function of space is described by the differential equation shown in Eq. \ref{eq:1}
+\begin{equation}\label{eq:1}
+  d - l^2\Delta d = 0
+\end{equation}
+
+
+As an illustration, we get the equation in one-dimension, where the equation governs the 1D phase field order parameter is shown in Eq. \ref{eq:2}, with solution shown in Eq. \ref{eq:3}.
+\begin{equation}\label{eq:2}
+  d(x) - l^2\frac{\partial ^2d}{\partial x^2} = 0
+\end{equation}
+\begin{equation}\label{eq:3}
+  d(x) = e^{-|x|/l},
+\end{equation}
+where $l$ is the length parameter controlling the width of the transition region. The influence of the length parameter on phase field order parameter $d$ is shown in Fig. \ref{fig:phasefiledparameter}, from which we can see the crack is going to be sharper as $l$ is closer to 0.
+\begin{figure}[!htb]
+  \begin{center}
+    \includegraphics[width=.80\columnwidth]{figures/chapter2/dx.png}
+    \caption{Phase field parameter as a function of spatial coordinate: $d(x) = e^{-|x|/l}$}
+    \label{fig:phasefiledparameter}
+  \end{center}
+\end{figure}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%2.2. Crack propagation with a phase field model in anisotropic brittle materials %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+The total potential energy of a cracked brittle material is defined as a sum of elastic energy and crack surface energy \cite{borden2012phase}, where the crack surface energy is defined as the work required for creating a new unit fracture area:
+\begin{equation}
+  \psi_{d} = \int_\Gamma g_c d\Gamma,
+\end{equation}
+
+
+where $g_c$ is the Griffth critical energy release rate and $\Gamma$ is the crack surface area. The fracture energy was developed as a volume integral in phase field by Bourdin et al. \cite{bourdin2008variational}, and it was used by Miehe \cite{miehe2010thermodynamically}, where the fracture energy is defined as:
+\begin{equation}
+  \psi_{d} =\int_\Gamma g_c d\Gamma = \int_\Omega g_c (\frac{1}{2l}d^2 + \frac{l}{2}{|\nabla d|}^2)d\Omega,
+\end{equation}
+
+Thus, the total free energy of phase field fracture model becomes:
+\begin{equation}
+  {\Psi}_{tot} = \int_\Omega \psi_e d\Omega + \int_\Gamma g_c d\Gamma=\int_\Omega \left( \psi_e  + \frac{g_c}{2l}d^2 + \frac{g_c l}{2} {|\nabla d|}^2\right) d\Omega.
+\end{equation}
+
+
+The strain energy can be decomposed into positive and negative parts $\psi_e = ((1-d)^2(1-k) + k) \psi^+ + \psi^-$, as was done by Miehe \cite{miehe2010thermodynamically} for isotropic materials, and the positive part of strain energy was considered to contribute on crack propagation. Suppose we introduce a new parameter $\kappa=g_c l$ for interfacial energy, then the fracture energy is a sum of interfacial energy term and a square term. And the total free energy in a damaged material is:
+\begin{equation}
+  {\Psi}_{tot} = \int_\Omega \left( \psi^-  + (g(d)(1-k) + k) \psi^+ + \frac{g_c}{2l}d^2 + \frac{\kappa}{2} {|\nabla d|}^2\right) d\Omega,
+\end{equation}
+where $g(d)$ is the degradation function, we are using $g(d)=(1-d)^2$ in this manuscript. $k$ is a small positive value that is used to ensure positive definiteness after the material is fully broken ($d=1$).
+
+
+By rearranging the terms in the total free energy, we can categorize the terms in a phase field way: the bulk free energy terms and the gradient penalty term.
+\[
+{\Psi}_{tot} = \int_\Omega (\psi_{bulk}+\psi_{int}) d\Omega= \int_\Omega \left( \underbrace{\psi^- + ((1-d)^2(1-k)+k)\psi^+ + \frac{g_c}{2l}d^2}_{bulk \quad free \quad energy \quad density} + \underbrace{\frac{\kappa}{2} {|\nabla d|}^2}_{gradient \quad penelty \quad density}\right) d\Omega,
+\]
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%% Strain energy decompisition including anisotropic elasticity %%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Strain energy decomposition including anisotropic elasticty}
+
+As shown in previous section, the elastic strain energy density in damaged material with the phase field parameter $d$ was described in Eq. \ref{eq:elasticenergy}, which is decomposed into positive and negative parts, the equation is designed to include only tensile stress on contributing to crack propagation.
+\begin{equation}\label{eq:elasticenergy}
+  \psi_e = ((1-d)^2(1-k) + k) \psi^+ + \psi^-
+\end{equation}
+
+
+
+Following the similar way in Miehe's paper \cite{miehe2010phase}, although that paper used isotropic elasticity tensor, we developed a model that renders the anisotropic elasticity and reformulates the strain energy term designed for only the tensile stress to contribute to crack propagation. The infinitesimal strain tensor $\bf{\epsilon}$ is defined as a function of displacement filed:
+\begin{equation}
+  \boldsymbol{\epsilon} = \frac{1}{2} \left(\nabla \mathbf{u} + \nabla \mathbf{u}^T \right),
+\end{equation}
+
+where $u$ is a displacement vector field. The strain energy density in intact brittle materials is defined as:
+
+\begin{equation}
+  \psi_{intact} = \frac{1}{2}\boldsymbol{\sigma}_0 : \boldsymbol{\epsilon},
+\end{equation}
+
+where the stress tensor $\boldsymbol{\sigma}_0$ in intact brittle anisotropic materials, is a function of anisotropic elasticity tensor:
+
+\begin{equation}
+\boldsymbol{\sigma}_0 = \boldsymbol{\mathcal{C}} \boldsymbol{\epsilon},
+\end{equation}
+
+where $\boldsymbol{\mathcal{C}}$ is the fourth-order elasticity tensor, with as much symmetry as desired.
+
+
+
+And the positive and negative parts of strain energy density functions are defined as contribution of tensile stress and compressive stress, respectively:
+\begin{equation}
+  \psi_{intact} = \frac{1}{2}\boldsymbol{\sigma}_0 : \boldsymbol{\epsilon}=\frac{1}{2}(\boldsymbol{\sigma}_0^+ + \boldsymbol{\sigma}_0^-) : \boldsymbol{\epsilon} = \psi^+ + \psi^-
+\end{equation}
+with
+\begin{eqnarray}
+\psi^{+} &=& \frac{1}{2} \boldsymbol{\sigma}^{+} : \boldsymbol{\epsilon} \label{eq:psip}\\
+\psi^{-} &=& \frac{1}{2} \boldsymbol{\sigma}^{-} : \boldsymbol{\epsilon}.
+\end{eqnarray}
+
+Where the stress tensor is decomposed into tensile and compressive stress with a spectral decomposition:
+\begin{equation}
+\boldsymbol{\sigma}_0 = \boldsymbol{Q} \boldsymbol{\Lambda} \boldsymbol{Q}^T = \boldsymbol{Q} (\mathbf{\Lambda}^{+} + \mathbf{\Lambda}^{-}) \boldsymbol{Q}^T = \boldsymbol{\sigma}^+ + \boldsymbol{\sigma}^-,
+\end{equation}
+with
+\begin{eqnarray}
+\boldsymbol{\sigma}^+ &=& \mathbf{Q} \mathbf{\Lambda^{+}} \mathbf{Q^{T}} \label{eq:sigmap}\\
+\boldsymbol{\sigma}^- &=& \mathbf{Q} \mathbf{\Lambda^{-}} \mathbf{Q^{T}},
+\end{eqnarray}
+where
+\begin{eqnarray}
+  \mathbf{\Lambda}^{+} &=& diag (\langle \lambda_1 \rangle, \langle \lambda_2 \rangle, \langle \lambda_3 \rangle) \\
+  \mathbf{\Lambda}^{-} &=& \mathbf{\Lambda} - \mathbf{\Lambda}^{+}
+\end{eqnarray}
+and the symbol is defined as:
+\begin{equation}
+  \langle x \rangle =
+    \begin{cases}
+      x & \text{if x $>$ 0}\\
+      0 & \text{otherwise}
+    \end{cases}
+\end{equation}
+
+
+We also define projection tensors that separate the stress into its compressive and tensile parts, which is very convenient for numerical algorithms development.
+\begin{eqnarray}
+	\boldsymbol{\sigma}^+ &=& \boldsymbol{\mathcal{P^+}} \boldsymbol{\sigma}_0\label{eq:sigmap_u} \\
+	\boldsymbol{\sigma}^- &=& \boldsymbol{\mathcal{P^-}} \boldsymbol{\sigma}_0,
+\end{eqnarray}
+where
+\begin{eqnarray}
+	\boldsymbol{\mathcal{P^+}}&=& \frac{\partial \boldsymbol{\sigma}^+}{\partial \boldsymbol{\sigma}_0} \label{eq:proj} \\
+	\boldsymbol{\mathcal{P^-}} &=& \mathcal{I} - \boldsymbol{\mathcal{P^+}}.
+\end{eqnarray}
+These projection tensors are calculated from the spectral decomposition of the unbroken stress tensor using the algorithms defined by Miehe \cite{miehe1998comparison} and Miehe and Lambrecht \cite{miehe2001algorithms} for rank two tensor. This relationship involving the projection tensor has also been widely used in damage mechanics \cite{lubarda1994damage, murakami2012continuum} and was also introduced in Miehe's paper \cite{miehe2010phase}.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%3. Fracture energy including anisotropic interficial energy %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsection{Fracture energy including anisotropic interficial energy}
+The previous section shows how to include the anisotropic \dkimdel{elaticity}\dkimadd{elasticity} in our fracture model, where it can directly influence the stress strain curves. In this section, we will take the anisotropic interfacial energy which can directly influence on crack paths into account to the model.
+
+
+In this model, the interfacial energy parameter $\kappa$ is considered as a function of the normal direction of the crack surface$\frac{\nabla d}{|\nabla d|}$. we have the interfacial energy density as a function of $\nabla d=(d_x,d_y,d_z)$, where $d_x=\frac{\partial d}{\partial x}, d_y = \frac{\partial d}{\partial y}, d_z = \frac{\partial d}{\partial z}$.
+\begin{equation}
+  \psi_{int} = \frac{1}{2}\kappa(\nabla d)|\nabla d|^2 = \frac{1}{2}\kappa(d_x, d_y, d_z)(d_x^2+d_y^2 + d_z^2)
+\end{equation}
+
+Specifically, to better visualize our model, it's clear to show the anisotropy function in a 2D geometry, where we define $\theta$ as an angle between the out normal vector from the crack region and a certain coordiate direction, and we can get:
+\begin{equation}
+  \theta = arctan(\frac{d_y}{d_x}),
+\end{equation}
+and,
+\begin{equation}\label{eq:kappatheta}
+  \kappa(\nabla d) = \kappa_0 (1 + \delta cos(m(\theta - \theta_0)))^2 = \kappa_0 \kappa_{\theta}^2,
+\end{equation}
+where $\kappa_0 = g_c l$, $\kappa_{\theta} = 1 + \delta cos(m(\theta - \theta_0))$, $\delta$ is a parameter relates to the strength of anisotropy, $m$ is the symmetry mode number that is related to the orientation dependency of surface structures of materials, and $\theta_0$ is the reference azimuthal angle from the reference axis. The influence of those parameters on $\kappa$ is shown in Figs. \ref{fig:parameterinfonkappa}.
+\begin{figure*}[!htb]
+ \begin{subfigure}{0.32\textwidth}
+    \includegraphics[width=1.0\linewidth]{figures/chapter2/15-60theta0.png}
+    \caption{$\theta_0$ ranging from $15^\circ$ to $60^\circ$ with fixed $m=2$ and $\delta=0.4$ }
+    \label{fig:theta0influence}
+  \end{subfigure}%
+  \begin{subfigure}{0.32\textwidth}
+    \includegraphics[width=1.0\linewidth]{figures/chapter2/delta02j.png}
+    \caption{$m$ ranging from 2 to 6 with fixed $\delta=0.2$ and $\theta_0=45^\circ$}
+    \label{fig:modenumberj}
+  \end{subfigure}
+  \begin{subfigure}{0.32\textwidth}
+    \includegraphics[width=1.0\linewidth]{figures/chapter2/j=2delta.png}
+    \caption{$\delta$ ranging from 0.005 to 0.4 with fixed $m=2$ and $\theta_0=45^\circ$}
+    \label{fig:deltainfluence}
+  \end{subfigure}
+  \caption{Impact of the parameters on the anisotropy of $\kappa$}
+  \label{fig:parameterinfonkappa}
+\end{figure*}
+
+
+This form of the interfacial energy term was used in many anisotropic solidification simulations with phase field methods\cite{kobayashi1993modeling,mcfadden1993phase}. The advantages, have been tested with those anisotropic solidification process, are that the anisotropy can be easily and intuitively defined with only three parameters. For a general form, $\kappa$ can be written as a function of $\nabla d$, which is a function of $\frac{\partial d}{\partial x}$ and $\frac{\partial d}{\partial y}$. Following equations are used:
+\begin{eqnarray}
+  cos[m(\theta-\theta_0)] = cos(m\theta)cos(m\theta_0) + sin(m\theta) sin(m\theta_0)\\
+  cos(m\theta) = \sum_{k=0}^{m}(cos\theta)^k sin(\theta)^{m-k} cos(\frac{(m-k)\pi}{2})\\
+  sin(m\theta) = \sum_{k=0}^{m}(cos\theta)^k sin(\theta)^{m-k} sin(\frac{(m-k)\pi}{2})
+\end{eqnarray}
+
+
+By combining the definition of out normal of crack surface, we have:
+\begin{eqnarray}
+  cos\theta = \frac{d_x}{\sqrt {d_x^2+d_y^2}} \\
+  sin\theta = \frac{d_y}{\sqrt {d_x^2+d_y^2}},
+\end{eqnarray}
+where $d_x = \frac{\partial d}{\partial x}$, and $d_y = \frac{\partial d}{\partial y}$.
+
+
+
+\section{Governing equations}
+The fracture model is defined by two equations, the stress equilibrium equation and phase field evolution equation representing the damaged status of the material. In this section, we will build these two equations.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%3.1. Phase field evolution equation %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Phase field evolution equation in anisotropic materials}
+The evolution of the damage parameter $d$ is driven by dissipation of the total free energy of the system described by Allen-Cahn equation:
+\begin{equation}
+	\frac{\partial d}{\partial t} = -L \frac{\delta \Psi_{tot}}{\delta d} = -L \left( \frac{\partial \psi_{bulk}}{\partial d} + \frac{\partial \psi_{int}}{\partial d} \right).
+\end{equation}
+
+
+To avoid crack healing, we alter the bulk energy by introducing the history variable $\mathcal{H}$, which is the maximum positive tensile energy experienced during the simulation,
+\begin{equation}
+\mathcal{H} = \mathrm{max}\ \psi^{+}  \ \mathrm{for}\  t=[0,t_c],
+\end{equation}
+where $t_c$ is the current time. This is the same approach taken in Miehe et al.\ \cite{miehe2010phase}. Thus, we have;
+\begin{equation}
+  \frac{\partial \psi_{bulk}}{\partial d} = ( (-2(1-d)(1-k) + k) \mathcal{H} + \frac{g_c}{l} d.
+\end{equation}
+
+
+By applying the divergence theorem and ignoring the boundary condition terms, we can find a general form of derivative of fracture interfacial energy with respect to the damage parameter:
+\begin{equation}
+  \frac{\partial \psi_{int}}{\partial d} = -\nabla \cdot \frac{\partial \psi_{int}}{\partial \nabla d} = -\nabla \cdot (\kappa \nabla d) - \nabla \cdot \left(\frac{\partial \kappa(\nabla d)}{\partial \nabla d} \frac{|\nabla d|^2}{2} \right),
+\end{equation}
+
+
+and we can find the general form of phase field evolution equation by applying Allen-Cahn equation;
+\begin{eqnarray}
+	\frac{\partial d}{\partial t} = -\frac{1}{\eta} \left( (-2(1-d)(1-k) + k) \mathcal{H} + \frac{g_c}{l}d - \nabla \cdot (\kappa \nabla d) - \nabla \cdot \left(\frac{\partial \kappa(\nabla d)}{\partial \nabla d} \frac{|\nabla d|^2}{2} \right) \right),
+\end{eqnarray}
+
+
+For a special case, in a 2D geometry, we can derive our equation with a function of $\theta$ with the chain rule;
+\begin{equation}
+  \frac{\partial \psi_{int}}{\partial d} = -\nabla \cdot \frac{\partial \psi_{int}}{\partial \nabla d} = \nabla \cdot (\kappa \nabla d) -\frac{\partial}{\partial x} \left( \kappa_0 \kappa_{\theta} \frac{\partial \kappa_{\theta}}{\partial \theta} \frac{\partial d}{\partial y}  \right) + \frac{\partial}{\partial y} \left( \kappa_0 \kappa_{\theta} \frac{\partial \kappa_{\theta}}{\partial \theta} \frac{\partial d}{\partial x}  \right).
+\end{equation}
+
+
+Thus, we can find the following phase field evolution equation for 2D cases holds, which is derived from Allen-Cahn equation:
+\begin{eqnarray}
+	\frac{\partial d}{\partial t} = -L \left( (-2(1-d)(1-k) + k) \mathcal{H} + \frac{g_c}{l}d + \nabla \cdot (\kappa \nabla d) -\frac{\partial}{\partial x} \left( \kappa_0 \kappa_{\theta} \frac{\partial \kappa_{\theta}}{\partial \theta} \frac{\partial d}{\partial y}  \right) + \frac{\partial}{\partial y} \left( \kappa_0 \kappa_{\theta} \frac{\partial \kappa_{\theta}}{\partial \theta} \frac{\partial d}{\partial x}  \right) \right),
+\end{eqnarray}
+
+which comes with the boundary condition;
+\begin{equation}
+  \nabla d \cdot \boldsymbol{n} = 0.
+\end{equation}
+
+
+
+The expression of mobility parameter $L = 1/\eta$, with the rate parameter $\eta$ (called viscosity by Miehe et al. \cite{miehe2010phase}), was used to obtain the equation form from Miehe et al. \cite{miehe2010thermodynamically}.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%3.2. Equilibrium Equation %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Equilibrium equation including anisotropic elasticity}
+The stress tensor in the damaged anisotropic material is defined as the derivative of the strain energy density with respect to the strain tensor,
+\begin{equation}
+  \boldsymbol{\sigma} = \frac{\partial \psi_e}{\partial \boldsymbol{\epsilon}} = ((1-d)^2(1-k) + k)\frac{\partial \psi^+}{\partial \boldsymbol{\epsilon}} + \frac{\partial \psi^-}{\partial \boldsymbol{\epsilon}}.\label{eq:thdynew}
+\end{equation}
+The partial derivative of Eq.~\eqref{eq:psip} is ;
+\begin{eqnarray}
+  \frac{\partial \psi^+}{\partial \boldsymbol{\epsilon}} &=& \frac{1}{2} \frac{d\boldsymbol{\sigma}^+}{d\boldsymbol{\epsilon}}\boldsymbol{\epsilon} + \frac{1}{2}\boldsymbol{\sigma}^+ \frac{d\boldsymbol{\epsilon}}{d\boldsymbol{\epsilon}} \\
+  &=& \frac{1}{2} \frac{d\boldsymbol{\sigma}^+}{d\boldsymbol{\epsilon}}\boldsymbol{\epsilon} + \frac{1}{2}\boldsymbol{\sigma}^+ \\
+  &=& \frac{1}{2}\frac{d \boldsymbol{\sigma^+}}{d \boldsymbol{\sigma_0}}\frac{d \boldsymbol{\sigma_0}}{d \boldsymbol{\epsilon}} \boldsymbol{\epsilon} + \frac{1}{2} \boldsymbol{\sigma^+} \\
+  &=& \frac{1}{2} \frac{d\boldsymbol{\sigma}^+}{d\boldsymbol{\sigma_0}}\boldsymbol{\mathcal{C}} \boldsymbol{\epsilon} + \frac{1}{2}\boldsymbol{\sigma}^+  \\
+  & =& \frac{1}{2} \frac{d\boldsymbol{\sigma}^+}{d\boldsymbol{\sigma_0}} \boldsymbol{\sigma_0} + \frac{1}{2}\boldsymbol{\sigma}^+.
+\end{eqnarray}
+As the projection tensor is the same as defined in Eq. \ref{eq:proj}:
+\begin{eqnarray}
+	\frac{d\boldsymbol{\sigma}^+}{d\boldsymbol{\sigma}_0}=\boldsymbol{\mathcal{P^+}},
+\end{eqnarray}
+thus we can find the tensile stress tensor that drives crack propagation;
+\begin{eqnarray}
+  \frac{\partial \psi^+}{\partial \boldsymbol{\epsilon}} &=& \frac{1}{2}\frac{d \boldsymbol{\sigma^+}}{d \boldsymbol{\sigma_0}} \boldsymbol{\sigma_0} + \frac{1}{2} \boldsymbol{\sigma^+} \\
+  &=& \frac{1}{2} \boldsymbol{\mathcal{P^+}} \boldsymbol{\sigma_0}  + \frac{1}{2} \boldsymbol{\sigma^+} \\
+  &=& \boldsymbol{\sigma^+}.
+\end{eqnarray}
+The expressions involving the compressive stress are obtained in a similar manner. If we combine these expressions with Eq.~\eqref{eq:proj} we obtain
+\begin{eqnarray}
+	\frac{\partial \psi^+}{\partial \boldsymbol{\epsilon}} &=& \boldsymbol{\sigma}^+ \\
+	\frac{\partial \psi^-}{\partial \boldsymbol{\epsilon}} &=& \boldsymbol{\sigma}^-.
+\end{eqnarray}
+Then, we substitute these into Eq.~\eqref{eq:thdynew} to obtain;
+\begin{equation}
+	\boldsymbol{\sigma} = \left((1-d)^2(1-k) + k \right)\boldsymbol{\sigma}^+ + \boldsymbol{\sigma}^-.
+\end{equation}
+This expression for the stress is then used in the stress equilibrium equation to solve the mechanics problem:
+\begin{equation}
+  \nabla \cdot \boldsymbol{\sigma}  = \nabla \cdot \left( \left((1-d)^2(1-k) + k\right)\boldsymbol{\sigma}^+ + \boldsymbol{\sigma}^- \right) = 0,
+\end{equation}
+which comes with the boundary conditions:
+\begin{eqnarray}
+  \boldsymbol{\sigma} \cdot \boldsymbol{n} = \boldsymbol{\overline{t}} \\
+  \boldsymbol{u} = \boldsymbol{\overline{u}},
+\end{eqnarray}
+where $\boldsymbol{n}$ is the out normal vector on the surface boundary and $\boldsymbol{\overline{u}}$ is Dirichlet boundary condition on displacement.
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%3.3. Numerical implenmentations %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Numerical implenmentations}
+Here, we would like to bring the partial differential equations(PDEs) we are going to solve together:
+\begin{eqnarray}
+  \nabla \cdot \left( \left((1-d)^2(1-k) + k\right)\boldsymbol{\sigma}^+ + \boldsymbol{\sigma}^- \right) = 0 \\
+  \frac{\partial d}{\partial t} = -L \left( (-2(1-d)(1-k) + k) \mathcal{H} + \frac{g_c}{l}d - \nabla \cdot (\kappa \nabla d) - \nabla \cdot \left(\frac{\partial \kappa(\nabla d)}{\partial \nabla d} \frac{|\nabla d|^2}{2} \right) \right)
+\end{eqnarray}
+And the boundary conditions on the surface:
+\begin{eqnarray}
+  \boldsymbol{\sigma} \cdot \boldsymbol{n} = \boldsymbol{\overline{t}} \\
+  \boldsymbol{u} = \boldsymbol{\overline{u}} \\
+  \nabla d \cdot \boldsymbol{n} = 0
+\end{eqnarray}
+This model was implemented with the finite element method using MOOSE framework \cite{tonks2012object}. It is solved using implicit time integration. The weak forms of the governing equations are expressed as follows;
+\begin{eqnarray}
+  \boldsymbol{R_1} = \int_\Omega \nabla \delta \boldsymbol{u} \cdot \Big( [(1-d)^2(1-k) + k]\boldsymbol{\sigma^+} + \boldsymbol{\sigma^-} \Big) d \Omega - \int_\Gamma \delta \boldsymbol{u} \cdot \boldsymbol{\overline{t}} d \Gamma = 0 \\
+  \boldsymbol{R_2} = \int_\Omega \delta d \Bigg(  \frac{\partial d}{\partial t} + L \left( (-2(1-d)(1-k) + k) \mathcal{H} + \frac{g_c}{l}d \right) \Bigg)d\Omega  + \int_\Omega \Bigg( \kappa(\vec{n}) \nabla d + \left(\frac{\partial \kappa(\vec{n})}{\partial \nabla d} \frac{|\nabla d|^2}{2} \right)   \Bigg)\cdot(\nabla \delta d) d\Omega = 0.
+\end{eqnarray}
+
+Pre-conditioning Jacobian-free Newton-Krylov(PJFNK) method was used to solve the coupled PDEs \cite{knoll2004jacobian}. The basic idea of PJFNK is to use Newton's method to solve the weak forms of the PDEs, suppose we have any given residual equations $\boldsymbol{R}_i(\boldsymbol{u})$ with variable $\boldsymbol{u}$, from the time step $t_n$ to $t_{n+1}$, the following procedures are performed:
+\begin{enumerate}
+	\item[(a).] Preconditioning with preconditioner matrix M: solve approximately $\boldsymbol{My=v}$, and one can find $\boldsymbol{y=M^{-1}v}$, where $\boldsymbol{v}$ is a vector.
+    \item[(b).] At time step $t_n$, we have $\boldsymbol{u_n}$ is known. Find the Jacobian of the residual: $\boldsymbol{J_i(u)y} = \boldsymbol{\frac{\partial R_i(u)}{\partial u}} \approx \frac{\boldsymbol{R}(\boldsymbol{u} + \epsilon \boldsymbol{y})-\boldsymbol{R(u)} }{\epsilon}$. where $\epsilon$ is a very small number.
+    \item[(c).] Caclulate the variable increment $\delta \boldsymbol{u}$, $\delta \boldsymbol{u} = - \frac{\boldsymbol{R(u_n)}}{\boldsymbol{J_i(u_n)}}$
+    \item[(d).] Update the variable at $t_{n+1}$ with $\boldsymbol{u}_{n+1} = \boldsymbol{u}_{n} + \delta \boldsymbol{u}_n$
+\end{enumerate}
+
+
+In this study, the basic algorithm and solving strategy to update the variable from time step $t_n$ to $t_{n+1}$ for solving the coupled partial difference equations are shown in Fig. \ref{fig:flowchart}, where PJFNK is used when computing the phase field variable and displacement field:
+\begin{figure}[!htb]
+  \begin{center}
+    \includegraphics[width=.85\columnwidth]{figures/chapter2/flowchart.png}
+    \caption{Flow chart for solving the phase field fracture model from time step $t_n$ to $t_{n+1}$, $\boldsymbol{u}$ is the displacement field vector, $d$ is the damage parameter, which is the phase field variable, $\mathcal{H}$ is history variable, tol is a small threshold value set for numerical convergence, usually we take tol=$10^{-10}$ or smaller.}
+    \label{fig:flowchart}
+  \end{center}
+\end{figure}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%4. Numerical results %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Numerical results}
+In this section, several traditional numerical examples will be presented to demonstrate the capacity of the newly developed model. Firstly, single edge notched tension and shear tests are conduted for presentations of the model's fidelity based on the anisotropic elasticity, where the elasticity tensors are anisotropic while the fracture energy is considered as isotropic. Secondly, we performed several Mode I fracture simulations by including anisotropic fracture interfacial energy and isotropic elastictity, from which we can see the effect of the anisotropy of the interfacial energy. Both anisotropic elasticity and fracture energy are included in the third numerical test, from which the influence of both parameters are shown to reveal the influence of both factors. Then we conducted a fracture simulation in a bi-crystal structure, where different crack preference angles are included. Finally, polycrystal fracture simulations with various crystal orientation distributions are performed to demonstrate the performance of our model.
+
+
+\subsection{Numerical results including effects of anisotropic elasticity}
+\begin{table}
+\centering
+\begin{tabular}{ |c|c|c|c|c|c|}
+ \hline
+  $c_{11}$(GPa) & $c_{44}$(GPa) & $c_{12}$(GPa) & $l$(mm) & $g_c$(GPa.mm) & $\eta$(s/mm) \\
+  \hline
+  127.0  & 73.55  & $70.8$ & 0.01 & $1.0\times 10^{-3}$ & $1.0\times 10^{-6}$\\
+ \hline
+\end{tabular}
+\caption{Material parameters used in the numerical tests that includes the anisotropic elasticity shown in Figs. \ref{fig:anisoelast_mode_I} and \ref{fig:aniso_mode_II}}
+\label{table:copper}
+\end{table}
+A single edge notched tension sample with anisotropic elasticity(face-centered cubic structure) and isotropic fracture energy is studied, both Mode I and Mode II fracture simulations are conducted for validations of the model. Here, the isotropic fracture energy means $\kappa = g_c l$ so that it is not dependent on the out normal vector: $\frac{\nabla d}{|\nabla d|}$, from the cracked region. The material properties: four-fold symmetry anisotropic elasticity and fracture parameters used in Mode I and II tests are shown in Tab. \ref{table:copper}.
+
+
+\subsubsection{Mode I fracture simulation with elastic anisotropy}
+In this section, the single edge notch tension specimen with its boundary conditions is shown in Fig. \ref{fig:tension}.
+The dimensions and boundary conditions of the specimen are depicted in the figure.
+\begin{figure}[!htb]
+  \begin{center}
+    \includegraphics[width=0.45\columnwidth]{figures/chapter2/tension.png}
+    \caption{Geometry(unit:mm) and boundary conditions used in the mode I fracture simulations shown in Figs \ref{fig:iso_mode_I}, \ref{fig:Tensionstressforanisotropic} and \ref{fig:FCCstress}.}
+    \label{fig:tension}
+  \end{center}
+\end{figure}
+
+\begin{figure*}[!htb]
+	\centering
+  \begin{subfigure}{0.45\textwidth}
+		\includegraphics[width=1.00\textwidth]{figures/singlecrystal/Anisotropicelasticity/ModeI/finalcrackd.png}
+		\caption{Final crack path}
+	  \label{fig:ModeIcrack}
+	\end{subfigure}
+	% \hspace{2em}
+	\begin{subfigure}{0.45\textwidth}
+		\includegraphics[width=1.0\textwidth]{figures/singlecrystal/Anisotropicelasticity/ModeI/stressstraincurves.png}
+		\caption{Stress strain curves}
+	  \label{fig:tensionstresscurves}
+	\end{subfigure}
+  % % \hspace{2em}
+	% \begin{subfigure}{0.32\textwidth}
+	% 	\includegraphics[width=1.0\textwidth]{figures/singlecrystal/Anisotropicelasticity/ModeI/Isogc_R0_energyplots.png}
+	% 	\caption{Energy plots without rotation}
+	%   \label{fig:energyplot}
+	% \end{subfigure}
+	\caption{Crack propagation in a Mode I fracture simulation using isotropic material with l = 0.01 mm.
+  The final crack paths for the five rotated crystal orientations are the same as shown in \ref{fig:ModeIcrack}.
+  The resultant stress-strain curves of these five test sets are shown in \ref{fig:tensionstresscurves} }
+  % The elastic strain energy per unit thickness, $\int_\Omega [(1-c)^2(1-k)+k]H + \psi^- d\Omega$, and the dissipated energy per unit thickness, $\int_\Omega \frac{1}{2l}g_cd^2 + \frac{l}{2}|\nabla d|^2 d\Omega$, corresponding to rotaion of $0^{\circ}$, are shown in \ref{fig:energyplot}
+  \label{fig:anisoelast_mode_I}
+\end{figure*}
+In order to validate that this model including anisotropic elasticity works well, five different crystal orientations reflected on the rotated elasticity tensors ranging from $0^{\circ}$ to $90^{\circ}$ from the x-axis and around the z-axis are picked so that the mechanical behaviors are supposed to be different. The initial time step size is set as $dt=1\times 10^{-4} ms$, with an adaptive time stepping algorithm where it can be cut off to a half if it does not converge using the current time step size. Uniform meshing is used for these five simulations, where the mesh size is set as $\frac{l}{2}$, which is according to Chakraborty et al. \cite{chakraborty2016multi} where he studied the mesh sensitivity using phase field fracture model with MOOSE framework. The final phase field for these tests and stress-strain curves are shown in Fig. \ref{fig:anisoelast_mode_I}.
+
+As shown in the figure, the final crack paths are always the same, from which we can see the crystal orientations reflected on the anisotropic elasticity did not influence the crack paths. While the stress-strain curves showed different slopes, these results reveal our model captures the anisotropic elasticity sucessfully and validate that this model works very well. Especially since the chosen material is FCC structure and shows cubic symmetry in elasticity tensor along with the mirror symmetry of the domain geometry, where the stress-strain curves fall onto each other for the rotation of $0^{\circ}$ and $90^{\circ}$, $30^{\circ}$ and $60^{\circ}$, respectively.
+\subsubsection{Mode II fracture simulation with elastic anisotropy}
+Mode II fracture simulation test is also very traditional and common. For Mode II fracture simulations, the material properties were chosen as the same as that used for the Mode I fracture simulations shown in the previous section, as shown in Tab. \ref{table:copper}. The boundary conditions and geometry parameters are shown in Fig. \ref{fig:shearbc}, where the top side is constantly displaced by the shear load while the bottom side is fixed.
+
+\begin{figure*}[!htb]
+	\centering
+  \begin{subfigure}{0.45\textwidth}
+		\includegraphics[width=1.00\textwidth]{figures/chapter2/shearbc.png}
+		\caption{Geometry size(mm) and B.C.}
+	  \label{fig:shearbc}
+	\end{subfigure}
+	\begin{subfigure}{0.45\textwidth}
+		\includegraphics[width=1.0\textwidth]{figures/singlecrystal/Anisotropicelasticity/ModeII/FinalFracd.png}
+		\caption{Stress distribution at $t=15.54\mu s$}
+	  \label{fig:ModeIIcrackstress}
+	\end{subfigure}
+	\caption{Boundary conditions and geometry parameters for the Mode II fracture simulation shown in Fig. \ref{fig:shearbc}, Crack path(with post processing) and final crack path shown in Fig. \ref{fig:ModeIIcrackstress}.}
+  \label{fig:aniso_mode_II}
+\end{figure*}
+
+
+As revealed from the Mode I fracture simulations in previous section, anisotropic elasticity did not influence the crack path, which was still valid for the Mode II fracture simulations. From Fig. \ref{fig:ModeIIcrackstress}, the crack path of mode II fracture is consistent with classical mode II fracture results and with the results from other phase field fracture models \cite{miehe2010phase, bourdin2000numerical}, proving that the proposed model works well with mode II fracture with the anisotropic elasticity.
+
+\subsection{Numerical results including effects of anisotropic fracture energy}
+In this section, anisotropic fracture energy density will be considered and discussed via example simulations under isotropic elasticity conditions. As discussed earlier, in 2D geometry, the anisotropic fracture energy is featured by the anisotropic interfacial energy coefficient, $\kappa$, as defined in Eq. \ref{eq:kappatheta}, and there are three parameters, namely, anisotropy strength $\delta$, mode number $m$ and anisotropy reference angle $\theta_0$. In reality, $\delta$ and $\theta_0$ might be a function of temperature and crystallographic orientations, which are relatively flexible to control rather than $m$ which is fixed corresponding to the choice of materials. Thus, in this study for this section, $m$ was fixed as a value of 2 and $\delta$ and $\theta_0$ were varied to investigate those influence on the cracking behavior. The isotropic elasticity tensor was constructed with Lam\'{e}'s constants, $\lambda = 120 GPa$ and $\mu = 80 GPa$ for all the following simulations in this section.
+
+Firstly, a couple of values for anisotropy strength $\delta$, ranged from 0.1 to 0.7 with a uniform interval, 0.1, were picked for the study. Whereas, the reference angle $\theta_0$ was fixed with $\theta_0 = 30^\circ$. Mode I fracture simulations are performed, where the geometry and boundary conditions are the same as shown in Fig. \ref{fig:tension}. The parameters $l$,$g_c$,and $\eta$ are the same as shown in Tab. \ref{table:copper}, uniform meshing with a quadrilateral size of $h=l/2$ was applied on the geometry. The time step size is set as $t=5\times10^{-6}ms$, the data outputs are done every 5 time steps. The resultant crack paths after post-processing, corresponding to different anisotropic strengths are shown in Fig. \ref{fig:deltacrackinf}, as shown in the figures, the cracking paths were straight and the offset angles of the crack paths were formed closer to $\theta_0$ as the anisotropy strength, $\delta$ the higher. In the strongest anisotropy case, the crack offset angle was measured as $25^\circ$.
+% As depicted in previous section, which was the dissipated energy \dkimadd{curve} \dkimdel{is growing}\dkimadd{kinked} \dkimdel{when crack happens}\dkimadd{at the onset of the crack propagation}, \dkimadd{implying that the added rate of change of the dissipated energy is responsible for the crack opening,} \dkimdel{and this section indicates the dissipated energy has a greater contribution along the $\theta_0$ direction.}\dkimadd{the trend read in fig. \ref{fig:deltacrackinf} implies that the more contirution to the dissipated energy, the higher the anisotropy strength which forms the offset angle of the crack.}
+% The stress strain curves, shown in Fig. \ref{fig:deltastressinf}, indicate that the maximum crack stress decreases as the anisotropic strength $\delta$ increases.
+
+\begin{figure*}[!htb]
+	\centering
+  \begin{subfigure}{0.45\textwidth}
+		\includegraphics[width=1.00\textwidth]{figures/singlecrystal/Isotropicelasticity/deltainfluence/delta01-07.png}
+		\caption{$\delta$ influence on crack}
+	  \label{fig:deltacrackinf}
+	\end{subfigure}
+	\begin{subfigure}{0.45\textwidth}
+		\includegraphics[width=1.0\textwidth]{figures/singlecrystal/Isotropicelasticity/deltainfluence/delta01-07stressstrain.png}
+		\caption{Stress strain cruces}
+	  \label{fig:deltastressinf}
+	\end{subfigure}
+	\caption{Sensitivity study of anisotropic strength $\delta$, the final crack paths after post-processing induced by different anisotropic strength $\delta$, ranging from 0.1 to 0.7 with interval of 0.1, are shown in Fig. \ref{fig:deltacrackinf}; The resultant stress strain curves are shown in \ref{fig:deltastressinf}}
+\end{figure*}
+
+A sensitivity study on the reference angle, $\theta_0$ was also conductedwith a fixed anisotropic strength of $\delta = 0.4$, the length parameter of $l=5\times10^{-3}mm$, and a uniform quadrilateral mesh size of $h=\frac{l}{2}=2.5\times10^{-3}mm$. Varying reference angles, ranged from $\theta_0 = -45^\circ$ to $\theta_0=45^\circ$ with an interval of $\Delta \theta_0 = 15^\circ$, were chosen for the simulations. The time step size is set as $dt=5\times10^{-6}ms$, and the resultant crack paths are shown in Figs \ref{fig:anisokappa_mode_I}.
+
+\begin{figure*}[!htb]
+	\centering
+  \begin{subfigure}{0.23\textwidth}
+		\includegraphics[width=1.00\textwidth]{figures/singlecrystal/Isotropicelasticity/FracR0.png}
+		\caption{$\theta_0 = 0^{\circ}$}
+	  \label{fig:theta0_0}
+	\end{subfigure}
+	% \hspace{2em}
+	\begin{subfigure}{0.23\textwidth}
+		\includegraphics[width=1.0\textwidth]{figures/singlecrystal/Isotropicelasticity/FracR15.png}
+		\caption{$\theta_0 = 15^{\circ}$}
+	  \label{fig:theta0_15}
+	\end{subfigure}
+  % \hspace{2em}
+	\begin{subfigure}{0.23\textwidth}
+		\includegraphics[width=1.0\textwidth]{figures/singlecrystal/Isotropicelasticity/FracR30.png}
+		\caption{$\theta_0 = 30^{\circ}$}
+	  \label{fig:theta0_30}
+	\end{subfigure}
+  \begin{subfigure}{0.23\textwidth}
+		\includegraphics[width=1.0\textwidth]{figures/singlecrystal/Isotropicelasticity/FracR45.png}
+		\caption{$\theta_0 = 45^{\circ}$}
+	  \label{fig:theta0_45}
+	\end{subfigure}
+  \\
+  \begin{subfigure}{0.23\textwidth}
+    \includegraphics[width=1.00\textwidth]{figures/singlecrystal/Isotropicelasticity/anisokappastress.png}
+    \caption{stress strain curves}
+    \label{fig:stressstraincurveforanisokappa}
+  \end{subfigure}
+  % \hspace{2em}
+  \begin{subfigure}{0.23\textwidth}
+    \includegraphics[width=1.0\textwidth]{figures/singlecrystal/Isotropicelasticity/FracRn15.png}
+    \caption{$\theta_0 = -15^{\circ}$}
+    \label{fig:theta0_n15}
+  \end{subfigure}
+  % \hspace{2em}
+  \begin{subfigure}{0.23\textwidth}
+    \includegraphics[width=1.0\textwidth]{figures/singlecrystal/Isotropicelasticity/FracRn30.png}
+    \caption{$\theta_0 = -30^{\circ}$}
+    \label{fig:theta0_n30}
+  \end{subfigure}
+  \begin{subfigure}{0.23\textwidth}
+    \includegraphics[width=1.0\textwidth]{figures/singlecrystal/Isotropicelasticity/FracRn45.png}
+    \caption{$\theta_0 = -45^{\circ}$}
+    \label{fig:theta0_n45}
+  \end{subfigure}
+	\caption{Crack propagation in a Mode I fracture simulation using isotropic elasticity tensor and anisotropic fracture energy , with $l=5\times10^{-5}, \delta = 0.4, m=2$, reference angles ranging from $-45^{\circ}$ to $45^{\circ}$ with an interval of $15^{\circ}$. The final crack paths for different reference angles shown in the plots;
+  The resultant stress-strain curves of these five test sets are shown in Fig. \ref{fig:stressstraincurveforanisokappa}}
+  \label{fig:anisokappa_mode_I}
+\end{figure*}
+
+As shown in Fig. \ref{fig:anisokappa_mode_I}, different crack paths were obtained with the varied reference angles, where the crack offset angle became positively higher when the reference angle increased from $0$ to $45^{\circ}$. Both positive and negative angle variations of the resultant cracks were obtained corresponding to the sign of reference angles. Based on the facts we found here, the crack angle is directly affected by the reference angle and anisotropy strength. The stress strain curves for all varied reference angle cases are shown in Fig. \ref{fig:stressstraincurveforanisokappa}. Apparently, the material behaved more brittle when the reference angle was closer to $0^{\circ}$. The same slope was found in the stress strain curves, which was as expected since the same isotropic elasticity was used for all the cases.
+
+\subsection{Numerical results including both anisotropic elasiticity and anisotropic fracture energy}
+In this section, with anisotropies on both the elasticity and the fracture energy, the crack behaviors will be discussed. Specifically, mode I fracture simulations are performed by coupling both the anisotropic elasticity and the anisotropic fracture energy. For all of these simulations, the geometry and boundary conditions are shown in Fig. \ref{fig:tension}. Specifically for this series of tests, 2-fold symmetry on both the anisotropic elasticity and interfacial energy was assumed. To fulfil that assumption, a preliminarily rotated hexagonal-close packed(HPC) structure was employed. The preliminary rotation yielded the crystallograpic relation between HPC unit cell axes and the reference axes of the geometry as; [2\={1}\={1}0]\textsubscript{HCP}//x-axis of the domain and [0001]\textsubscript{HCP}//y-axis of the domain, then an another rotation was performed around the z-axis to complete the rotation of an elasticity tensor. Just for a convenience, the reference angle of the anisotropic interfacial energy, $\theta_0$ was fixed as $15^{\circ}$, and the anisotropy strength, $\delta$ was set as 0.4.
+
+ \begin{table*}[!htb]
+   \centering
+   \begin{tabular}{ |c|c|c|c|c|c|c|c|c|c| }
+     \hline
+     $c_{11}$(GPa) & $c_{12}$(GPa) & $c_{13}$(GPa) & $c_{33}$(GPa) & $c_{44}$(GPa) & $g_c(GPa.mm)$ & $\eta(s/mm)$ & $\theta_0$ & $\delta$ & $l(mm)$\\
+     \hline
+     115.8  & 39.8  & 40.6 & 51.4 & 20.4 & $1.0\times 10^{-3}$ & $1.0\times 10^{-6}$ & $15^{\circ}$ & 0.4 & 0.01\\
+     \hline
+   \end{tabular}
+   \caption{Material properties of picked HCP structure}
+   \label{table:cd}
+ \end{table*}
+
+The rotation operations were applied on the preliminarily rotated elasticity tensor with $0^{\circ},30^{\circ},45^{\circ},60^{\circ}$,and  $90^{\circ}$, respectively, around z-axis. The final crack paths for all these five cases show the same crack behaviors, as shown in Fig. \ref{fig:crackpathbothaniso}, the stress strain curves are shown in Fig. \ref{fig:stressbothaniso}, where the slope, as well the maximum stress, increases when the rotation angle increases. The increasing trend of the slopes was as expected from the preliminarily rotated elasticity tensor which has the lower $c_{33}$ dominating the elastic stiffness along y-axis, the slope in the stress-strain curve, when the rotation angle is $0^{\circ}$, and the higher $c_{11}$ dominating the slope when the rotation angle is $90^{\circ}$.
+\begin{figure*}[!htb]
+	\centering
+  \begin{subfigure}{0.45\textwidth}
+		\includegraphics[width=1.00\textwidth]{figures/singlecrystal/Anisotropicelasticity/combined/theta15frac.png}
+		\caption{Final crack path}
+	  \label{fig:crackpathbothaniso}
+	\end{subfigure}
+	\begin{subfigure}{0.45\textwidth}
+		\includegraphics[width=1.0\textwidth]{figures/singlecrystal/Anisotropicelasticity/combined/stresstheta15.png}
+		\caption{Stress strain curves}
+	  \label{fig:stressbothaniso}
+	\end{subfigure}
+	\caption{Crack behaviors of Mode I fracture simulation by including both anisotropic elasticity and anisotropic fracture energy, with $\delta=0.4,j=2,\theta_0=15^{\circ}$, the elasticity rotation are ranging from $0^{\circ}$ - $90^{\circ}$, the final crack paths were all the same as shown in Fig. \ref{fig:crackpathbothaniso}, the stress strain curves with different crystal orientations are shown in Fig. \ref{fig:stressbothaniso}}
+\end{figure*}
+
+\subsection{Numerical results in bi-crystal structures}
+So far, the model was demonstrated its capacity of capturing different slopes in stress strain curves due to anisotropic elasticity, and different crack paths due to anisotropic fracture energy. We will continue to demonstrate our model's capacity of capaturing the crack path in bi-crystal structures. In this section, with an additional complexity, a bicrystal structure with different crack reference angles will be studied. The elasticity is considered as isotropic while the fracture energy is considered as anisotropic. The schematics of the geometry and boundary conditions are shown in Fig. \ref{fig:bicrystalstructure}.
+\begin{figure}[!htb]
+  \begin{center}
+    \includegraphics[width=0.45\columnwidth]{figures/bicryfrac/bicrystal.png}
+    \caption{ The geometry(unit:mm) and boundary conditions used in fracture simulations of bicrystal structures, the bottoms side is fixed both x and y direction, the top side has an external displacement load of $v=t$ along y direction.}
+    \label{fig:bicrystalstructure}
+  \end{center}
+\end{figure}
+
+\begin{table*}[!htb]
+  \centering
+  \begin{tabular}{ |c|c|c|c|c|c|c| }
+    \hline
+    $\lambda$(GPa) & $\mu$(GPa) & $g_c(GPa.mm)$ & $\eta(s/mm)$ & $m$ & $\delta$ & $l(mm)$\\
+    \hline
+    120  & 80  &  $1.0\times 10^{-3}$ & $1.0\times 10^{-6}$ & 2 & 0.4 & $5\times10^{-3}$\\
+    \hline
+  \end{tabular}
+  \caption{Material properties used in the bi-crystal fracture simulations}
+  \label{table:bicryfracmaterial}
+\end{table*}
+
+The material properties used in the simulation are shown in Tab. \ref{table:bicryfracmaterial}. The anisotropic elasticity tensor was built with $\lambda$ and $\mu$, and the external load was applied to a linear displacement function of t on y direction. To illustrate the influence of the crack reference angles on the crack path in the bi-crystal structure, the reference angle $\theta_0$ is set unchanged with $\theta_0 = -30^{\circ}$ within the crystal I, while the reference angle within the crystal II was varied from $-45^{\circ}$ to $45^{\circ}$ by every $15^{\circ}$. However, the $-30^{\circ}$ on the crystal II case is  the same case as the single crystal fracture already presented in Fig. \ref{fig:theta0_n30}, thus that case was omitted for this series of the simulations. The final crack paths for all these crack simulations are shown in Figs. \ref{fig:theta0II_15}-\ref{fig:theta0II_n45}, and the resultant stress strain curves are shown in Fig. \ref{fig:stresscurvesbicrystal}.
+
+
+As shown in Fig. \ref{fig:bicryfrac}, the crack paths changed when the crack enters into the crystal II from the crystal I. Especially, when the reference angle of the crystal II is $\theta_0 = 30^{\circ}$, the cracks in the crystal I and crystal II showed a mirror symmetry behaviors along the adjacent boundary of the crystal I and II, which is as expected since the reference angle for crystal I is $\theta_0 = 30^{\circ}$. The stress strain curves for these five cases, as shown in Fig. \ref{fig:stresscurvesbicrystal}, verify the consistency in the trend of the elastic behavior, as explained in the Fig. \ref{fig:stressstraincurveforanisokappa}. If we take a closer look at the stress strain curves which remain the same until the crystal II begins to crack, which is because the reference angles of the crystal I for all the cases are the same. The curves started to diverge in small differences when each crack invaded the crystal II where the reference angles differed from the crystal I and varied through the five simulation cases.
+
+%
+% crack paths obtained in bicrystal fracture simulations with different reference angles.
+%
+\begin{figure*}[!htb]
+	\centering
+  \begin{subfigure}{0.32\textwidth}
+		\includegraphics[width=1.00\textwidth]{figures/bicryfrac/n3015.png}
+		\caption{$\theta_0(II) = 15^{\circ}$}
+	  \label{fig:theta0II_15}
+	\end{subfigure}
+	% \hspace{2em}
+	\begin{subfigure}{0.32\textwidth}
+    \includegraphics[width=1.00\textwidth]{figures/bicryfrac/n3030.png}
+		\caption{$\theta_0(II) = 30^{\circ}$}
+	  \label{fig:theta0II_30}
+	\end{subfigure}
+  % \hspace{2em}
+	\begin{subfigure}{0.32\textwidth}
+    \includegraphics[width=1.00\textwidth]{figures/bicryfrac/n3045.png}
+		\caption{$\theta_0(II)= 45^{\circ}$}
+	  \label{fig:theta0II_45}
+	\end{subfigure}
+  \\
+  \begin{subfigure}{0.32\textwidth}
+    \includegraphics[width=1.00\textwidth]{figures/bicryfrac/n30n15.png}
+    \caption{$\theta_0(II)= -15^{\circ}$}
+    \label{fig:theta0II_n15}
+  \end{subfigure}
+  % \hspace{2em}
+  \begin{subfigure}{0.32\textwidth}
+    \includegraphics[width=1.00\textwidth]{figures/bicryfrac/n30n45.png}
+    \caption{$\theta_0(II) = -30^{\circ}$}
+    \label{fig:theta0II_n45}
+  \end{subfigure}
+  % \hspace{2em}
+  \begin{subfigure}{0.32\textwidth}
+    \includegraphics[width=1.00\textwidth]{figures/bicryfrac/n30bicrystress.png}
+    \caption{stress strain curves}
+    \label{fig:stresscurvesbicrystal}
+  \end{subfigure}
+	\caption{Final crack paths in the bi-crystals, obtain from the Mode I fracture simulations, where the geometry and boundary conditions are shown in Fig. \ref{fig:bicrystalstructure}. The reference angle of crystal I is set as $\theta_0 = -30^{\circ}$, while crystal II has different reference angles from $-45^{\circ}$ to $45^{\circ}$ with an interval of $15^{\circ}$, except $-30^{\circ}$. The resultant stress-strain curves for these five cases are shown in Fig. \ref{fig:stresscurvesbicrystal}}
+  \label{fig:bicryfrac}
+\end{figure*}
+
+\subsection{Numerical results in poly-crystal structures}
+In this section, as a final application of this model, more generalized cases than bi-crystal structures; a polycrestal structure is considered to study the influence of crystal orientations and reference angles on the final crack path and the stress-strain curves. The anisotropies were considered for both elasticity and the fracture energy to simulate Mode I fractures in polycrystal structures. Specifically, a $1mm\times 1mm$ polycrstal structure with 16 grains was prepared with different crystal orientations reflected onto both elasticity tensors and reference angles $\theta_0$ at the same time. In our this model, the reference angle of each grain and the rotation of elasticity tensor are two independent variables, where crack reference angle affects on the crack path, while the crystal orientation performed on the elasticity tensor is directly related to the crack strength along different directions. For more realistic structure, the reference angle within each grain, which is considered as independent to the rotation of elasticity tensor, is set as the same as the rotation performed on anisotropic elasticity. Three different sets of randomly rotated crystal orientations ranged from $-90^{\circ} $ to $90^{\circ}$ were picked for the simulation study, as shown in Fig.\ref{fig:theta0poly1}-\ref{fig:theta0poly3}.
+
+The crack thickness parameter are set as $l=0.01mm$, a uniform mesh size of $h=5\times10^{-3}mm$ is used in the simulations, and the material properties $g_c,\eta$ and anisotropic elasticity tensor are the same as shown in Tab. \ref{table:copper}. The displacement load along y direction was applied on the top side with a linear function of time; $v=t$, and for the bottom side, zero displacement condition was applied. An initial crack is set by setting the damage parameter, $d=1.0$ in the middle on the left side, otherwise $ d=0 $, as shown in Figs. \ref{fig:theta0poly1}-\ref{fig:theta0poly3}, where $ d = 1 $ is postprocessed with transparent color to make the extent of the initially cracked region look resembles to a real crack, where the crack length is $0.1mm$ and the crack thickness is the same as length parameter set by $0.01mm$. The specific procedures of modeling an initial crack with setting $d=1.0$ can also be found in \cite{borden2012phase}, where the history variable is set as some certain large value in the pre-existing crack. The major advantage of this initialization method is in flexibility of desgnating the shape and extent of the pre-existing crack. Since Borden used a different variable to represent the extent of the crack, being kept Borden's idea, the formulation is interpreted in terms of the history variable of this model and the damage parameter, $d$:
+\begin{eqnarray}
+  \mathcal{H} = \begin{cases}
+  B \frac{g_c}{2l}(1-\frac{2(1-d(x))}{l}) & d(x)\geq 1-l \\
+  0 & d(x)<1-l
+\end{cases},
+\end{eqnarray}
+where, $B$ is a very large value so that it can provide large enough history variable value to avoid crack healing.
+%
+% Initial condition and crstal orientation fracture simulations with different reference angles.
+%
+\begin{figure*}[!htb]
+	\centering
+  \begin{subfigure}{0.32\textwidth}
+		\includegraphics[width=1.00\textwidth]{figures/polyfrac/polyfrac8IC.png}
+		\caption{Crystal angles in case I}
+	  \label{fig:theta0poly1}
+	\end{subfigure}
+	% \hspace{2em}
+	\begin{subfigure}{0.32\textwidth}
+    \includegraphics[width=1.00\textwidth]{figures/polyfrac/polyfrac9IC.png}
+		\caption{Crystal angles in case II}
+	  \label{fig:theta0poly2}
+	\end{subfigure}
+  % \hspace{2em}
+	\begin{subfigure}{0.32\textwidth}
+    \includegraphics[width=1.00\textwidth]{figures/polyfrac/polyfrac10IC.png}
+		\caption{Crystal angles in case III}
+	  \label{fig:theta0poly3}
+	\end{subfigure}
+  \\
+  \begin{subfigure}{0.32\textwidth}
+    \includegraphics[width=1.00\textwidth]{figures/polyfrac/polyfrac8c1111.png}
+    \caption{$C_{1111}(GPa)$ in case I}
+    \label{fig:c11case1}
+  \end{subfigure}
+  % \hspace{2em}
+  \begin{subfigure}{0.32\textwidth}
+    \includegraphics[width=1.00\textwidth]{figures/polyfrac/polyfrac9c1111.png}
+    \caption{$C_{1111}(GPa)$ in case II}
+    \label{fig:c11case2}
+  \end{subfigure}
+  % \hspace{2em}
+  \begin{subfigure}{0.32\textwidth}
+    \includegraphics[width=1.00\textwidth]{figures/polyfrac/polyfrac10c1111.png}
+    \caption{$C_{1111}(GPa)$ in case III}
+    \label{fig:c11case3}
+  \end{subfigure}
+	\caption{Three different cases considered in the polycrystal fracture simulations with the initial crack: Crystal orientations performed on the elasticity tensor and reference angles performed on anisotropic fracture energy(set the same as crystal orientations) are shown in Figs. \ref{fig:theta0poly1}-\ref{fig:theta0poly3}; The resultant $C_{1111}$(GPa) after rotations are shown in Figs. \ref{fig:c11case1}-\ref{fig:c11case3}, respectively.}
+  \label{fig:polyfracIC}
+\end{figure*}
+
+The final crack paths for these three cases with different orientation distributions are shown in Figs. \ref{fig:fracpoly1}-\ref{fig:fracpoly3} , where each grain has a different crack reference angle so that it cracks toward different orientations, which are as expected since the crack reference angles in each grain is different from each other. The stress distributions during the crack propagation that is close to the final crack status for the three cases are shown in Figs. \ref{fig:stresscase1}-\ref{fig:stresscase3}, where the crack paths are postprocessed with transparent color so that it looks like a real crack. The stress distributions show that the crack tip forms the concentrated zone with the maximum tensile stress, which provides the cracking driving force for its propagation. As shown in Fig. \ref{fig:polystress}, the stress strain curves for the three different cases show the influence of crystal orientations of the grains. Different slopes are captured in the stress strain curves due to the crystal orientation reflected.
+\begin{figure*}[!htb]
+	\centering
+  \begin{subfigure}{0.32\textwidth}
+		\includegraphics[width=1.00\textwidth]{figures/polyfrac/polyfrac8.png}
+		\caption{Crack paths in case I}
+	  \label{fig:fracpoly1}
+	\end{subfigure}
+	% \hspace{2em}
+	\begin{subfigure}{0.32\textwidth}
+    \includegraphics[width=1.00\textwidth]{figures/polyfrac/polyfrac9.png}
+		\caption{Crack paths in case II}
+	  \label{fig:fracpoly2}
+	\end{subfigure}
+  % \hspace{2em}
+	\begin{subfigure}{0.32\textwidth}
+    \includegraphics[width=1.00\textwidth]{figures/polyfrac/polyfrac10.png}
+		\caption{Crack paths in case III}
+	  \label{fig:fracpoly3}
+	\end{subfigure}
+  \\
+  \begin{subfigure}{0.32\textwidth}
+    \includegraphics[width=1.00\textwidth]{figures/polyfrac/polyfrac8stress.png}
+    \caption{stress distribution in case I}
+    \label{fig:stresscase1}
+  \end{subfigure}
+  % \hspace{2em}
+  \begin{subfigure}{0.32\textwidth}
+    \includegraphics[width=1.00\textwidth]{figures/polyfrac/polyfrac9stress.png}
+    \caption{stress distribution in case II}
+    \label{fig:stresscase2}
+  \end{subfigure}
+  % \hspace{2em}
+  \begin{subfigure}{0.32\textwidth}
+    \includegraphics[width=1.00\textwidth]{figures/polyfrac/polyfrac10stress.png}
+    \caption{stress distribution in case III}
+    \label{fig:stresscase3}
+  \end{subfigure}
+	\caption{Final crack paths in the three different cases shown in Figs. \ref{fig:fracpoly1}-\ref{fig:fracpoly3} corresponding to the different angles applied on the grains shown in Figs. \ref{fig:theta0poly1}-\ref{fig:theta0poly3}, respectively. And the stress distribution in the polycrystal structure for the three cases at time $t= 8.82 \mu s, t = 8.945\mu s,t=8.78\mu s$, respectively.}
+  \label{fig:polyfracpath}
+\end{figure*}
+
+\begin{figure}[!htb]
+  \begin{center}
+    \includegraphics[width=0.55\columnwidth]{figures/polyfrac/polyfracstress.png}
+    \caption{Stress strain curves captured during the fracture process in the three different cases of polycrystal structure shown in Figs \ref{fig:theta0poly1}-\ref{fig:theta0poly3}.}
+    \label{fig:polystress}
+  \end{center}
+\end{figure}
+
+
+
+
+\section{Conclusions}
+A phase field fracture model describing brittle fracture in anisotropic materials is proposed. Both the anisotropic elasticity and the anisotropic fracture energy are taken into account to the model, where the anisotropic elasticity tensor influences stress distributions and stress strain curves, while anisotropic fracture energy influences the crack paths. Based on the nature of crack propagation, the strain energy is decomposed to positive and negative parts accordingly, where the positive part of strain energy reflects the contribution of the tensile stress that drives the crack propagation, while the contribution of negative part of strain energy was excluded on crack propagation. The interplays between anisotropic elasticity and fracture energy resulted in the changes in the crack propagation directions.
+
+To verify the model in anisotropic materials, numerical tests including various anisotropic elasticity tensors are done under Mode I and II fracture situations with the isotropic fracture energy, which result in different stress strain curves obtained in Mode I fracture simulations as expected, which demonstrates that the model can correctly capture the influence of the anisotropic elasticity tensor rotations. Also, Mode I fracture simulations are performed to investigate the influence of the parameters in the anisotropic interfacial energy with the isotropic elasticity, which result in different crack paths found with the different reference angles and anisotropy strengths, which validates that the model works well including anisotropic interfacial energy. As the third example, the anisotropic elasticity and anisotropic interfacial energy are coupled in Mode I fracture simulations of single crystal structure, which reveal that the crack path and different stress strain curves are captured during the fracture process.
+
+As the more complicated case, the bi-crystal structures with different crystal orientations in the two grains are used for the simulations, consequently different crack paths are obtained based on different reference angles. Finally, as the most complicated case, a polycrystal structure with different crystal orientations and reference angles along each grain, by including both anisotropic elasticity and fracture interfacial energy, is studied with three different simulation cases. Different crack paths are found in each grain which the crack transpassed. The stress distributions at certain time are for the comparisons, which not only show the influence of the anisotropic elasticity tensors but also that the tensile stress drives the crack propagations. The stress strain curves in the three cases show the different slopes and maximum stresses, which is as expected, since anisotropic elasticity is included in the model.
+\section*{Acknowledgements}
+
+Zhang and Tonks gratefully acknowledge financial support from Department of Energy, Office of Nuclear Engineering under Nuclear Engineering University Program (NEUP) Grant 15-8243. Zhang and Jiang gratefully acknowledge financial support from Department of Energy, Office of Nuclear Engineering under Nuclear Engineering University Program (NEUP) Grant 15-8229.
+
+% \bibliographystyle{elsarticle-harv}
+\bibliographystyle{unsrt}
+\bibliography{anisoreference}
+
+%\]
+\end{document}
