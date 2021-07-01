@@ -1,0 +1,2002 @@
+Warning: Permanently added 'r3i6n13.ib0.ice.inl.gov,10.148.5.131' (ECDSA) to the list of known hosts.
+Warning: Permanently added 'r3i6n15.ib0.ice.inl.gov,10.148.5.133' (ECDSA) to the list of known hosts.
+Warning: Process to core binding is enabled and OMP_NUM_THREADS is set to non-zero (8) value
+If your program has OpenMP sections, this can cause over-subscription of cores and consequently poor performance
+To avoid this, please re-run your application after setting MV2_ENABLE_AFFINITY=0
+Use MV2_USE_THREAD_WARNING=0 to suppress this message
+
+Building mesh                                                                              [[33m  1.99 s[39m]
+Initializing equation system .............................................                 [[33m 46.94 s[39m]
+
+Framework Information:
+MOOSE Version:           git commit 34fb8fad8f on 2020-08-05
+LibMesh Version:         fafa16ee6fbff83f917a574b9bb41c2954f4cef1
+PETSc Version:           3.12.1
+Current Time:            Wed Oct 28 01:38:40 2020
+Executable Timestamp:    Wed Oct 14 04:24:46 2020
+
+Parallelism:
+  Num Processors:          64
+  Num Threads:             1
+
+Mesh: 
+  Parallel Type:           replicated
+  Mesh Dimension:          2
+  Spatial Dimension:       2
+  Nodes:                   
+    Total:                 40401
+    Local:                 668
+  Elems:                   
+    Total:                 40000
+    Local:                 610
+  Num Subdomains:          1
+  Num Partitions:          64
+  Partitioner:             metis
+
+Nonlinear System:
+  Num DOFs:                565614
+  Num Local DOFs:          9352
+  Variables:               { "wv" "wg" "etab" "eta0" "eta1" ... "eta6" "eta7" "eta8" "eta9" "eta10" } 
+  Finite Element Types:    "LAGRANGE" 
+  Approximation Orders:    "FIRST" 
+
+Auxiliary System:
+  Num DOFs:                2320802
+  Num Local DOFs:          35496
+  Variables:               "bnds" "XolotlXeRate" "time" { "cg" "cv" "unique_grains" "var_indices" "halos" 
+                             ... "halo6" "halo7" "halo8" "halo9" "halo10" } { "VacRate0" "XeRate" "XeRate0" 
+                             "cg_from_rhog" "cv_from_rhov" } 
+  Finite Element Types:    "LAGRANGE" "MONOMIAL" "LAGRANGE" "MONOMIAL" "MONOMIAL" 
+  Approximation Orders:    "FIRST" "FIRST" "FIRST" "FIRST" "CONSTANT" 
+
+Execution Information:
+  Executioner:             Transient
+  TimeStepper:             IterationAdaptiveDT
+  Solver Mode:             Preconditioned JFNK
+  MOOSE Preconditioner:    SMP
+
+Finished inside of GrainTracker
+
+
+Time Step 0, time = 0
+
+Postprocessor Values:
++----------------+----------------+----------------+----------------+----------------+
+| time           | cg_avg         | grain_tracker  | numgrain       | porosity       |
++----------------+----------------+----------------+----------------+----------------+
+|   0.000000e+00 |   0.000000e+00 |   1.900000e+01 |   0.000000e+00 |   0.000000e+00 |
++----------------+----------------+----------------+----------------+----------------+
+
+
+Time Step 1, time = 0.5, dt = 0.5
+Computing initial residual                                                                 [[33m  1.26 s[39m]
+ 0 Nonlinear |R| = [32m1.402548e-02[39m
+      0 Linear |R| = [32m1.402548e-02[39m
+      1 Linear |R| = [32m1.240580e-03[39m
+      2 Linear |R| = [32m1.367914e-04[39m
+      3 Linear |R| = [32m2.886131e-05[39m
+      4 Linear |R| = [32m7.238349e-06[39m
+      5 Linear |R| = [32m1.922694e-06[39m
+      6 Linear |R| = [32m4.744269e-07[39m
+      7 Linear |R| = [32m1.387768e-07[39m
+  Linear solve converged due to CONVERGED_RTOL iterations 7
+ 1 Nonlinear |R| = [32m1.387701e-07[39m
+      0 Linear |R| = [32m1.387701e-07[39m
+      1 Linear |R| = [32m4.528235e-08[39m
+      2 Linear |R| = [32m1.079939e-08[39m
+      3 Linear |R| = [32m3.001600e-09[39m
+      4 Linear |R| = [32m7.043718e-10[39m
+      5 Linear |R| = [32m1.935749e-10[39m
+      6 Linear |R| = [32m5.536349e-11[39m
+      7 Linear |R| = [32m1.144750e-11[39m
+      8 Linear |R| = [32m3.419546e-12[39m
+      9 Linear |R| = [32m9.784943e-13[39m
+  Linear solve converged due to CONVERGED_RTOL iterations 9
+ 2 Nonlinear |R| = [32m1.299832e-10[39m
+Nonlinear solve converged due to CONVERGED_FNORM_RELATIVE iterations 2
+[32m Solve Converged![39m
+
+Grain Tracker Status:
+Grains active index 0: 3 -> 3
+Grains active index 1: 2 -> 2
+Grains active index 2: 2 -> 2
+Grains active index 3: 3 -> 3
+Grains active index 4: 1 -> 1
+Grains active index 5: 1 -> 1
+Grains active index 6: 3 -> 3
+Grains active index 7: 1 -> 1
+Grains active index 8: 0 -> 0
+Grains active index 9: 2 -> 2
+Grains active index 10: 1 -> 1
+
+Finished inside of GrainTracker
+
+
+Outlier Variable Residual Norms:
+  wv: [33m8.890167e-11[39m
+  wg: [33m7.391987e-11[39m
+
+Postprocessor Values:
++----------------+----------------+----------------+----------------+----------------+
+| time           | cg_avg         | grain_tracker  | numgrain       | porosity       |
++----------------+----------------+----------------+----------------+----------------+
+|   0.000000e+00 |   0.000000e+00 |   1.900000e+01 |   0.000000e+00 |   0.000000e+00 |
+|   5.000000e-01 |   6.813925e-03 |   1.900000e+01 |   1.800000e+01 |   1.742073e-02 |
++----------------+----------------+----------------+----------------+----------------+
+
+
+Time Step 2, time = 1.1, dt = 0.6
+ 0 Nonlinear |R| = [32m2.167574e-02[39m
+      0 Linear |R| = [32m2.167574e-02[39m
+      1 Linear |R| = [32m1.917267e-03[39m
+      2 Linear |R| = [32m2.114061e-04[39m
+      3 Linear |R| = [32m4.460419e-05[39m
+      4 Linear |R| = [32m1.118664e-05[39m
+      5 Linear |R| = [32m2.971476e-06[39m
+      6 Linear |R| = [32m7.332187e-07[39m
+      7 Linear |R| = [32m2.144786e-07[39m
+  Linear solve converged due to CONVERGED_RTOL iterations 7
+ 1 Nonlinear |R| = [32m2.144698e-07[39m
+      0 Linear |R| = [32m2.144698e-07[39m
+      1 Linear |R| = [32m6.999122e-08[39m
+      2 Linear |R| = [32m1.670704e-08[39m
+      3 Linear |R| = [32m4.638397e-09[39m
+      4 Linear |R| = [32m1.086823e-09[39m
+      5 Linear |R| = [32m2.988004e-10[39m
+      6 Linear |R| = [32m8.553741e-11[39m
+      7 Linear |R| = [32m1.767580e-11[39m
+      8 Linear |R| = [32m5.280658e-12[39m
+      9 Linear |R| = [32m1.510093e-12[39m
+  Linear solve converged due to CONVERGED_RTOL iterations 9
+ 2 Nonlinear |R| = [32m2.608696e-10[39m
+      0 Linear |R| = [32m2.608696e-10[39m
+      1 Linear |R| = [32m8.956164e-11[39m
+      2 Linear |R| = [32m3.502533e-11[39m
+      3 Linear |R| = [32m7.644833e-12[39m
+      4 Linear |R| = [32m3.390523e-12[39m
+      5 Linear |R| = [32m6.009237e-13[39m
+      6 Linear |R| = [32m2.307720e-13[39m
+      7 Linear |R| = [32m5.655567e-14[39m
+      8 Linear |R| = [32m1.402210e-14[39m
+      9 Linear |R| = [32m3.584852e-15[39m
+     10 Linear |R| = [32m1.364036e-15[39m
+  Linear solve converged due to CONVERGED_RTOL iterations 10
+ 3 Nonlinear |R| = [32m2.184287e-10[39m
+      0 Linear |R| = [32m2.184287e-10[39m
+      1 Linear |R| = [32m7.643861e-11[39m
+      2 Linear |R| = [32m2.480023e-11[39m
+      3 Linear |R| = [32m5.128131e-12[39m
+      4 Linear |R| = [32m2.242305e-12[39m
+      5 Linear |R| = [32m2.625317e-13[39m
+      6 Linear |R| = [32m8.311202e-14[39m
+      7 Linear |R| = [32m2.772387e-14[39m
+      8 Linear |R| = [32m7.841137e-15[39m
+      9 Linear |R| = [32m1.683315e-15[39m
+  Linear solve converged due to CONVERGED_RTOL iterations 9
+ 4 Nonlinear |R| = [33m2.179015e-10[39m
+      0 Linear |R| = [32m2.179015e-10[39m
+      1 Linear |R| = [32m7.627763e-11[39m
+      2 Linear |R| = [32m2.468431e-11[39m
+      3 Linear |R| = [32m5.093501e-12[39m
+      4 Linear |R| = [32m2.233495e-12[39m
+      5 Linear |R| = [32m2.625454e-13[39m
+      6 Linear |R| = [32m8.313955e-14[39m
+      7 Linear |R| = [32m2.789266e-14[39m
+      8 Linear |R| = [32m7.927190e-15[39m
+      9 Linear |R| = [32m1.694856e-15[39m
+  Linear solve converged due to CONVERGED_RTOL iterations 9
+Nonlinear solve did not converge due to DIVERGED_LINE_SEARCH iterations 4
+[31m Solve Did NOT Converge![39m
+Aborting as solve did not converge
+
+Solve failed, cutting timestep.
+
+Time Step 2, time = 0.98, dt = 0.48
+ 0 Nonlinear |R| = [32m1.922010e-02[39m
+      0 Linear |R| = [32m1.922010e-02[39m
+      1 Linear |R| = [32m1.700064e-03[39m
+      2 Linear |R| = [32m1.874565e-04[39m
+      3 Linear |R| = [32m3.955122e-05[39m
+      4 Linear |R| = [32m9.919381e-06[39m
+      5 Linear |R| = [32m2.634860e-06[39m
+      6 Linear |R| = [32m6.501607e-07[39m
+      7 Linear |R| = [32m1.901830e-07[39m
+  Linear solve converged due to CONVERGED_RTOL iterations 7
+ 1 Nonlinear |R| = [32m1.901898e-07[39m
+      0 Linear |R| = [32m1.901898e-07[39m
+      1 Linear |R| = [32m6.205834e-08[39m
+      2 Linear |R| = [32m1.481503e-08[39m
+      3 Linear |R| = [32m4.111786e-09[39m
+      4 Linear |R| = [32m9.643494e-10[39m
+      5 Linear |R| = [32m2.649482e-10[39m
+      6 Linear |R| = [32m7.585463e-11[39m
+      7 Linear |R| = [32m1.571459e-11[39m
+      8 Linear |R| = [32m4.688682e-12[39m
+      9 Linear |R| = [32m1.340936e-12[39m
+  Linear solve converged due to CONVERGED_RTOL iterations 9
+ 2 Nonlinear |R| = [32m3.096027e-10[39m
+      0 Linear |R| = [32m3.096027e-10[39m
+      1 Linear |R| = [32m1.098639e-10[39m
+      2 Linear |R| = [32m3.984827e-11[39m
+      3 Linear |R| = [32m9.260361e-12[39m
+      4 Linear |R| = [32m3.902699e-12[39m
+      5 Linear |R| = [32m8.048239e-13[39m
+      6 Linear |R| = [32m3.170269e-13[39m
+      7 Linear |R| = [32m8.084201e-14[39m
+      8 Linear |R| = [32m2.061156e-14[39m
+      9 Linear |R| = [32m5.980480e-15[39m
+     10 Linear |R| = [32m1.804838e-15[39m
+  Linear solve converged due to CONVERGED_RTOL iterations 10
+ 3 Nonlinear |R| = [32m2.744935e-10[39m
+      0 Linear |R| = [32m2.744935e-10[39m
+      1 Linear |R| = [32m9.753514e-11[39m
+      2 Linear |R| = [32m3.395141e-11[39m
+      3 Linear |R| = [32m7.515430e-12[39m
+      4 Linear |R| = [32m3.439298e-12[39m
+      5 Linear |R| = [32m6.707079e-13[39m
+      6 Linear |R| = [32m2.600192e-13[39m
+      7 Linear |R| = [32m6.541367e-14[39m
+      8 Linear |R| = [32m1.735792e-14[39m
+      9 Linear |R| = [32m4.370467e-15[39m
+     10 Linear |R| = [32m1.488820e-15[39m
+  Linear solve converged due to CONVERGED_RTOL iterations 10
+ 4 Nonlinear |R| = [33m2.714676e-10[39m
+      0 Linear |R| = [32m2.714676e-10[39m
+      1 Linear |R| = [32m9.736337e-11[39m
+      2 Linear |R| = [32m3.283316e-11[39m
+      3 Linear |R| = [32m6.770577e-12[39m
+      4 Linear |R| = [32m2.990477e-12[39m
+      5 Linear |R| = [32m5.808072e-13[39m
+      6 Linear |R| = [32m2.249127e-13[39m
+      7 Linear |R| = [32m6.007389e-14[39m
+      8 Linear |R| = [32m1.545987e-14[39m
+      9 Linear |R| = [32m4.031627e-15[39m
+     10 Linear |R| = [32m1.399693e-15[39m
+  Linear solve converged due to CONVERGED_RTOL iterations 10
+ 5 Nonlinear |R| = [33m2.714676e-10[39m
+      0 Linear |R| = [32m2.714676e-10[39m
+      1 Linear |R| = [32m9.736337e-11[39m
+      2 Linear |R| = [32m3.283316e-11[39m
+      3 Linear |R| = [32m6.770577e-12[39m
+      4 Linear |R| = [32m2.990477e-12[39m
+      5 Linear |R| = [32m5.808072e-13[39m
+      6 Linear |R| = [32m2.249127e-13[39m
+      7 Linear |R| = [32m6.007389e-14[39m
+      8 Linear |R| = [32m1.545987e-14[39m
+      9 Linear |R| = [32m4.031627e-15[39m
+     10 Linear |R| = [32m1.399693e-15[39m
+  Linear solve converged due to CONVERGED_RTOL iterations 10
+ 6 Nonlinear |R| = [33m2.714676e-10[39m
+      0 Linear |R| = [32m2.714676e-10[39m
+      1 Linear |R| = [32m9.736337e-11[39m
+      2 Linear |R| = [32m3.283316e-11[39m
+      3 Linear |R| = [32m6.770577e-12[39m
+      4 Linear |R| = [32m2.990477e-12[39m
+      5 Linear |R| = [32m5.808072e-13[39m
+      6 Linear |R| = [32m2.249127e-13[39m
+      7 Linear |R| = [32m6.007389e-14[39m
+      8 Linear |R| = [32m1.545987e-14[39m
+      9 Linear |R| = [32m4.031627e-15[39m
+     10 Linear |R| = [32m1.399693e-15[39m
+  Linear solve converged due to CONVERGED_RTOL iterations 10
+Nonlinear solve did not converge due to DIVERGED_LINE_SEARCH iterations 6
+[31m Solve Did NOT Converge![39m
+Aborting as solve did not converge
+
+Solve failed, cutting timestep.
+
+Time Step 2, time = 0.884, dt = 0.384
+ 0 Nonlinear |R| = [32m2.051875e-02[39m
+      0 Linear |R| = [32m2.051875e-02[39m
+      1 Linear |R| = [32m1.814937e-03[39m
+      2 Linear |R| = [32m2.001230e-04[39m
+      3 Linear |R| = [32m4.222386e-05[39m
+      4 Linear |R| = [32m1.058970e-05[39m
+      5 Linear |R| = [32m2.812917e-06[39m
+      6 Linear |R| = [32m6.941005e-07[39m
+      7 Linear |R| = [32m2.030363e-07[39m
+  Linear solve converged due to CONVERGED_RTOL iterations 7
+ 1 Nonlinear |R| = [32m2.030308e-07[39m
+      0 Linear |R| = [32m2.030308e-07[39m
+      1 Linear |R| = [32m6.624389e-08[39m
+      2 Linear |R| = [32m1.580116e-08[39m
+      3 Linear |R| = [32m4.390710e-09[39m
+      4 Linear |R| = [32m1.030806e-09[39m
+      5 Linear |R| = [32m2.830953e-10[39m
+      6 Linear |R| = [32m8.098472e-11[39m
+      7 Linear |R| = [32m1.677102e-11[39m
+      8 Linear |R| = [32m5.008297e-12[39m
+      9 Linear |R| = [32m1.432874e-12[39m
+  Linear solve converged due to CONVERGED_RTOL iterations 9
+ 2 Nonlinear |R| = [32m3.890384e-10[39m
+      0 Linear |R| = [32m3.890384e-10[39m
+      1 Linear |R| = [32m1.377434e-10[39m
+      2 Linear |R| = [32m5.050567e-11[39m
+      3 Linear |R| = [32m1.052308e-11[39m
+      4 Linear |R| = [32m4.345736e-12[39m
+      5 Linear |R| = [32m6.664079e-13[39m
+      6 Linear |R| = [32m2.550793e-13[39m
+      7 Linear |R| = [32m7.885566e-14[39m
+      8 Linear |R| = [32m2.074836e-14[39m
+      9 Linear |R| = [32m5.495049e-15[39m
+     10 Linear |R| = [32m1.900896e-15[39m
+  Linear solve converged due to CONVERGED_RTOL iterations 10
+ 3 Nonlinear |R| = [32m3.471847e-10[39m
+      0 Linear |R| = [32m3.471847e-10[39m
+      1 Linear |R| = [32m1.236768e-10[39m
+      2 Linear |R| = [32m4.404732e-11[39m
+      3 Linear |R| = [32m8.768159e-12[39m
+      4 Linear |R| = [32m3.906294e-12[39m
+      5 Linear |R| = [32m8.041384e-13[39m
+      6 Linear |R| = [32m3.012970e-13[39m
+      7 Linear |R| = [32m7.061368e-14[39m
+      8 Linear |R| = [32m1.812750e-14[39m
+      9 Linear |R| = [32m5.044073e-15[39m
+     10 Linear |R| = [32m1.926802e-15[39m
+  Linear solve converged due to CONVERGED_RTOL iterations 10
+ 4 Nonlinear |R| = [33m3.460176e-10[39m
+      0 Linear |R| = [32m3.460176e-10[39m
+      1 Linear |R| = [32m1.235837e-10[39m
+      2 Linear |R| = [32m4.402481e-11[39m
+      3 Linear |R| = [32m8.739512e-12[39m
+      4 Linear |R| = [32m3.895143e-12[39m
+      5 Linear |R| = [32m8.036176e-13[39m
+      6 Linear |R| = [32m3.010704e-13[39m
+      7 Linear |R| = [32m7.121557e-14[39m
+      8 Linear |R| = [32m1.815395e-14[39m
+      9 Linear |R| = [32m5.037322e-15[39m
+     10 Linear |R| = [32m1.932789e-15[39m
+  Linear solve converged due to CONVERGED_RTOL iterations 10
+ 5 Nonlinear |R| = [33m3.460176e-10[39m
+      0 Linear |R| = [32m3.460176e-10[39m
+      1 Linear |R| = [32m1.235837e-10[39m
+      2 Linear |R| = [32m4.402481e-11[39m
+      3 Linear |R| = [32m8.739512e-12[39m
+      4 Linear |R| = [32m3.895143e-12[39m
+      5 Linear |R| = [32m8.036176e-13[39m
+      6 Linear |R| = [32m3.010704e-13[39m
+      7 Linear |R| = [32m7.121557e-14[39m
+      8 Linear |R| = [32m1.815395e-14[39m
+      9 Linear |R| = [32m5.037322e-15[39m
+     10 Linear |R| = [32m1.932789e-15[39m
+  Linear solve converged due to CONVERGED_RTOL iterations 10
+Nonlinear solve did not converge due to DIVERGED_LINE_SEARCH iterations 5
+[31m Solve Did NOT Converge![39m
+Aborting as solve did not converge
+
+Solve failed, cutting timestep.
+
+Time Step 2, time = 0.8072, dt = 0.3072
+Computing initial residual                                                                 [[33m  1.25 s[39m]
+ 0 Nonlinear |R| = [32m2.214207e-02[39m
+      0 Linear |R| = [32m2.214207e-02[39m
+      1 Linear |R| = [32m1.958527e-03[39m
+      2 Linear |R| = [32m2.159560e-04[39m
+      3 Linear |R| = [32m4.556459e-05[39m
+      4 Linear |R| = [32m1.142757e-05[39m
+      5 Linear |R| = [32m3.035482e-06[39m
+      6 Linear |R| = [32m7.490223e-07[39m
+      7 Linear |R| = [32m2.191021e-07[39m
+  Linear solve converged due to CONVERGED_RTOL iterations 7
+ 1 Nonlinear |R| = [32m2.190975e-07[39m
+      0 Linear |R| = [32m2.190975e-07[39m
+      1 Linear |R| = [32m7.148958e-08[39m
+      2 Linear |R| = [32m1.704959e-08[39m
+      3 Linear |R| = [32m4.738750e-09[39m
+      4 Linear |R| = [32m1.111274e-09[39m
+      5 Linear |R| = [32m3.055499e-10[39m
+      6 Linear |R| = [32m8.733744e-11[39m
+      7 Linear |R| = [32m1.806591e-11[39m
+      8 Linear |R| = [32m5.403235e-12[39m
+      9 Linear |R| = [32m1.542447e-12[39m
+  Linear solve converged due to CONVERGED_RTOL iterations 9
+ 2 Nonlinear |R| = [32m4.745814e-10[39m
+      0 Linear |R| = [32m4.745814e-10[39m
+      1 Linear |R| = [32m1.677094e-10[39m
+      2 Linear |R| = [32m5.900122e-11[39m
+      3 Linear |R| = [32m1.268388e-11[39m
+      4 Linear |R| = [32m5.400002e-12[39m
+      5 Linear |R| = [32m1.015403e-12[39m
+      6 Linear |R| = [32m4.553830e-13[39m
+      7 Linear |R| = [32m1.091046e-13[39m
+      8 Linear |R| = [32m2.687653e-14[39m
+      9 Linear |R| = [32m6.728344e-15[39m
+     10 Linear |R| = [32m2.323406e-15[39m
+  Linear solve converged due to CONVERGED_RTOL iterations 10
+ 3 Nonlinear |R| = [32m4.274443e-10[39m
+      0 Linear |R| = [32m4.274443e-10[39m
+      1 Linear |R| = [32m1.526085e-10[39m
+      2 Linear |R| = [32m5.239625e-11[39m
+      3 Linear |R| = [32m9.825870e-12[39m
+      4 Linear |R| = [32m4.057800e-12[39m
+      5 Linear |R| = [32m8.062399e-13[39m
+      6 Linear |R| = [32m3.400731e-13[39m
+      7 Linear |R| = [32m8.032230e-14[39m
+      8 Linear |R| = [32m1.911101e-14[39m
+      9 Linear |R| = [32m4.430561e-15[39m
+     10 Linear |R| = [32m1.650445e-15[39m
+  Linear solve converged due to CONVERGED_RTOL iterations 10
+ 4 Nonlinear |R| = [33m4.256046e-10[39m
+      0 Linear |R| = [32m4.256046e-10[39m
+      1 Linear |R| = [32m1.525098e-10[39m
+      2 Linear |R| = [32m5.283831e-11[39m
+      3 Linear |R| = [32m9.410360e-12[39m
+      4 Linear |R| = [32m3.954752e-12[39m
+      5 Linear |R| = [32m8.049930e-13[39m
+      6 Linear |R| = [32m3.389043e-13[39m
+      7 Linear |R| = [32m7.956646e-14[39m
+      8 Linear |R| = [32m1.906130e-14[39m
+      9 Linear |R| = [32m4.414053e-15[39m
+     10 Linear |R| = [32m1.642952e-15[39m
+  Linear solve converged due to CONVERGED_RTOL iterations 10
+ 5 Nonlinear |R| = [33m4.256046e-10[39m
+      0 Linear |R| = [32m4.256046e-10[39m
+      1 Linear |R| = [32m1.525098e-10[39m
+      2 Linear |R| = [32m5.283831e-11[39m
+      3 Linear |R| = [32m9.410360e-12[39m
+      4 Linear |R| = [32m3.954752e-12[39m
+      5 Linear |R| = [32m8.049930e-13[39m
+      6 Linear |R| = [32m3.389043e-13[39m
+      7 Linear |R| = [32m7.956646e-14[39m
+      8 Linear |R| = [32m1.906130e-14[39m
+      9 Linear |R| = [32m4.414053e-15[39m
+     10 Linear |R| = [32m1.642952e-15[39m
+  Linear solve converged due to CONVERGED_RTOL iterations 10
+Nonlinear solve did not converge due to DIVERGED_LINE_SEARCH iterations 5
+[31m Solve Did NOT Converge![39m
+Aborting as solve did not converge
+
+Solve failed, cutting timestep.
+
+Time Step 2, time = 0.74576, dt = 0.24576
+Computing initial residual                                                                 [[33m  1.07 s[39m]
+ 0 Nonlinear |R| = [32m2.417122e-02[39m
+      0 Linear |R| = [32m2.417122e-02[39m
+      1 Linear |R| = [32m2.138015e-03[39m
+      2 Linear |R| = [32m2.357475e-04[39m
+      3 Linear |R| = [32m4.974047e-05[39m
+      4 Linear |R| = [32m1.247490e-05[39m
+      5 Linear |R| = [32m3.313684e-06[39m
+      6 Linear |R| = [32m8.176724e-07[39m
+      7 Linear |R| = [32m2.391838e-07[39m
+  Linear solve converged due to CONVERGED_RTOL iterations 7
+ 1 Nonlinear |R| = [32m2.391877e-07[39m
+      0 Linear |R| = [32m2.391877e-07[39m
+      1 Linear |R| = [32m7.805546e-08[39m
+      2 Linear |R| = [32m1.863514e-08[39m
+      3 Linear |R| = [32m5.172481e-09[39m
+      4 Linear |R| = [32m1.213649e-09[39m
+      5 Linear |R| = [32m3.335553e-10[39m
+      6 Linear |R| = [32m9.538912e-11[39m
+      7 Linear |R| = [32m1.984105e-11[39m
+      8 Linear |R| = [32m5.910062e-12[39m
+      9 Linear |R| = [32m1.695801e-12[39m
+  Linear solve converged due to CONVERGED_RTOL iterations 9
+ 2 Nonlinear |R| = [32m5.790153e-10[39m
+      0 Linear |R| = [32m5.790153e-10[39m
+      1 Linear |R| = [32m2.069714e-10[39m
+      2 Linear |R| = [32m7.418117e-11[39m
+      3 Linear |R| = [32m1.781926e-11[39m
+      4 Linear |R| = [32m7.540376e-12[39m
+      5 Linear |R| = [32m1.760282e-12[39m
+      6 Linear |R| = [32m6.982045e-13[39m
+      7 Linear |R| = [32m1.515122e-13[39m
+      8 Linear |R| = [32m3.961240e-14[39m
+      9 Linear |R| = [32m9.325610e-15[39m
+     10 Linear |R| = [32m3.062660e-15[39m
+  Linear solve converged due to CONVERGED_RTOL iterations 10
+ 3 Nonlinear |R| = [33m5.606712e-10[39m
+      0 Linear |R| = [32m5.606712e-10[39m
+      1 Linear |R| = [32m1.945976e-10[39m
+      2 Linear |R| = [32m6.842163e-11[39m
+      3 Linear |R| = [32m1.526756e-11[39m
+      4 Linear |R| = [32m6.609548e-12[39m
+      5 Linear |R| = [32m1.203555e-12[39m
+      6 Linear |R| = [32m4.337724e-13[39m
+      7 Linear |R| = [32m1.147821e-13[39m
+      8 Linear |R| = [32m3.573755e-14[39m
+      9 Linear |R| = [32m7.902252e-15[39m
+     10 Linear |R| = [32m2.735314e-15[39m
+  Linear solve converged due to CONVERGED_RTOL iterations 10
+ 4 Nonlinear |R| = [33m5.606712e-10[39m
+      0 Linear |R| = [32m5.606712e-10[39m
+      1 Linear |R| = [32m1.945976e-10[39m
+      2 Linear |R| = [32m6.842163e-11[39m
+      3 Linear |R| = [32m1.526756e-11[39m
+      4 Linear |R| = [32m6.609548e-12[39m
+      5 Linear |R| = [32m1.203555e-12[39m
+      6 Linear |R| = [32m4.337724e-13[39m
+      7 Linear |R| = [32m1.147821e-13[39m
+      8 Linear |R| = [32m3.573755e-14[39m
+      9 Linear |R| = [32m7.902252e-15[39m
+     10 Linear |R| = [32m2.735314e-15[39m
+  Linear solve converged due to CONVERGED_RTOL iterations 10
+ 5 Nonlinear |R| = [33m5.606712e-10[39m
+      0 Linear |R| = [32m5.606712e-10[39m
+      1 Linear |R| = [32m1.945976e-10[39m
+      2 Linear |R| = [32m6.842163e-11[39m
+      3 Linear |R| = [32m1.526756e-11[39m
+      4 Linear |R| = [32m6.609548e-12[39m
+      5 Linear |R| = [32m1.203555e-12[39m
+      6 Linear |R| = [32m4.337724e-13[39m
+      7 Linear |R| = [32m1.147821e-13[39m
+      8 Linear |R| = [32m3.573755e-14[39m
+      9 Linear |R| = [32m7.902251e-15[39m
+     10 Linear |R| = [32m2.735313e-15[39m
+  Linear solve converged due to CONVERGED_RTOL iterations 10
+ 6 Nonlinear |R| = [33m5.606712e-10[39m
+      0 Linear |R| = [32m5.606712e-10[39m
+      1 Linear |R| = [32m1.945976e-10[39m
+      2 Linear |R| = [32m6.842163e-11[39m
+      3 Linear |R| = [32m1.526756e-11[39m
+      4 Linear |R| = [32m6.609548e-12[39m
+      5 Linear |R| = [32m1.203555e-12[39m
+      6 Linear |R| = [32m4.337724e-13[39m
+      7 Linear |R| = [32m1.147821e-13[39m
+      8 Linear |R| = [32m3.573755e-14[39m
+      9 Linear |R| = [32m7.902251e-15[39m
+     10 Linear |R| = [32m2.735313e-15[39m
+  Linear solve converged due to CONVERGED_RTOL iterations 10
+Nonlinear solve did not converge due to DIVERGED_LINE_SEARCH iterations 6
+[31m Solve Did NOT Converge![39m
+Aborting as solve did not converge
+
+Solve failed, cutting timestep.
+
+Time Step 2, time = 0.696608, dt = 0.196608
+ 0 Nonlinear |R| = [32m2.670766e-02[39m
+      0 Linear |R| = [32m2.670766e-02[39m
+      1 Linear |R| = [32m2.362372e-03[39m
+      2 Linear |R| = [32m2.604862e-04[39m
+      3 Linear |R| = [32m5.496020e-05[39m
+      4 Linear |R| = [32m1.378402e-05[39m
+      5 Linear |R| = [32m3.661425e-06[39m
+      6 Linear |R| = [32m9.034824e-07[39m
+      7 Linear |R| = [32m2.642848e-07[39m
+  Linear solve converged due to CONVERGED_RTOL iterations 7
+ 1 Nonlinear |R| = [32m2.643179e-07[39m
+      0 Linear |R| = [32m2.643179e-07[39m
+      1 Linear |R| = [32m8.625252e-08[39m
+      2 Linear |R| = [32m2.057597e-08[39m
+      3 Linear |R| = [32m5.717566e-09[39m
+      4 Linear |R| = [32m1.340933e-09[39m
+      5 Linear |R| = [32m3.682992e-10[39m
+      6 Linear |R| = [32m1.054047e-10[39m
+      7 Linear |R| = [32m2.177733e-11[39m
+      8 Linear |R| = [32m6.511468e-12[39m
+      9 Linear |R| = [32m1.863157e-12[39m
+  Linear solve converged due to CONVERGED_RTOL iterations 9
+ 2 Nonlinear |R| = [32m7.764755e-10[39m
+      0 Linear |R| = [32m7.764755e-10[39m
+      1 Linear |R| = [32m2.608550e-10[39m
+      2 Linear |R| = [32m9.619198e-11[39m
+      3 Linear |R| = [32m2.074230e-11[39m
+      4 Linear |R| = [32m8.632237e-12[39m
+      5 Linear |R| = [32m1.891659e-12[39m
+      6 Linear |R| = [32m7.241422e-13[39m
+      7 Linear |R| = [32m1.780672e-13[39m
+      8 Linear |R| = [32m4.985636e-14[39m
+      9 Linear |R| = [32m1.024868e-14[39m
+     10 Linear |R| = [32m3.903321e-15[39m
+  Linear solve converged due to CONVERGED_RTOL iterations 10
+ 3 Nonlinear |R| = [32m7.268885e-10[39m
+      0 Linear |R| = [32m7.268885e-10[39m
+      1 Linear |R| = [32m2.493163e-10[39m
+      2 Linear |R| = [32m9.002263e-11[39m
+      3 Linear |R| = [32m1.756939e-11[39m
+      4 Linear |R| = [32m7.802291e-12[39m
+      5 Linear |R| = [32m1.817538e-12[39m
+      6 Linear |R| = [32m6.944814e-13[39m
+      7 Linear |R| = [32m1.594578e-13[39m
+      8 Linear |R| = [32m4.609383e-14[39m
+      9 Linear |R| = [32m1.029582e-14[39m
+     10 Linear |R| = [32m3.371419e-15[39m
+  Linear solve converged due to CONVERGED_RTOL iterations 10
+ 4 Nonlinear |R| = [33m6.920189e-10[39m
+      0 Linear |R| = [32m6.920189e-10[39m
+      1 Linear |R| = [32m2.311626e-10[39m
+      2 Linear |R| = [32m7.879173e-11[39m
+      3 Linear |R| = [32m1.793767e-11[39m
+      4 Linear |R| = [32m7.487014e-12[39m
+      5 Linear |R| = [32m1.809829e-12[39m
+      6 Linear |R| = [32m6.551535e-13[39m
+      7 Linear |R| = [32m1.505575e-13[39m
+      8 Linear |R| = [32m4.357581e-14[39m
+      9 Linear |R| = [32m1.035327e-14[39m
+     10 Linear |R| = [32m3.607727e-15[39m
+  Linear solve converged due to CONVERGED_RTOL iterations 10
+ 5 Nonlinear |R| = [33m6.920189e-10[39m
+      0 Linear |R| = [32m6.920189e-10[39m
+      1 Linear |R| = [32m2.311626e-10[39m
+      2 Linear |R| = [32m7.879173e-11[39m
+      3 Linear |R| = [32m1.793767e-11[39m
+      4 Linear |R| = [32m7.487014e-12[39m
+      5 Linear |R| = [32m1.809829e-12[39m
+      6 Linear |R| = [32m6.551535e-13[39m
+      7 Linear |R| = [32m1.505575e-13[39m
+      8 Linear |R| = [32m4.357581e-14[39m
+      9 Linear |R| = [32m1.035327e-14[39m
+     10 Linear |R| = [32m3.607728e-15[39m
+  Linear solve converged due to CONVERGED_RTOL iterations 10
+Nonlinear solve did not converge due to DIVERGED_LINE_SEARCH iterations 5
+[31m Solve Did NOT Converge![39m
+Aborting as solve did not converge
+
+Solve failed, cutting timestep.
+
+Time Step 2, time = 0.657286, dt = 0.157286
+ 0 Nonlinear |R| = [32m2.987820e-02[39m
+      0 Linear |R| = [32m2.987820e-02[39m
+      1 Linear |R| = [32m2.642817e-03[39m
+      2 Linear |R| = [32m2.914090e-04[39m
+      3 Linear |R| = [32m6.148479e-05[39m
+      4 Linear |R| = [32m1.542041e-05[39m
+      5 Linear |R| = [32m4.096094e-06[39m
+      6 Linear |R| = [32m1.010743e-06[39m
+      7 Linear |R| = [32m2.956602e-07[39m
+  Linear solve converged due to CONVERGED_RTOL iterations 7
+ 1 Nonlinear |R| = [32m2.956443e-07[39m
+      0 Linear |R| = [32m2.956443e-07[39m
+      1 Linear |R| = [32m9.646232e-08[39m
+      2 Linear |R| = [32m2.301658e-08[39m
+      3 Linear |R| = [32m6.391581e-09[39m
+      4 Linear |R| = [32m1.500777e-09[39m
+      5 Linear |R| = [32m4.113179e-10[39m
+      6 Linear |R| = [32m1.181254e-10[39m
+      7 Linear |R| = [32m2.454231e-11[39m
+      8 Linear |R| = [32m7.309310e-12[39m
+      9 Linear |R| = [32m2.097862e-12[39m
+  Linear solve converged due to CONVERGED_RTOL iterations 9
+ 2 Nonlinear |R| = [32m9.283924e-10[39m
+      0 Linear |R| = [32m9.283924e-10[39m
+      1 Linear |R| = [32m3.336787e-10[39m
+      2 Linear |R| = [32m1.167592e-10[39m
+      3 Linear |R| = [32m2.508147e-11[39m
+      4 Linear |R| = [32m1.077008e-11[39m
+      5 Linear |R| = [32m2.104969e-12[39m
+      6 Linear |R| = [32m8.054744e-13[39m
+      7 Linear |R| = [32m1.904911e-13[39m
+      8 Linear |R| = [32m4.852400e-14[39m
+      9 Linear |R| = [32m1.361320e-14[39m
+     10 Linear |R| = [32m4.905334e-15[39m
+  Linear solve converged due to CONVERGED_RTOL iterations 10
+ 3 Nonlinear |R| = [32m8.642299e-10[39m
+      0 Linear |R| = [32m8.642299e-10[39m
+      1 Linear |R| = [32m2.962161e-10[39m
+      2 Linear |R| = [32m1.047357e-10[39m
+      3 Linear |R| = [32m2.118476e-11[39m
+      4 Linear |R| = [32m8.241340e-12[39m
+      5 Linear |R| = [32m1.615435e-12[39m
+      6 Linear |R| = [32m6.089147e-13[39m
+      7 Linear |R| = [32m1.653694e-13[39m
+      8 Linear |R| = [32m4.933474e-14[39m
+      9 Linear |R| = [32m1.410276e-14[39m
+     10 Linear |R| = [32m4.557918e-15[39m
+  Linear solve converged due to CONVERGED_RTOL iterations 10
+ 4 Nonlinear |R| = [33m8.403612e-10[39m
+      0 Linear |R| = [32m8.403612e-10[39m
+      1 Linear |R| = [32m3.075093e-10[39m
+      2 Linear |R| = [32m1.048064e-10[39m
+      3 Linear |R| = [32m2.029209e-11[39m
+      4 Linear |R| = [32m9.020908e-12[39m
+      5 Linear |R| = [32m1.779998e-12[39m
+      6 Linear |R| = [32m7.277651e-13[39m
+      7 Linear |R| = [32m1.840663e-13[39m
+      8 Linear |R| = [32m4.529756e-14[39m
+      9 Linear |R| = [32m1.163716e-14[39m
+     10 Linear |R| = [32m4.069551e-15[39m
+  Linear solve converged due to CONVERGED_RTOL iterations 10
+ 5 Nonlinear |R| = [33m8.403612e-10[39m
+      0 Linear |R| = [32m8.403612e-10[39m
+      1 Linear |R| = [32m3.075093e-10[39m
+      2 Linear |R| = [32m1.048064e-10[39m
+      3 Linear |R| = [32m2.029209e-11[39m
+      4 Linear |R| = [32m9.020908e-12[39m
+      5 Linear |R| = [32m1.779998e-12[39m
+      6 Linear |R| = [32m7.277651e-13[39m
+      7 Linear |R| = [32m1.840663e-13[39m
+      8 Linear |R| = [32m4.529756e-14[39m
+      9 Linear |R| = [32m1.163716e-14[39m
+     10 Linear |R| = [32m4.069551e-15[39m
+  Linear solve converged due to CONVERGED_RTOL iterations 10
+ 6 Nonlinear |R| = [33m8.403612e-10[39m
+      0 Linear |R| = [32m8.403612e-10[39m
+      1 Linear |R| = [32m3.075093e-10[39m
+      2 Linear |R| = [32m1.048064e-10[39m
+      3 Linear |R| = [32m2.029209e-11[39m
+      4 Linear |R| = [32m9.020908e-12[39m
+      5 Linear |R| = [32m1.779998e-12[39m
+      6 Linear |R| = [32m7.277651e-13[39m
+      7 Linear |R| = [32m1.840663e-13[39m
+      8 Linear |R| = [32m4.529756e-14[39m
+      9 Linear |R| = [32m1.163716e-14[39m
+     10 Linear |R| = [32m4.069551e-15[39m
+  Linear solve converged due to CONVERGED_RTOL iterations 10
+Nonlinear solve did not converge due to DIVERGED_LINE_SEARCH iterations 6
+[31m Solve Did NOT Converge![39m
+Aborting as solve did not converge
+
+Solve failed, cutting timestep.
+
+Time Step 2, time = 0.625829, dt = 0.125829
+ 0 Nonlinear |R| = [32m3.384138e-02[39m
+      0 Linear |R| = [32m3.384138e-02[39m
+      1 Linear |R| = [32m2.993375e-03[39m
+      2 Linear |R| = [32m3.300632e-04[39m
+      3 Linear |R| = [32m6.964056e-05[39m
+      4 Linear |R| = [32m1.746589e-05[39m
+      5 Linear |R| = [32m4.639434e-06[39m
+      6 Linear |R| = [32m1.144818e-06[39m
+      7 Linear |R| = [32m3.348798e-07[39m
+  Linear solve converged due to CONVERGED_RTOL iterations 7
+ 1 Nonlinear |R| = [32m3.347901e-07[39m
+      0 Linear |R| = [32m3.347901e-07[39m
+      1 Linear |R| = [32m1.092576e-07[39m
+      2 Linear |R| = [32m2.606628e-08[39m
+      3 Linear |R| = [32m7.242287e-09[39m
+      4 Linear |R| = [32m1.701233e-09[39m
+      5 Linear |R| = [32m4.681348e-10[39m
+      6 Linear |R| = [32m1.335438e-10[39m
+      7 Linear |R| = [32m2.788185e-11[39m
+      8 Linear |R| = [32m8.313222e-12[39m
+      9 Linear |R| = [32m2.381814e-12[39m
+  Linear solve converged due to CONVERGED_RTOL iterations 9
+ 2 Nonlinear |R| = [32m1.174401e-09[39m
+      0 Linear |R| = [32m1.174401e-09[39m
+      1 Linear |R| = [32m3.902241e-10[39m
+      2 Linear |R| = [32m1.397600e-10[39m
+      3 Linear |R| = [32m3.345657e-11[39m
+      4 Linear |R| = [32m1.529363e-11[39m
+      5 Linear |R| = [32m2.902703e-12[39m
+      6 Linear |R| = [32m1.067688e-12[39m
+      7 Linear |R| = [32m2.201722e-13[39m
+      8 Linear |R| = [32m5.397590e-14[39m
+      9 Linear |R| = [32m1.453446e-14[39m
+     10 Linear |R| = [32m5.071598e-15[39m
+  Linear solve converged due to CONVERGED_RTOL iterations 10
+ 3 Nonlinear |R| = [32m9.981915e-10[39m
+      0 Linear |R| = [32m9.981915e-10[39m
+      1 Linear |R| = [32m3.683840e-10[39m
+      2 Linear |R| = [32m1.292758e-10[39m
+      3 Linear |R| = [32m2.960392e-11[39m
+      4 Linear |R| = [32m1.209732e-11[39m
+      5 Linear |R| = [32m1.858325e-12[39m
+      6 Linear |R| = [32m7.646175e-13[39m
+      7 Linear |R| = [32m2.167332e-13[39m
+      8 Linear |R| = [32m5.749182e-14[39m
+      9 Linear |R| = [32m1.363313e-14[39m
+     10 Linear |R| = [32m4.511218e-15[39m
+  Linear solve converged due to CONVERGED_RTOL iterations 10
+ 4 Nonlinear |R| = [33m9.981915e-10[39m
+      0 Linear |R| = [32m9.981915e-10[39m
+      1 Linear |R| = [32m3.683840e-10[39m
+      2 Linear |R| = [32m1.292758e-10[39m
+      3 Linear |R| = [32m2.960392e-11[39m
+      4 Linear |R| = [32m1.209732e-11[39m
+      5 Linear |R| = [32m1.858325e-12[39m
+      6 Linear |R| = [32m7.646175e-13[39m
+      7 Linear |R| = [32m2.167332e-13[39m
+      8 Linear |R| = [32m5.749182e-14[39m
+      9 Linear |R| = [32m1.363313e-14[39m
+     10 Linear |R| = [32m4.511218e-15[39m
+  Linear solve converged due to CONVERGED_RTOL iterations 10
+Nonlinear solve did not converge due to DIVERGED_LINE_SEARCH iterations 4
+[31m Solve Did NOT Converge![39m
+Aborting as solve did not converge
+
+Solve failed, cutting timestep.
+
+Time Step 2, time = 0.600663, dt = 0.100663
+Computing initial residual                                                                 [[33m  1.01 s[39m]
+ 0 Nonlinear |R| = [32m3.879536e-02[39m
+      0 Linear |R| = [32m3.879536e-02[39m
+      1 Linear |R| = [32m3.431573e-03[39m
+      2 Linear |R| = [32m3.783815e-04[39m
+      3 Linear |R| = [32m7.983531e-05[39m
+      4 Linear |R| = [32m2.002275e-05[39m
+      5 Linear |R| = [32m5.318611e-06[39m
+      6 Linear |R| = [32m1.312411e-06[39m
+      7 Linear |R| = [32m3.839042e-07[39m
+  Linear solve converged due to CONVERGED_RTOL iterations 7
+ 1 Nonlinear |R| = [32m3.839419e-07[39m
+      0 Linear |R| = [32m3.839419e-07[39m
+      1 Linear |R| = [32m1.252728e-07[39m
+      2 Linear |R| = [32m2.991995e-08[39m
+      3 Linear |R| = [32m8.303964e-09[39m
+      4 Linear |R| = [32m1.950535e-09[39m
+      5 Linear |R| = [32m5.367098e-10[39m
+      6 Linear |R| = [32m1.531316e-10[39m
+      7 Linear |R| = [32m3.197383e-11[39m
+      8 Linear |R| = [32m9.544902e-12[39m
+      9 Linear |R| = [32m2.728357e-12[39m
+  Linear solve converged due to CONVERGED_RTOL iterations 9
+ 2 Nonlinear |R| = [32m1.470091e-09[39m
+      0 Linear |R| = [32m1.470091e-09[39m
+      1 Linear |R| = [32m5.351663e-10[39m
+      2 Linear |R| = [32m2.045982e-10[39m
+      3 Linear |R| = [32m4.274820e-11[39m
+      4 Linear |R| = [32m1.797514e-11[39m
+      5 Linear |R| = [32m3.381507e-12[39m
+      6 Linear |R| = [32m1.388712e-12[39m
+      7 Linear |R| = [32m3.349645e-13[39m
+      8 Linear |R| = [32m8.271850e-14[39m
+      9 Linear |R| = [32m1.991926e-14[39m
+     10 Linear |R| = [32m7.515173e-15[39m
+  Linear solve converged due to CONVERGED_RTOL iterations 10
+ 3 Nonlinear |R| = [32m1.384405e-09[39m
+      0 Linear |R| = [32m1.384405e-09[39m
+      1 Linear |R| = [32m4.712225e-10[39m
+      2 Linear |R| = [32m1.760526e-10[39m
+      3 Linear |R| = [32m3.537926e-11[39m
+      4 Linear |R| = [32m1.591432e-11[39m
+      5 Linear |R| = [32m3.077271e-12[39m
+      6 Linear |R| = [32m1.393935e-12[39m
+      7 Linear |R| = [32m3.369430e-13[39m
+      8 Linear |R| = [32m9.376215e-14[39m
+      9 Linear |R| = [32m2.310714e-14[39m
+     10 Linear |R| = [32m8.146456e-15[39m
+  Linear solve converged due to CONVERGED_RTOL iterations 10
+ 4 Nonlinear |R| = [33m1.347338e-09[39m
+      0 Linear |R| = [32m1.347338e-09[39m
+      1 Linear |R| = [32m4.586397e-10[39m
+      2 Linear |R| = [32m1.565322e-10[39m
+      3 Linear |R| = [32m3.297202e-11[39m
+      4 Linear |R| = [32m1.428084e-11[39m
+      5 Linear |R| = [32m2.491750e-12[39m
+      6 Linear |R| = [32m1.023313e-12[39m
+      7 Linear |R| = [32m2.593177e-13[39m
+      8 Linear |R| = [32m6.909359e-14[39m
+      9 Linear |R| = [32m1.793111e-14[39m
+     10 Linear |R| = [32m5.920257e-15[39m
+  Linear solve converged due to CONVERGED_RTOL iterations 10
+ 5 Nonlinear |R| = [33m1.347338e-09[39m
+      0 Linear |R| = [32m1.347338e-09[39m
+      1 Linear |R| = [32m4.586397e-10[39m
+      2 Linear |R| = [32m1.565322e-10[39m
+      3 Linear |R| = [32m3.297202e-11[39m
+      4 Linear |R| = [32m1.428084e-11[39m
+      5 Linear |R| = [32m2.491750e-12[39m
+      6 Linear |R| = [32m1.023313e-12[39m
+      7 Linear |R| = [32m2.593177e-13[39m
+      8 Linear |R| = [32m6.909359e-14[39m
+      9 Linear |R| = [32m1.793111e-14[39m
+     10 Linear |R| = [32m5.920257e-15[39m
+  Linear solve converged due to CONVERGED_RTOL iterations 10
+Nonlinear solve did not converge due to DIVERGED_LINE_SEARCH iterations 5
+[31m Solve Did NOT Converge![39m
+Aborting as solve did not converge
+
+Solve failed, cutting timestep.
+
+Time Step 2, time = 0.580531, dt = 0.0805306
+ 0 Nonlinear |R| = [32m4.498783e-02[39m
+      0 Linear |R| = [32m4.498783e-02[39m
+      1 Linear |R| = [32m3.979317e-03[39m
+      2 Linear |R| = [32m4.387778e-04[39m
+      3 Linear |R| = [32m9.257858e-05[39m
+      4 Linear |R| = [32m2.321878e-05[39m
+      5 Linear |R| = [32m6.167567e-06[39m
+      6 Linear |R| = [32m1.521901e-06[39m
+      7 Linear |R| = [32m4.451834e-07[39m
+  Linear solve converged due to CONVERGED_RTOL iterations 7
+ 1 Nonlinear |R| = [32m4.453072e-07[39m
+      0 Linear |R| = [32m4.453072e-07[39m
+      1 Linear |R| = [32m1.452740e-07[39m
+      2 Linear |R| = [32m3.467455e-08[39m
+      3 Linear |R| = [32m9.624209e-09[39m
+      4 Linear |R| = [32m2.261464e-09[39m
+      5 Linear |R| = [32m6.207985e-10[39m
+      6 Linear |R| = [32m1.778788e-10[39m
+      7 Linear |R| = [32m3.706105e-11[39m
+      8 Linear |R| = [32m1.104919e-11[39m
+      9 Linear |R| = [32m3.172439e-12[39m
+  Linear solve converged due to CONVERGED_RTOL iterations 9
+ 2 Nonlinear |R| = [32m1.889580e-09[39m
+      0 Linear |R| = [32m1.889580e-09[39m
+      1 Linear |R| = [32m6.385811e-10[39m
+      2 Linear |R| = [32m2.251462e-10[39m
+      3 Linear |R| = [32m4.285443e-11[39m
+      4 Linear |R| = [32m1.852195e-11[39m
+      5 Linear |R| = [32m3.135179e-12[39m
+      6 Linear |R| = [32m1.208712e-12[39m
+      7 Linear |R| = [32m3.478337e-13[39m
+      8 Linear |R| = [32m8.911093e-14[39m
+      9 Linear |R| = [32m2.197397e-14[39m
+     10 Linear |R| = [32m7.391590e-15[39m
+  Linear solve converged due to CONVERGED_RTOL iterations 10
+ 3 Nonlinear |R| = [32m1.685964e-09[39m
+      0 Linear |R| = [32m1.685964e-09[39m
+      1 Linear |R| = [32m5.476760e-10[39m
+      2 Linear |R| = [32m1.990211e-10[39m
+      3 Linear |R| = [32m4.654852e-11[39m
+      4 Linear |R| = [32m2.081259e-11[39m
+      5 Linear |R| = [32m4.495414e-12[39m
+      6 Linear |R| = [32m1.854605e-12[39m
+      7 Linear |R| = [32m3.818553e-13[39m
+      8 Linear |R| = [32m9.244491e-14[39m
+      9 Linear |R| = [32m2.266193e-14[39m
+     10 Linear |R| = [32m8.130765e-15[39m
+  Linear solve converged due to CONVERGED_RTOL iterations 10
+ 4 Nonlinear |R| = [33m1.679514e-09[39m
+      0 Linear |R| = [32m1.679514e-09[39m
+      1 Linear |R| = [32m5.493461e-10[39m
+      2 Linear |R| = [32m1.997444e-10[39m
+      3 Linear |R| = [32m4.407353e-11[39m
+      4 Linear |R| = [32m2.019282e-11[39m
+      5 Linear |R| = [32m4.454918e-12[39m
+      6 Linear |R| = [32m1.838388e-12[39m
+      7 Linear |R| = [32m3.791114e-13[39m
+      8 Linear |R| = [32m9.035029e-14[39m
+      9 Linear |R| = [32m2.271561e-14[39m
+     10 Linear |R| = [32m8.041286e-15[39m
+  Linear solve converged due to CONVERGED_RTOL iterations 10
+ 5 Nonlinear |R| = [33m1.679514e-09[39m
+      0 Linear |R| = [32m1.679514e-09[39m
+      1 Linear |R| = [32m5.493461e-10[39m
+      2 Linear |R| = [32m1.997444e-10[39m
+      3 Linear |R| = [32m4.407353e-11[39m
+      4 Linear |R| = [32m2.019282e-11[39m
+      5 Linear |R| = [32m4.454918e-12[39m
+      6 Linear |R| = [32m1.838388e-12[39m
+      7 Linear |R| = [32m3.791114e-13[39m
+      8 Linear |R| = [32m9.035029e-14[39m
+      9 Linear |R| = [32m2.271561e-14[39m
+     10 Linear |R| = [32m8.041285e-15[39m
+  Linear solve converged due to CONVERGED_RTOL iterations 10
+Nonlinear solve did not converge due to DIVERGED_LINE_SEARCH iterations 5
+[31m Solve Did NOT Converge![39m
+Aborting as solve did not converge
+
+Solve failed, cutting timestep.
+
+Time Step 2, time = 0.564425, dt = 0.0644245
+ 0 Nonlinear |R| = [32m5.272842e-02[39m
+      0 Linear |R| = [32m5.272842e-02[39m
+      1 Linear |R| = [32m4.664000e-03[39m
+      2 Linear |R| = [32m5.142749e-04[39m
+      3 Linear |R| = [32m1.085078e-04[39m
+      4 Linear |R| = [32m2.721385e-05[39m
+      5 Linear |R| = [32m7.228777e-06[39m
+      6 Linear |R| = [32m1.783764e-06[39m
+      7 Linear |R| = [32m5.217837e-07[39m
+  Linear solve converged due to CONVERGED_RTOL iterations 7
+ 1 Nonlinear |R| = [32m5.218032e-07[39m
+      0 Linear |R| = [32m5.218032e-07[39m
+      1 Linear |R| = [32m1.702536e-07[39m
+      2 Linear |R| = [32m4.068994e-08[39m
+      3 Linear |R| = [32m1.127678e-08[39m
+      4 Linear |R| = [32m2.648915e-09[39m
+      5 Linear |R| = [32m7.265543e-10[39m
+      6 Linear |R| = [32m2.085854e-10[39m
+      7 Linear |R| = [32m4.341024e-11[39m
+      8 Linear |R| = [32m1.299026e-11[39m
+      9 Linear |R| = [32m3.705056e-12[39m
+  Linear solve converged due to CONVERGED_RTOL iterations 9
+ 2 Nonlinear |R| = [32m2.265382e-09[39m
+      0 Linear |R| = [32m2.265382e-09[39m
+      1 Linear |R| = [32m7.827208e-10[39m
+      2 Linear |R| = [32m3.090810e-10[39m
+      3 Linear |R| = [32m7.219490e-11[39m
+      4 Linear |R| = [32m3.261683e-11[39m
+      5 Linear |R| = [32m6.960068e-12[39m
+      6 Linear |R| = [32m2.901460e-12[39m
+      7 Linear |R| = [32m6.267965e-13[39m
+      8 Linear |R| = [32m1.526875e-13[39m
+      9 Linear |R| = [32m3.954083e-14[39m
+     10 Linear |R| = [32m1.249653e-14[39m
+  Linear solve converged due to CONVERGED_RTOL iterations 10
+ 3 Nonlinear |R| = [32m2.078637e-09[39m
+      0 Linear |R| = [32m2.078637e-09[39m
+      1 Linear |R| = [32m7.020222e-10[39m
+      2 Linear |R| = [32m2.560726e-10[39m
+      3 Linear |R| = [32m5.100124e-11[39m
+      4 Linear |R| = [32m2.119134e-11[39m
+      5 Linear |R| = [32m5.095281e-12[39m
+      6 Linear |R| = [32m1.788832e-12[39m
+      7 Linear |R| = [32m4.405268e-13[39m
+      8 Linear |R| = [32m1.265748e-13[39m
+      9 Linear |R| = [32m3.280942e-14[39m
+     10 Linear |R| = [32m1.080081e-14[39m
+  Linear solve converged due to CONVERGED_RTOL iterations 10
+ 4 Nonlinear |R| = [33m2.068529e-09[39m
+      0 Linear |R| = [32m2.068529e-09[39m
+      1 Linear |R| = [32m6.951297e-10[39m
+      2 Linear |R| = [32m2.519674e-10[39m
+      3 Linear |R| = [32m4.816762e-11[39m
+      4 Linear |R| = [32m2.037471e-11[39m
+      5 Linear |R| = [32m5.111957e-12[39m
+      6 Linear |R| = [32m1.774273e-12[39m
+      7 Linear |R| = [32m4.320427e-13[39m
+      8 Linear |R| = [32m1.251997e-13[39m
+      9 Linear |R| = [32m3.315364e-14[39m
+     10 Linear |R| = [32m1.087254e-14[39m
+  Linear solve converged due to CONVERGED_RTOL iterations 10
+Nonlinear solve did not converge due to DIVERGED_LINE_SEARCH iterations 4
+[31m Solve Did NOT Converge![39m
+Aborting as solve did not converge
+
+Solve failed, cutting timestep.
+
+Time Step 2, time = 0.55154, dt = 0.0515396
+Computing initial residual                                                                 [[33m  1.03 s[39m]
+ 0 Nonlinear |R| = [32m6.240415e-02[39m
+      0 Linear |R| = [32m6.240415e-02[39m
+      1 Linear |R| = [32m5.519852e-03[39m
+      2 Linear |R| = [32m6.086453e-04[39m
+      3 Linear |R| = [32m1.284193e-04[39m
+      4 Linear |R| = [32m3.220767e-05[39m
+      5 Linear |R| = [32m8.555278e-06[39m
+      6 Linear |R| = [32m2.111091e-06[39m
+      7 Linear |R| = [32m6.175330e-07[39m
+  Linear solve converged due to CONVERGED_RTOL iterations 7
+ 1 Nonlinear |R| = [32m6.176814e-07[39m
+      0 Linear |R| = [32m6.176814e-07[39m
+      1 Linear |R| = [32m2.014971e-07[39m
+      2 Linear |R| = [32m4.804235e-08[39m
+      3 Linear |R| = [32m1.335161e-08[39m
+      4 Linear |R| = [32m3.134990e-09[39m
+      5 Linear |R| = [32m8.626017e-10[39m
+      6 Linear |R| = [32m2.464141e-10[39m
+      7 Linear |R| = [32m5.142765e-11[39m
+      8 Linear |R| = [32m1.539232e-11[39m
+      9 Linear |R| = [32m4.384979e-12[39m
+  Linear solve converged due to CONVERGED_RTOL iterations 9
+ 2 Nonlinear |R| = [32m2.897137e-09[39m
+      0 Linear |R| = [32m2.897137e-09[39m
+      1 Linear |R| = [32m9.329431e-10[39m
+      2 Linear |R| = [32m3.279777e-10[39m
+      3 Linear |R| = [32m8.130186e-11[39m
+      4 Linear |R| = [32m3.400056e-11[39m
+      5 Linear |R| = [32m5.321965e-12[39m
+      6 Linear |R| = [32m2.093590e-12[39m
+      7 Linear |R| = [32m5.057000e-13[39m
+      8 Linear |R| = [32m1.399912e-13[39m
+      9 Linear |R| = [32m3.502247e-14[39m
+     10 Linear |R| = [32m1.165210e-14[39m
+  Linear solve converged due to CONVERGED_RTOL iterations 10
+ 3 Nonlinear |R| = [32m2.546994e-09[39m
+      0 Linear |R| = [32m2.546994e-09[39m
+      1 Linear |R| = [32m8.553779e-10[39m
+      2 Linear |R| = [32m2.955845e-10[39m
+      3 Linear |R| = [32m6.488544e-11[39m
+      4 Linear |R| = [32m2.772532e-11[39m
+      5 Linear |R| = [32m4.178684e-12[39m
+      6 Linear |R| = [32m1.727874e-12[39m
+      7 Linear |R| = [32m4.344792e-13[39m
+      8 Linear |R| = [32m1.147151e-13[39m
+      9 Linear |R| = [32m2.944713e-14[39m
+     10 Linear |R| = [32m1.124694e-14[39m
+  Linear solve converged due to CONVERGED_RTOL iterations 10
+ 4 Nonlinear |R| = [33m2.537110e-09[39m
+      0 Linear |R| = [32m2.537110e-09[39m
+      1 Linear |R| = [32m8.456747e-10[39m
+      2 Linear |R| = [32m2.955621e-10[39m
+      3 Linear |R| = [32m6.369464e-11[39m
+      4 Linear |R| = [32m2.753436e-11[39m
+      5 Linear |R| = [32m4.320905e-12[39m
+      6 Linear |R| = [32m1.805645e-12[39m
+      7 Linear |R| = [32m4.470051e-13[39m
+      8 Linear |R| = [32m1.137197e-13[39m
+      9 Linear |R| = [32m2.803460e-14[39m
+     10 Linear |R| = [32m1.077568e-14[39m
+  Linear solve converged due to CONVERGED_RTOL iterations 10
+ 5 Nonlinear |R| = [33m2.537110e-09[39m
+      0 Linear |R| = [32m2.537110e-09[39m
+      1 Linear |R| = [32m8.456747e-10[39m
+      2 Linear |R| = [32m2.955621e-10[39m
+      3 Linear |R| = [32m6.369464e-11[39m
+      4 Linear |R| = [32m2.753436e-11[39m
+      5 Linear |R| = [32m4.320905e-12[39m
+      6 Linear |R| = [32m1.805645e-12[39m
+      7 Linear |R| = [32m4.470051e-13[39m
+      8 Linear |R| = [32m1.137197e-13[39m
+      9 Linear |R| = [32m2.803460e-14[39m
+     10 Linear |R| = [32m1.077568e-14[39m
+  Linear solve converged due to CONVERGED_RTOL iterations 10
+ 6 Nonlinear |R| = [33m2.537110e-09[39m
+      0 Linear |R| = [32m2.537110e-09[39m
+      1 Linear |R| = [32m8.456747e-10[39m
+      2 Linear |R| = [32m2.955621e-10[39m
+      3 Linear |R| = [32m6.369464e-11[39m
+      4 Linear |R| = [32m2.753436e-11[39m
+      5 Linear |R| = [32m4.320905e-12[39m
+      6 Linear |R| = [32m1.805645e-12[39m
+      7 Linear |R| = [32m4.470051e-13[39m
+      8 Linear |R| = [32m1.137197e-13[39m
+      9 Linear |R| = [32m2.803460e-14[39m
+     10 Linear |R| = [32m1.077568e-14[39m
+  Linear solve converged due to CONVERGED_RTOL iterations 10
+Nonlinear solve did not converge due to DIVERGED_LINE_SEARCH iterations 6
+[31m Solve Did NOT Converge![39m
+Aborting as solve did not converge
+
+Solve failed, cutting timestep.
+
+Time Step 2, time = 0.541232, dt = 0.0412317
+ 0 Nonlinear |R| = [32m7.449882e-02[39m
+      0 Linear |R| = [32m7.449882e-02[39m
+      1 Linear |R| = [32m6.589663e-03[39m
+      2 Linear |R| = [32m7.266065e-04[39m
+      3 Linear |R| = [32m1.533084e-04[39m
+      4 Linear |R| = [32m3.844990e-05[39m
+      5 Linear |R| = [32m1.021339e-05[39m
+      6 Linear |R| = [32m2.520248e-06[39m
+      7 Linear |R| = [32m7.372182e-07[39m
+  Linear solve converged due to CONVERGED_RTOL iterations 7
+ 1 Nonlinear |R| = [32m7.371122e-07[39m
+      0 Linear |R| = [32m7.371122e-07[39m
+      1 Linear |R| = [32m2.404798e-07[39m
+      2 Linear |R| = [32m5.738935e-08[39m
+      3 Linear |R| = [32m1.593419e-08[39m
+      4 Linear |R| = [32m3.751680e-09[39m
+      5 Linear |R| = [32m1.030430e-09[39m
+      6 Linear |R| = [32m2.945369e-10[39m
+      7 Linear |R| = [32m6.128134e-11[39m
+      8 Linear |R| = [32m1.840775e-11[39m
+      9 Linear |R| = [32m5.222171e-12[39m
+  Linear solve converged due to CONVERGED_RTOL iterations 9
+ 2 Nonlinear |R| = [32m3.575499e-09[39m
+      0 Linear |R| = [32m3.575499e-09[39m
+      1 Linear |R| = [32m1.241295e-09[39m
+      2 Linear |R| = [32m4.534415e-10[39m
+      3 Linear |R| = [32m8.497303e-11[39m
+      4 Linear |R| = [32m3.426612e-11[39m
+      5 Linear |R| = [32m6.229727e-12[39m
+      6 Linear |R| = [32m2.172273e-12[39m
+      7 Linear |R| = [32m5.574545e-13[39m
+      8 Linear |R| = [32m1.390738e-13[39m
+      9 Linear |R| = [32m3.501969e-14[39m
+  Linear solve converged due to CONVERGED_RTOL iterations 9
+ 3 Nonlinear |R| = [32m3.224884e-09[39m
+      0 Linear |R| = [32m3.224884e-09[39m
+      1 Linear |R| = [32m1.164986e-09[39m
+      2 Linear |R| = [32m4.015234e-10[39m
+      3 Linear |R| = [32m9.068915e-11[39m
+      4 Linear |R| = [32m3.871174e-11[39m
+      5 Linear |R| = [32m6.506131e-12[39m
+      6 Linear |R| = [32m2.299142e-12[39m
+      7 Linear |R| = [32m5.985672e-13[39m
+      8 Linear |R| = [32m1.495975e-13[39m
+      9 Linear |R| = [32m3.392643e-14[39m
+     10 Linear |R| = [32m1.256353e-14[39m
+  Linear solve converged due to CONVERGED_RTOL iterations 10
+ 4 Nonlinear |R| = [33m3.210163e-09[39m
+      0 Linear |R| = [32m3.210163e-09[39m
+      1 Linear |R| = [32m1.160319e-09[39m
+      2 Linear |R| = [32m4.011337e-10[39m
+      3 Linear |R| = [32m9.006463e-11[39m
+      4 Linear |R| = [32m3.846742e-11[39m
+      5 Linear |R| = [32m6.490447e-12[39m
+      6 Linear |R| = [32m2.294723e-12[39m
+      7 Linear |R| = [32m5.952306e-13[39m
+      8 Linear |R| = [32m1.496669e-13[39m
+      9 Linear |R| = [32m3.384540e-14[39m
+     10 Linear |R| = [32m1.254894e-14[39m
+  Linear solve converged due to CONVERGED_RTOL iterations 10
+Nonlinear solve did not converge due to DIVERGED_LINE_SEARCH iterations 4
+[31m Solve Did NOT Converge![39m
+Aborting as solve did not converge
+
+Solve failed, cutting timestep.
+
+Time Step 2, time = 0.532985, dt = 0.0329853
+ 0 Nonlinear |R| = [32m8.961716e-02[39m
+      0 Linear |R| = [32m8.961716e-02[39m
+      1 Linear |R| = [32m7.926936e-03[39m
+      2 Linear |R| = [32m8.740629e-04[39m
+      3 Linear |R| = [32m1.844203e-04[39m
+      4 Linear |R| = [32m4.625279e-05[39m
+      5 Linear |R| = [32m1.228607e-05[39m
+      6 Linear |R| = [32m3.031699e-06[39m
+      7 Linear |R| = [32m8.868284e-07[39m
+  Linear solve converged due to CONVERGED_RTOL iterations 7
+ 1 Nonlinear |R| = [32m8.866340e-07[39m
+      0 Linear |R| = [32m8.866340e-07[39m
+      1 Linear |R| = [32m2.893288e-07[39m
+      2 Linear |R| = [32m6.914902e-08[39m
+      3 Linear |R| = [32m1.916285e-08[39m
+      4 Linear |R| = [32m4.500240e-09[39m
+      5 Linear |R| = [32m1.236672e-09[39m
+      6 Linear |R| = [32m3.537367e-10[39m
+      7 Linear |R| = [32m7.447406e-11[39m
+      8 Linear |R| = [32m2.221747e-11[39m
+      9 Linear |R| = [32m6.352392e-12[39m
+  Linear solve converged due to CONVERGED_RTOL iterations 9
+ 2 Nonlinear |R| = [32m4.276070e-09[39m
+      0 Linear |R| = [32m4.276070e-09[39m
+      1 Linear |R| = [32m1.519814e-09[39m
+      2 Linear |R| = [32m5.351635e-10[39m
+      3 Linear |R| = [32m1.142258e-10[39m
+      4 Linear |R| = [32m4.783179e-11[39m
+      5 Linear |R| = [32m8.786465e-12[39m
+      6 Linear |R| = [32m3.557439e-12[39m
+      7 Linear |R| = [32m9.031341e-13[39m
+      8 Linear |R| = [32m2.386129e-13[39m
+      9 Linear |R| = [32m5.154948e-14[39m
+     10 Linear |R| = [32m1.914050e-14[39m
+  Linear solve converged due to CONVERGED_RTOL iterations 10
+ 3 Nonlinear |R| = [32m3.993258e-09[39m
+      0 Linear |R| = [32m3.993258e-09[39m
+      1 Linear |R| = [32m1.446513e-09[39m
+      2 Linear |R| = [32m5.163773e-10[39m
+      3 Linear |R| = [32m9.293090e-11[39m
+      4 Linear |R| = [32m3.725464e-11[39m
+      5 Linear |R| = [32m7.046504e-12[39m
+      6 Linear |R| = [32m2.779357e-12[39m
+      7 Linear |R| = [32m6.719159e-13[39m
+      8 Linear |R| = [32m1.592791e-13[39m
+      9 Linear |R| = [32m3.962820e-14[39m
+  Linear solve converged due to CONVERGED_RTOL iterations 9
+ 4 Nonlinear |R| = [33m3.993258e-09[39m
+      0 Linear |R| = [32m3.993258e-09[39m
+      1 Linear |R| = [32m1.446513e-09[39m
+      2 Linear |R| = [32m5.163773e-10[39m
+      3 Linear |R| = [32m9.293090e-11[39m
+      4 Linear |R| = [32m3.725464e-11[39m
+      5 Linear |R| = [32m7.046504e-12[39m
+      6 Linear |R| = [32m2.779357e-12[39m
+      7 Linear |R| = [32m6.719159e-13[39m
+      8 Linear |R| = [32m1.592791e-13[39m
+      9 Linear |R| = [32m3.962820e-14[39m
+  Linear solve converged due to CONVERGED_RTOL iterations 9
+ 5 Nonlinear |R| = [33m3.993258e-09[39m
+      0 Linear |R| = [32m3.993258e-09[39m
+      1 Linear |R| = [32m1.446513e-09[39m
+      2 Linear |R| = [32m5.163773e-10[39m
+      3 Linear |R| = [32m9.293090e-11[39m
+      4 Linear |R| = [32m3.725464e-11[39m
+      5 Linear |R| = [32m7.046504e-12[39m
+      6 Linear |R| = [32m2.779357e-12[39m
+      7 Linear |R| = [32m6.719159e-13[39m
+      8 Linear |R| = [32m1.592791e-13[39m
+      9 Linear |R| = [32m3.962820e-14[39m
+  Linear solve converged due to CONVERGED_RTOL iterations 9
+ 6 Nonlinear |R| = [33m3.993258e-09[39m
+      0 Linear |R| = [32m3.993258e-09[39m
+      1 Linear |R| = [32m1.446513e-09[39m
+      2 Linear |R| = [32m5.163773e-10[39m
+      3 Linear |R| = [32m9.293090e-11[39m
+      4 Linear |R| = [32m3.725464e-11[39m
+      5 Linear |R| = [32m7.046504e-12[39m
+      6 Linear |R| = [32m2.779357e-12[39m
+      7 Linear |R| = [32m6.719159e-13[39m
+      8 Linear |R| = [32m1.592791e-13[39m
+      9 Linear |R| = [32m3.962820e-14[39m
+  Linear solve converged due to CONVERGED_RTOL iterations 9
+Nonlinear solve did not converge due to DIVERGED_LINE_SEARCH iterations 6
+[31m Solve Did NOT Converge![39m
+Aborting as solve did not converge
+
+Solve failed, cutting timestep.
+
+Time Step 2, time = 0.526388, dt = 0.0263883
+Computing initial residual                                                                 [[33m  1.01 s[39m]
+ 0 Nonlinear |R| = [32m1.085151e-01[39m
+      0 Linear |R| = [32m1.085151e-01[39m
+      1 Linear |R| = [32m9.598525e-03[39m
+      2 Linear |R| = [32m1.058382e-03[39m
+      3 Linear |R| = [32m2.233099e-04[39m
+      4 Linear |R| = [32m5.600637e-05[39m
+      5 Linear |R| = [32m1.487691e-05[39m
+      6 Linear |R| = [32m3.671011e-06[39m
+      7 Linear |R| = [32m1.073840e-06[39m
+  Linear solve converged due to CONVERGED_RTOL iterations 7
+ 1 Nonlinear |R| = [32m1.074083e-06[39m
+      0 Linear |R| = [32m1.074083e-06[39m
+      1 Linear |R| = [32m3.503334e-07[39m
+      2 Linear |R| = [32m8.365124e-08[39m
+      3 Linear |R| = [32m2.322262e-08[39m
+      4 Linear |R| = [32m5.457487e-09[39m
+      5 Linear |R| = [32m1.496082e-09[39m
+      6 Linear |R| = [32m4.294100e-10[39m
+      7 Linear |R| = [32m8.941573e-11[39m
+      8 Linear |R| = [32m2.668585e-11[39m
+      9 Linear |R| = [32m7.646968e-12[39m
+  Linear solve converged due to CONVERGED_RTOL iterations 9
+ 2 Nonlinear |R| = [32m5.652975e-09[39m
+      0 Linear |R| = [32m5.652975e-09[39m
+      1 Linear |R| = [32m1.950123e-09[39m
+      2 Linear |R| = [32m7.410100e-10[39m
+      3 Linear |R| = [32m1.567434e-10[39m
+      4 Linear |R| = [32m6.458405e-11[39m
+      5 Linear |R| = [32m1.242408e-11[39m
+      6 Linear |R| = [32m4.953107e-12[39m
+      7 Linear |R| = [32m1.356139e-12[39m
+      8 Linear |R| = [32m3.493165e-13[39m
+      9 Linear |R| = [32m8.426753e-14[39m
+     10 Linear |R| = [32m2.786662e-14[39m
+  Linear solve converged due to CONVERGED_RTOL iterations 10
+ 3 Nonlinear |R| = [32m5.353510e-09[39m
+      0 Linear |R| = [32m5.353510e-09[39m
+      1 Linear |R| = [32m1.726049e-09[39m
+      2 Linear |R| = [32m6.211903e-10[39m
+      3 Linear |R| = [32m1.409694e-10[39m
+      4 Linear |R| = [32m5.866481e-11[39m
+      5 Linear |R| = [32m8.237745e-12[39m
+      6 Linear |R| = [32m2.970733e-12[39m
+      7 Linear |R| = [32m8.415251e-13[39m
+      8 Linear |R| = [32m2.507847e-13[39m
+      9 Linear |R| = [32m6.155030e-14[39m
+     10 Linear |R| = [32m2.347090e-14[39m
+  Linear solve converged due to CONVERGED_RTOL iterations 10
+ 4 Nonlinear |R| = [33m5.181314e-09[39m
+      0 Linear |R| = [32m5.181314e-09[39m
+      1 Linear |R| = [32m1.830374e-09[39m
+      2 Linear |R| = [32m6.580391e-10[39m
+      3 Linear |R| = [32m1.409883e-10[39m
+      4 Linear |R| = [32m6.051553e-11[39m
+      5 Linear |R| = [32m1.201271e-11[39m
+      6 Linear |R| = [32m5.079023e-12[39m
+      7 Linear |R| = [32m1.102759e-12[39m
+      8 Linear |R| = [32m2.816909e-13[39m
+      9 Linear |R| = [32m6.004774e-14[39m
+     10 Linear |R| = [32m2.148748e-14[39m
+  Linear solve converged due to CONVERGED_RTOL iterations 10
+ 5 Nonlinear |R| = [33m5.181314e-09[39m
+      0 Linear |R| = [32m5.181314e-09[39m
+      1 Linear |R| = [32m1.830374e-09[39m
+      2 Linear |R| = [32m6.580391e-10[39m
+      3 Linear |R| = [32m1.409883e-10[39m
+      4 Linear |R| = [32m6.051553e-11[39m
+      5 Linear |R| = [32m1.201271e-11[39m
+      6 Linear |R| = [32m5.079023e-12[39m
+      7 Linear |R| = [32m1.102759e-12[39m
+      8 Linear |R| = [32m2.816909e-13[39m
+      9 Linear |R| = [32m6.004774e-14[39m
+     10 Linear |R| = [32m2.148748e-14[39m
+  Linear solve converged due to CONVERGED_RTOL iterations 10
+Nonlinear solve did not converge due to DIVERGED_LINE_SEARCH iterations 5
+[31m Solve Did NOT Converge![39m
+Aborting as solve did not converge
+
+Solve failed, cutting timestep.
+
+Time Step 2, time = 0.521111, dt = 0.0211106
+Computing initial residual                                                                 [[33m  1.02 s[39m]
+ 0 Nonlinear |R| = [32m1.321375e-01[39m
+      0 Linear |R| = [32m1.321375e-01[39m
+      1 Linear |R| = [32m1.168800e-02[39m
+      2 Linear |R| = [32m1.288775e-03[39m
+      3 Linear |R| = [32m2.719215e-04[39m
+      4 Linear |R| = [32m6.819822e-05[39m
+      5 Linear |R| = [32m1.811540e-05[39m
+      6 Linear |R| = [32m4.470144e-06[39m
+      7 Linear |R| = [32m1.307600e-06[39m
+  Linear solve converged due to CONVERGED_RTOL iterations 7
+ 1 Nonlinear |R| = [32m1.308075e-06[39m
+      0 Linear |R| = [32m1.308075e-06[39m
+      1 Linear |R| = [32m4.266807e-07[39m
+      2 Linear |R| = [32m1.019807e-07[39m
+      3 Linear |R| = [32m2.826892e-08[39m
+      4 Linear |R| = [32m6.628475e-09[39m
+      5 Linear |R| = [32m1.822056e-09[39m
+      6 Linear |R| = [32m5.221944e-10[39m
+      7 Linear |R| = [32m1.093644e-10[39m
+      8 Linear |R| = [32m3.266394e-11[39m
+      9 Linear |R| = [32m9.296773e-12[39m
+  Linear solve converged due to CONVERGED_RTOL iterations 9
+ 2 Nonlinear |R| = [32m6.818430e-09[39m
+      0 Linear |R| = [32m6.818430e-09[39m
+      1 Linear |R| = [32m2.441119e-09[39m
+      2 Linear |R| = [32m8.525023e-10[39m
+      3 Linear |R| = [32m2.103962e-10[39m
+      4 Linear |R| = [32m7.632575e-11[39m
+      5 Linear |R| = [32m1.491126e-11[39m
+      6 Linear |R| = [32m5.895863e-12[39m
+      7 Linear |R| = [32m1.567167e-12[39m
+      8 Linear |R| = [32m3.965076e-13[39m
+      9 Linear |R| = [32m8.383613e-14[39m
+     10 Linear |R| = [32m2.828534e-14[39m
+  Linear solve converged due to CONVERGED_RTOL iterations 10
+ 3 Nonlinear |R| = [32m6.245519e-09[39m
+      0 Linear |R| = [32m6.245519e-09[39m
+      1 Linear |R| = [32m2.236927e-09[39m
+      2 Linear |R| = [32m7.672733e-10[39m
+      3 Linear |R| = [32m1.575110e-10[39m
+      4 Linear |R| = [32m7.031365e-11[39m
+      5 Linear |R| = [32m1.190716e-11[39m
+      6 Linear |R| = [32m4.529076e-12[39m
+      7 Linear |R| = [32m1.143927e-12[39m
+      8 Linear |R| = [32m3.368808e-13[39m
+      9 Linear |R| = [32m7.974213e-14[39m
+     10 Linear |R| = [32m2.948869e-14[39m
+  Linear solve converged due to CONVERGED_RTOL iterations 10
+ 4 Nonlinear |R| = [33m6.212365e-09[39m
+      0 Linear |R| = [32m6.212365e-09[39m
+      1 Linear |R| = [32m2.264937e-09[39m
+      2 Linear |R| = [32m7.058193e-10[39m
+      3 Linear |R| = [32m1.621028e-10[39m
+      4 Linear |R| = [32m6.757549e-11[39m
+      5 Linear |R| = [32m1.416713e-11[39m
+      6 Linear |R| = [32m5.581485e-12[39m
+      7 Linear |R| = [32m1.235865e-12[39m
+      8 Linear |R| = [32m3.402525e-13[39m
+      9 Linear |R| = [32m7.235050e-14[39m
+     10 Linear |R| = [32m2.480918e-14[39m
+  Linear solve converged due to CONVERGED_RTOL iterations 10
+ 5 Nonlinear |R| = [33m6.212365e-09[39m
+      0 Linear |R| = [32m6.212365e-09[39m
+      1 Linear |R| = [32m2.264937e-09[39m
+      2 Linear |R| = [32m7.058193e-10[39m
+      3 Linear |R| = [32m1.621028e-10[39m
+      4 Linear |R| = [32m6.757549e-11[39m
+      5 Linear |R| = [32m1.416713e-11[39m
+      6 Linear |R| = [32m5.581485e-12[39m
+      7 Linear |R| = [32m1.235865e-12[39m
+      8 Linear |R| = [32m3.402525e-13[39m
+      9 Linear |R| = [32m7.235050e-14[39m
+     10 Linear |R| = [32m2.480918e-14[39m
+  Linear solve converged due to CONVERGED_RTOL iterations 10
+Nonlinear solve did not converge due to DIVERGED_LINE_SEARCH iterations 5
+[31m Solve Did NOT Converge![39m
+Aborting as solve did not converge
+
+Solve failed, cutting timestep.
+
+Time Step 2, time = 0.516888, dt = 0.0168885
+ 0 Nonlinear |R| = [32m1.616655e-01[39m
+      0 Linear |R| = [32m1.616655e-01[39m
+      1 Linear |R| = [32m1.429984e-02[39m
+      2 Linear |R| = [32m1.576763e-03[39m
+      3 Linear |R| = [32m3.326855e-04[39m
+      4 Linear |R| = [32m8.343794e-05[39m
+      5 Linear |R| = [32m2.216348e-05[39m
+      6 Linear |R| = [32m5.469057e-06[39m
+      7 Linear |R| = [32m1.599797e-06[39m
+  Linear solve converged due to CONVERGED_RTOL iterations 7
+ 1 Nonlinear |R| = [32m1.599502e-06[39m
+      0 Linear |R| = [32m1.599502e-06[39m
+      1 Linear |R| = [32m5.219472e-07[39m
+      2 Linear |R| = [32m1.247841e-07[39m
+      3 Linear |R| = [32m3.459125e-08[39m
+      4 Linear |R| = [32m8.151630e-09[39m
+      5 Linear |R| = [32m2.235318e-09[39m
+      6 Linear |R| = [32m6.398813e-10[39m
+      7 Linear |R| = [32m1.341349e-10[39m
+      8 Linear |R| = [32m3.993589e-11[39m
+      9 Linear |R| = [32m1.149768e-11[39m
+  Linear solve converged due to CONVERGED_RTOL iterations 9
+ 2 Nonlinear |R| = [32m8.866425e-09[39m
+      0 Linear |R| = [32m8.866425e-09[39m
+      1 Linear |R| = [32m3.017328e-09[39m
+      2 Linear |R| = [32m1.082162e-09[39m
+      3 Linear |R| = [32m2.394440e-10[39m
+      4 Linear |R| = [32m1.044587e-10[39m
+      5 Linear |R| = [32m1.816694e-11[39m
+      6 Linear |R| = [32m7.429891e-12[39m
+      7 Linear |R| = [32m1.798452e-12[39m
+      8 Linear |R| = [32m4.093519e-13[39m
+      9 Linear |R| = [32m1.000083e-13[39m
+     10 Linear |R| = [32m3.904334e-14[39m
+  Linear solve converged due to CONVERGED_RTOL iterations 10
+ 3 Nonlinear |R| = [32m8.243283e-09[39m
+      0 Linear |R| = [32m8.243283e-09[39m
+      1 Linear |R| = [32m2.626378e-09[39m
+      2 Linear |R| = [32m9.298850e-10[39m
+      3 Linear |R| = [32m2.213677e-10[39m
+      4 Linear |R| = [32m9.460877e-11[39m
+      5 Linear |R| = [32m1.709684e-11[39m
+      6 Linear |R| = [32m6.787944e-12[39m
+      7 Linear |R| = [32m1.650422e-12[39m
+      8 Linear |R| = [32m4.285270e-13[39m
+      9 Linear |R| = [32m1.068455e-13[39m
+     10 Linear |R| = [32m3.656566e-14[39m
+  Linear solve converged due to CONVERGED_RTOL iterations 10
+ 4 Nonlinear |R| = [33m8.195034e-09[39m
+      0 Linear |R| = [32m8.195034e-09[39m
+      1 Linear |R| = [32m2.757616e-09[39m
+      2 Linear |R| = [32m8.869164e-10[39m
+      3 Linear |R| = [32m1.793534e-10[39m
+      4 Linear |R| = [32m7.910119e-11[39m
+      5 Linear |R| = [32m1.467276e-11[39m
+      6 Linear |R| = [32m6.115198e-12[39m
+      7 Linear |R| = [32m1.478061e-12[39m
+      8 Linear |R| = [32m3.835968e-13[39m
+      9 Linear |R| = [32m9.941635e-14[39m
+     10 Linear |R| = [32m3.631262e-14[39m
+  Linear solve converged due to CONVERGED_RTOL iterations 10
+ 5 Nonlinear |R| = [33m8.142893e-09[39m
+      0 Linear |R| = [32m8.142893e-09[39m
+      1 Linear |R| = [32m2.616980e-09[39m
+      2 Linear |R| = [32m9.178682e-10[39m
+      3 Linear |R| = [32m1.977289e-10[39m
+      4 Linear |R| = [32m8.349264e-11[39m
+      5 Linear |R| = [32m1.430422e-11[39m
+      6 Linear |R| = [32m5.966264e-12[39m
+      7 Linear |R| = [32m1.641950e-12[39m
+      8 Linear |R| = [32m3.967533e-13[39m
+      9 Linear |R| = [32m9.093935e-14[39m
+     10 Linear |R| = [32m3.189027e-14[39m
+  Linear solve converged due to CONVERGED_RTOL iterations 10
+Nonlinear solve did not converge due to DIVERGED_LINE_SEARCH iterations 5
+[31m Solve Did NOT Converge![39m
+Aborting as solve did not converge
+
+Solve failed, cutting timestep.
+
+Time Step 2, time = 0.513511, dt = 0.0135108
+ 0 Nonlinear |R| = [32m1.985755e-01[39m
+      0 Linear |R| = [32m1.985755e-01[39m
+      1 Linear |R| = [32m1.756467e-02[39m
+      2 Linear |R| = [32m1.936766e-03[39m
+      3 Linear |R| = [32m4.086425e-04[39m
+      4 Linear |R| = [32m1.024880e-04[39m
+      5 Linear |R| = [32m2.722376e-05[39m
+      6 Linear |R| = [32m6.717717e-06[39m
+      7 Linear |R| = [32m1.965058e-06[39m
+  Linear solve converged due to CONVERGED_RTOL iterations 7
+ 1 Nonlinear |R| = [32m1.964789e-06[39m
+      0 Linear |R| = [32m1.964789e-06[39m
+      1 Linear |R| = [32m6.410570e-07[39m
+      2 Linear |R| = [32m1.527621e-07[39m
+      3 Linear |R| = [32m4.249157e-08[39m
+      4 Linear |R| = [32m9.973738e-09[39m
+      5 Linear |R| = [32m2.744625e-09[39m
+      6 Linear |R| = [32m7.841237e-10[39m
+      7 Linear |R| = [32m1.655687e-10[39m
+      8 Linear |R| = [32m4.902420e-11[39m
+      9 Linear |R| = [32m1.415359e-11[39m
+  Linear solve converged due to CONVERGED_RTOL iterations 9
+ 2 Nonlinear |R| = [32m1.101003e-08[39m
+      0 Linear |R| = [32m1.101003e-08[39m
+      1 Linear |R| = [32m3.766611e-09[39m
+      2 Linear |R| = [32m1.326359e-09[39m
+      3 Linear |R| = [32m2.501153e-10[39m
+      4 Linear |R| = [32m1.146424e-10[39m
+      5 Linear |R| = [32m2.265975e-11[39m
+      6 Linear |R| = [32m1.058826e-11[39m
+      7 Linear |R| = [32m2.257694e-12[39m
+      8 Linear |R| = [32m6.149963e-13[39m
+      9 Linear |R| = [32m1.371723e-13[39m
+     10 Linear |R| = [32m5.028454e-14[39m
+  Linear solve converged due to CONVERGED_RTOL iterations 10
+ 3 Nonlinear |R| = [32m9.762312e-09[39m
+      0 Linear |R| = [32m9.762312e-09[39m
+      1 Linear |R| = [32m3.368134e-09[39m
+      2 Linear |R| = [32m1.136456e-09[39m
+      3 Linear |R| = [32m2.406810e-10[39m
+      4 Linear |R| = [32m1.003374e-10[39m
+      5 Linear |R| = [32m1.382151e-11[39m
+      6 Linear |R| = [32m5.501103e-12[39m
+      7 Linear |R| = [32m1.561201e-12[39m
+      8 Linear |R| = [32m4.117668e-13[39m
+      9 Linear |R| = [32m9.947542e-14[39m
+     10 Linear |R| = [32m3.314604e-14[39m
+  Linear solve converged due to CONVERGED_RTOL iterations 10
+Nonlinear solve did not converge due to DIVERGED_LINE_SEARCH iterations 3
+[31m Solve Did NOT Converge![39m
+Aborting as solve did not converge
+
+Solve failed, cutting timestep.
+
+Time Step 2, time = 0.510809, dt = 0.0108086
+Computing initial residual                                                                 [[33m  1.06 s[39m]
+ 0 Nonlinear |R| = [32m2.447130e-01[39m
+      0 Linear |R| = [32m2.447130e-01[39m
+      1 Linear |R| = [32m2.164569e-02[39m
+      2 Linear |R| = [32m2.386759e-03[39m
+      3 Linear |R| = [32m5.035876e-04[39m
+      4 Linear |R| = [32m1.263004e-04[39m
+      5 Linear |R| = [32m3.354900e-05[39m
+      6 Linear |R| = [32m8.278531e-06[39m
+      7 Linear |R| = [32m2.421625e-06[39m
+  Linear solve converged due to CONVERGED_RTOL iterations 7
+ 1 Nonlinear |R| = [32m2.421535e-06[39m
+      0 Linear |R| = [32m2.421535e-06[39m
+      1 Linear |R| = [32m7.902987e-07[39m
+      2 Linear |R| = [32m1.884868e-07[39m
+      3 Linear |R| = [32m5.238931e-08[39m
+      4 Linear |R| = [32m1.230059e-08[39m
+      5 Linear |R| = [32m3.388228e-09[39m
+      6 Linear |R| = [32m9.652496e-10[39m
+      7 Linear |R| = [32m2.024229e-10[39m
+      8 Linear |R| = [32m6.035665e-11[39m
+      9 Linear |R| = [32m1.731013e-11[39m
+  Linear solve converged due to CONVERGED_RTOL iterations 9
+ 2 Nonlinear |R| = [32m1.312840e-08[39m
+      0 Linear |R| = [32m1.312840e-08[39m
+      1 Linear |R| = [32m4.735601e-09[39m
+      2 Linear |R| = [32m1.796732e-09[39m
+      3 Linear |R| = [32m3.933628e-10[39m
+      4 Linear |R| = [32m1.642406e-10[39m
+      5 Linear |R| = [32m2.819090e-11[39m
+      6 Linear |R| = [32m1.068946e-11[39m
+      7 Linear |R| = [32m3.108368e-12[39m
+      8 Linear |R| = [32m7.804946e-13[39m
+      9 Linear |R| = [32m1.948550e-13[39m
+     10 Linear |R| = [32m5.937640e-14[39m
+  Linear solve converged due to CONVERGED_RTOL iterations 10
+ 3 Nonlinear |R| = [32m1.184945e-08[39m
+      0 Linear |R| = [32m1.184945e-08[39m
+      1 Linear |R| = [32m4.295772e-09[39m
+      2 Linear |R| = [32m1.513840e-09[39m
+      3 Linear |R| = [32m3.087223e-10[39m
+      4 Linear |R| = [32m1.390272e-10[39m
+      5 Linear |R| = [32m2.599617e-11[39m
+      6 Linear |R| = [32m1.134071e-11[39m
+      7 Linear |R| = [32m2.814884e-12[39m
+      8 Linear |R| = [32m6.620503e-13[39m
+      9 Linear |R| = [32m1.614929e-13[39m
+     10 Linear |R| = [32m5.420747e-14[39m
+  Linear solve converged due to CONVERGED_RTOL iterations 10
+Nonlinear solve did not converge due to DIVERGED_LINE_SEARCH iterations 3
+[31m Solve Did NOT Converge![39m
+Aborting as solve did not converge
+
+Solve failed, cutting timestep.
+
+Time Step 2, time = 0.508647, dt = 0.00864691
+ 0 Nonlinear |R| = [32m3.023849e-01[39m
+      0 Linear |R| = [32m3.023849e-01[39m
+      1 Linear |R| = [32m2.674696e-02[39m
+      2 Linear |R| = [32m2.949251e-03[39m
+      3 Linear |R| = [32m6.222689e-04[39m
+      4 Linear |R| = [32m1.560658e-04[39m
+      5 Linear |R| = [32m4.145556e-05[39m
+      6 Linear |R| = [32m1.022955e-05[39m
+      7 Linear |R| = [32m2.992334e-06[39m
+  Linear solve converged due to CONVERGED_RTOL iterations 7
+ 1 Nonlinear |R| = [32m2.992337e-06[39m
+      0 Linear |R| = [32m2.992337e-06[39m
+      1 Linear |R| = [32m9.762702e-07[39m
+      2 Linear |R| = [32m2.329906e-07[39m
+      3 Linear |R| = [32m6.470152e-08[39m
+      4 Linear |R| = [32m1.524998e-08[39m
+      5 Linear |R| = [32m4.181709e-09[39m
+      6 Linear |R| = [32m1.197954e-09[39m
+      7 Linear |R| = [32m2.517121e-10[39m
+      8 Linear |R| = [32m7.496895e-11[39m
+      9 Linear |R| = [32m2.157737e-11[39m
+  Linear solve converged due to CONVERGED_RTOL iterations 9
+ 2 Nonlinear |R| = [32m1.727374e-08[39m
+      0 Linear |R| = [32m1.727374e-08[39m
+      1 Linear |R| = [32m6.101153e-09[39m
+      2 Linear |R| = [32m2.239501e-09[39m
+      3 Linear |R| = [32m4.877857e-10[39m
+      4 Linear |R| = [32m2.056514e-10[39m
+      5 Linear |R| = [32m2.847195e-11[39m
+      6 Linear |R| = [32m1.119144e-11[39m
+      7 Linear |R| = [32m3.378111e-12[39m
+      8 Linear |R| = [32m8.528611e-13[39m
+      9 Linear |R| = [32m1.774112e-13[39m
+     10 Linear |R| = [32m5.961285e-14[39m
+  Linear solve converged due to CONVERGED_RTOL iterations 10
+ 3 Nonlinear |R| = [32m1.456684e-08[39m
+      0 Linear |R| = [32m1.456684e-08[39m
+      1 Linear |R| = [32m5.671483e-09[39m
+      2 Linear |R| = [32m1.899254e-09[39m
+      3 Linear |R| = [32m3.907554e-10[39m
+      4 Linear |R| = [32m1.511634e-10[39m
+      5 Linear |R| = [32m2.693116e-11[39m
+      6 Linear |R| = [32m1.062554e-11[39m
+      7 Linear |R| = [32m2.854469e-12[39m
+      8 Linear |R| = [32m7.365126e-13[39m
+      9 Linear |R| = [32m1.335481e-13[39m
+  Linear solve converged due to CONVERGED_RTOL iterations 9
+ 4 Nonlinear |R| = [33m1.454943e-08[39m
+      0 Linear |R| = [32m1.454943e-08[39m
+      1 Linear |R| = [32m5.662506e-09[39m
+      2 Linear |R| = [32m1.875712e-09[39m
+      3 Linear |R| = [32m3.742146e-10[39m
+      4 Linear |R| = [32m1.491140e-10[39m
+      5 Linear |R| = [32m2.693961e-11[39m
+      6 Linear |R| = [32m1.056056e-11[39m
+      7 Linear |R| = [32m2.854104e-12[39m
+      8 Linear |R| = [32m7.401372e-13[39m
+      9 Linear |R| = [32m1.340774e-13[39m
+  Linear solve converged due to CONVERGED_RTOL iterations 9
+ 5 Nonlinear |R| = [33m1.454943e-08[39m
+      0 Linear |R| = [32m1.454943e-08[39m
+      1 Linear |R| = [32m5.662506e-09[39m
+      2 Linear |R| = [32m1.875712e-09[39m
+      3 Linear |R| = [32m3.742146e-10[39m
+      4 Linear |R| = [32m1.491140e-10[39m
+      5 Linear |R| = [32m2.693961e-11[39m
+      6 Linear |R| = [32m1.056056e-11[39m
+      7 Linear |R| = [32m2.854104e-12[39m
+      8 Linear |R| = [32m7.401372e-13[39m
+      9 Linear |R| = [32m1.340774e-13[39m
+  Linear solve converged due to CONVERGED_RTOL iterations 9
+Nonlinear solve did not converge due to DIVERGED_LINE_SEARCH iterations 5
+[31m Solve Did NOT Converge![39m
+Aborting as solve did not converge
+
+Solve failed, cutting timestep.
+
+Time Step 2, time = 0.506918, dt = 0.00691753
+ 0 Nonlinear |R| = [32m3.744747e-01[39m
+      0 Linear |R| = [32m3.744747e-01[39m
+      1 Linear |R| = [32m3.312355e-02[39m
+      2 Linear |R| = [32m3.652365e-03[39m
+      3 Linear |R| = [32m7.706206e-04[39m
+      4 Linear |R| = [32m1.932726e-04[39m
+      5 Linear |R| = [32m5.133875e-05[39m
+      6 Linear |R| = [32m1.266832e-05[39m
+      7 Linear |R| = [32m3.705720e-06[39m
+  Linear solve converged due to CONVERGED_RTOL iterations 7
+ 1 Nonlinear |R| = [32m3.706910e-06[39m
+      0 Linear |R| = [32m3.706910e-06[39m
+      1 Linear |R| = [32m1.209278e-06[39m
+      2 Linear |R| = [32m2.884742e-07[39m
+      3 Linear |R| = [32m8.020133e-08[39m
+      4 Linear |R| = [32m1.884529e-08[39m
+      5 Linear |R| = [32m5.174256e-09[39m
+      6 Linear |R| = [32m1.481995e-09[39m
+      7 Linear |R| = [32m3.099300e-10[39m
+      8 Linear |R| = [32m9.238042e-11[39m
+      9 Linear |R| = [32m2.659124e-11[39m
+  Linear solve converged due to CONVERGED_RTOL iterations 9
+ 2 Nonlinear |R| = [32m2.132246e-08[39m
+      0 Linear |R| = [32m2.132246e-08[39m
+      1 Linear |R| = [32m7.560731e-09[39m
+      2 Linear |R| = [32m2.674483e-09[39m
+      3 Linear |R| = [32m6.014773e-10[39m
+      4 Linear |R| = [32m2.604541e-10[39m
+      5 Linear |R| = [32m6.234849e-11[39m
+      6 Linear |R| = [32m2.220035e-11[39m
+      7 Linear |R| = [32m5.248417e-12[39m
+      8 Linear |R| = [32m1.526955e-12[39m
+      9 Linear |R| = [32m3.969355e-13[39m
+     10 Linear |R| = [32m1.346821e-13[39m
+  Linear solve converged due to CONVERGED_RTOL iterations 10
+ 3 Nonlinear |R| = [32m1.968917e-08[39m
+      0 Linear |R| = [32m1.968917e-08[39m
+      1 Linear |R| = [32m6.993830e-09[39m
+      2 Linear |R| = [32m2.423401e-09[39m
+      3 Linear |R| = [32m5.054950e-10[39m
+      4 Linear |R| = [32m2.303453e-10[39m
+      5 Linear |R| = [32m6.383670e-11[39m
+      6 Linear |R| = [32m2.363970e-11[39m
+      7 Linear |R| = [32m5.049136e-12[39m
+      8 Linear |R| = [32m1.346754e-12[39m
+      9 Linear |R| = [32m3.311852e-13[39m
+     10 Linear |R| = [32m1.133688e-13[39m
+  Linear solve converged due to CONVERGED_RTOL iterations 10
+ 4 Nonlinear |R| = [33m1.964625e-08[39m
+      0 Linear |R| = [32m1.964625e-08[39m
+      1 Linear |R| = [32m6.973778e-09[39m
+      2 Linear |R| = [32m2.394846e-09[39m
+      3 Linear |R| = [32m4.946295e-10[39m
+      4 Linear |R| = [32m2.280720e-10[39m
+      5 Linear |R| = [32m6.356587e-11[39m
+      6 Linear |R| = [32m2.349943e-11[39m
+      7 Linear |R| = [32m5.009801e-12[39m
+      8 Linear |R| = [32m1.332363e-12[39m
+      9 Linear |R| = [32m3.302426e-13[39m
+     10 Linear |R| = [32m1.121832e-13[39m
+  Linear solve converged due to CONVERGED_RTOL iterations 10
+Nonlinear solve did not converge due to DIVERGED_LINE_SEARCH iterations 4
+[31m Solve Did NOT Converge![39m
+Aborting as solve did not converge
+
+Solve failed, cutting timestep.
+
+Time Step 2, time = 0.505534, dt = 0.00553402
+Computing initial residual                                                                 [[33m  1.03 s[39m]
+ 0 Nonlinear |R| = [32m4.645870e-01[39m
+      0 Linear |R| = [32m4.645870e-01[39m
+      1 Linear |R| = [32m4.109429e-02[39m
+      2 Linear |R| = [32m4.531255e-03[39m
+      3 Linear |R| = [32m9.560599e-04[39m
+      4 Linear |R| = [32m2.397810e-04[39m
+      5 Linear |R| = [32m6.369271e-05[39m
+      6 Linear |R| = [32m1.571678e-05[39m
+      7 Linear |R| = [32m4.597451e-06[39m
+  Linear solve converged due to CONVERGED_RTOL iterations 7
+ 1 Nonlinear |R| = [32m4.597037e-06[39m
+      0 Linear |R| = [32m4.597037e-06[39m
+      1 Linear |R| = [32m1.499905e-06[39m
+      2 Linear |R| = [32m3.581707e-07[39m
+      3 Linear |R| = [32m9.943165e-08[39m
+      4 Linear |R| = [32m2.338611e-08[39m
+      5 Linear |R| = [32m6.425851e-09[39m
+      6 Linear |R| = [32m1.837027e-09[39m
+      7 Linear |R| = [32m3.887584e-10[39m
+      8 Linear |R| = [32m1.148266e-10[39m
+      9 Linear |R| = [32m3.312452e-11[39m
+  Linear solve converged due to CONVERGED_RTOL iterations 9
+ 2 Nonlinear |R| = [32m2.649227e-08[39m
+      0 Linear |R| = [32m2.649227e-08[39m
+      1 Linear |R| = [32m9.418451e-09[39m
+      2 Linear |R| = [32m3.640747e-09[39m
+      3 Linear |R| = [32m7.080512e-10[39m
+      4 Linear |R| = [32m3.198162e-10[39m
+      5 Linear |R| = [32m5.818578e-11[39m
+      6 Linear |R| = [32m2.117779e-11[39m
+      7 Linear |R| = [32m4.725714e-12[39m
+      8 Linear |R| = [32m1.444627e-12[39m
+      9 Linear |R| = [32m4.274894e-13[39m
+     10 Linear |R| = [32m1.351421e-13[39m
+  Linear solve converged due to CONVERGED_RTOL iterations 10
+ 3 Nonlinear |R| = [32m2.338637e-08[39m
+      0 Linear |R| = [32m2.338637e-08[39m
+      1 Linear |R| = [32m8.279770e-09[39m
+      2 Linear |R| = [32m2.882744e-09[39m
+      3 Linear |R| = [32m6.557983e-10[39m
+      4 Linear |R| = [32m2.860321e-10[39m
+      5 Linear |R| = [32m5.953921e-11[39m
+      6 Linear |R| = [32m2.028262e-11[39m
+      7 Linear |R| = [32m5.303051e-12[39m
+      8 Linear |R| = [32m1.447926e-12[39m
+      9 Linear |R| = [32m3.507648e-13[39m
+     10 Linear |R| = [32m1.081623e-13[39m
+  Linear solve converged due to CONVERGED_RTOL iterations 10
+ 4 Nonlinear |R| = [33m2.338637e-08[39m
+      0 Linear |R| = [32m2.338637e-08[39m
+      1 Linear |R| = [32m8.279770e-09[39m
+      2 Linear |R| = [32m2.882744e-09[39m
+      3 Linear |R| = [32m6.557983e-10[39m
+      4 Linear |R| = [32m2.860321e-10[39m
+      5 Linear |R| = [32m5.953921e-11[39m
+      6 Linear |R| = [32m2.028262e-11[39m
+      7 Linear |R| = [32m5.303051e-12[39m
+      8 Linear |R| = [32m1.447926e-12[39m
+      9 Linear |R| = [32m3.507648e-13[39m
+     10 Linear |R| = [32m1.081623e-13[39m
+  Linear solve converged due to CONVERGED_RTOL iterations 10
+Nonlinear solve did not converge due to DIVERGED_LINE_SEARCH iterations 4
+[31m Solve Did NOT Converge![39m
+Aborting as solve did not converge
+
+Solve failed, cutting timestep.
+
+Time Step 2, time = 0.504427, dt = 0.00442722
+ 0 Nonlinear |R| = [32m5.772274e-01[39m
+      0 Linear |R| = [32m5.772274e-01[39m
+      1 Linear |R| = [32m5.105772e-02[39m
+      2 Linear |R| = [32m5.629877e-03[39m
+      3 Linear |R| = [32m1.187860e-03[39m
+      4 Linear |R| = [32m2.979167e-04[39m
+      5 Linear |R| = [32m7.913526e-05[39m
+      6 Linear |R| = [32m1.952737e-05[39m
+      7 Linear |R| = [32m5.712122e-06[39m
+  Linear solve converged due to CONVERGED_RTOL iterations 7
+ 1 Nonlinear |R| = [32m5.713067e-06[39m
+      0 Linear |R| = [32m5.713067e-06[39m
+      1 Linear |R| = [32m1.864010e-06[39m
+      2 Linear |R| = [32m4.454315e-07[39m
+      3 Linear |R| = [32m1.236018e-07[39m
+      4 Linear |R| = [32m2.904908e-08[39m
+      5 Linear |R| = [32m7.991840e-09[39m
+      6 Linear |R| = [32m2.283816e-09[39m
+      7 Linear |R| = [32m4.797009e-10[39m
+      8 Linear |R| = [32m1.432401e-10[39m
+      9 Linear |R| = [32m4.110674e-11[39m
+  Linear solve converged due to CONVERGED_RTOL iterations 9
+ 2 Nonlinear |R| = [32m3.362660e-08[39m
+      0 Linear |R| = [32m3.362660e-08[39m
+      1 Linear |R| = [32m1.207793e-08[39m
+      2 Linear |R| = [32m4.250966e-09[39m
+      3 Linear |R| = [32m8.486225e-10[39m
+      4 Linear |R| = [32m3.573083e-10[39m
+      5 Linear |R| = [32m5.288003e-11[39m
+      6 Linear |R| = [32m2.251174e-11[39m
+      7 Linear |R| = [32m6.668391e-12[39m
+      8 Linear |R| = [32m1.704941e-12[39m
+      9 Linear |R| = [32m3.799829e-13[39m
+     10 Linear |R| = [32m1.410292e-13[39m
+  Linear solve converged due to CONVERGED_RTOL iterations 10
+ 3 Nonlinear |R| = [32m2.917110e-08[39m
+      0 Linear |R| = [32m2.917110e-08[39m
+      1 Linear |R| = [32m1.047602e-08[39m
+      2 Linear |R| = [32m3.549068e-09[39m
+      3 Linear |R| = [32m7.478464e-10[39m
+      4 Linear |R| = [32m3.132727e-10[39m
+      5 Linear |R| = [32m4.831795e-11[39m
+      6 Linear |R| = [32m1.960210e-11[39m
+      7 Linear |R| = [32m5.597215e-12[39m
+      8 Linear |R| = [32m1.307707e-12[39m
+      9 Linear |R| = [32m3.103627e-13[39m
+     10 Linear |R| = [32m1.119867e-13[39m
+  Linear solve converged due to CONVERGED_RTOL iterations 10
+ 4 Nonlinear |R| = [33m2.913264e-08[39m
+      0 Linear |R| = [32m2.913264e-08[39m
+      1 Linear |R| = [32m1.048801e-08[39m
+      2 Linear |R| = [32m3.547885e-09[39m
+      3 Linear |R| = [32m7.465245e-10[39m
+      4 Linear |R| = [32m3.129758e-10[39m
+      5 Linear |R| = [32m4.831758e-11[39m
+      6 Linear |R| = [32m1.959968e-11[39m
+      7 Linear |R| = [32m5.598762e-12[39m
+      8 Linear |R| = [32m1.308557e-12[39m
+      9 Linear |R| = [32m3.103996e-13[39m
+     10 Linear |R| = [32m1.119087e-13[39m
+  Linear solve converged due to CONVERGED_RTOL iterations 10
+Nonlinear solve did not converge due to DIVERGED_LINE_SEARCH iterations 4
+[31m Solve Did NOT Converge![39m
+Aborting as solve did not converge
+
+Solve failed, cutting timestep.
+
+Time Step 2, time = 0.503542, dt = 0.00354177
+ 0 Nonlinear |R| = [32m7.180279e-01[39m
+      0 Linear |R| = [32m7.180279e-01[39m
+      1 Linear |R| = [32m6.351201e-02[39m
+      2 Linear |R| = [32m7.003148e-03[39m
+      3 Linear |R| = [32m1.477609e-03[39m
+      4 Linear |R| = [32m3.705862e-04[39m
+      5 Linear |R| = [32m9.843838e-05[39m
+      6 Linear |R| = [32m2.429060e-05[39m
+      7 Linear |R| = [32m7.105456e-06[39m
+  Linear solve converged due to CONVERGED_RTOL iterations 7
+ 1 Nonlinear |R| = [32m7.106793e-06[39m
+      0 Linear |R| = [32m7.106793e-06[39m
+      1 Linear |R| = [32m2.318198e-06[39m
+      2 Linear |R| = [32m5.532193e-07[39m
+      3 Linear |R| = [32m1.536394e-07[39m
+      4 Linear |R| = [32m3.616577e-08[39m
+      5 Linear |R| = [32m9.911971e-09[39m
+      6 Linear |R| = [32m2.841387e-09[39m
+      7 Linear |R| = [32m5.983963e-10[39m
+      8 Linear |R| = [32m1.774509e-10[39m
+      9 Linear |R| = [32m5.130904e-11[39m
+  Linear solve converged due to CONVERGED_RTOL iterations 9
+ 2 Nonlinear |R| = [32m4.093597e-08[39m
+      0 Linear |R| = [32m4.093597e-08[39m
+      1 Linear |R| = [32m1.469507e-08[39m
+      2 Linear |R| = [32m5.405696e-09[39m
+      3 Linear |R| = [32m1.220351e-09[39m
+      4 Linear |R| = [32m5.222809e-10[39m
+      5 Linear |R| = [32m8.351817e-11[39m
+      6 Linear |R| = [32m3.345738e-11[39m
+      7 Linear |R| = [32m8.913276e-12[39m
+      8 Linear |R| = [32m2.297879e-12[39m
+      9 Linear |R| = [32m6.814378e-13[39m
+     10 Linear |R| = [32m2.174638e-13[39m
+  Linear solve converged due to CONVERGED_RTOL iterations 10
+ 3 Nonlinear |R| = [33m3.942394e-08[39m
+      0 Linear |R| = [32m3.942394e-08[39m
+      1 Linear |R| = [32m1.299779e-08[39m
+      2 Linear |R| = [32m4.639468e-09[39m
+      3 Linear |R| = [32m1.018974e-09[39m
+      4 Linear |R| = [32m4.488370e-10[39m
+      5 Linear |R| = [32m6.805660e-11[39m
+      6 Linear |R| = [32m2.636171e-11[39m
+      7 Linear |R| = [32m7.351772e-12[39m
+      8 Linear |R| = [32m1.958094e-12[39m
+      9 Linear |R| = [32m5.357462e-13[39m
+     10 Linear |R| = [32m1.979342e-13[39m
+  Linear solve converged due to CONVERGED_RTOL iterations 10
+ 4 Nonlinear |R| = [33m3.790457e-08[39m
+      0 Linear |R| = [32m3.790457e-08[39m
+      1 Linear |R| = [32m1.323113e-08[39m
+      2 Linear |R| = [32m4.502183e-09[39m
+      3 Linear |R| = [32m1.072948e-09[39m
+      4 Linear |R| = [32m4.401519e-10[39m
+      5 Linear |R| = [32m7.555761e-11[39m
+      6 Linear |R| = [32m2.930997e-11[39m
+      7 Linear |R| = [32m6.932928e-12[39m
+      8 Linear |R| = [32m1.850325e-12[39m
+      9 Linear |R| = [32m5.242238e-13[39m
+     10 Linear |R| = [32m1.835710e-13[39m
+  Linear solve converged due to CONVERGED_RTOL iterations 10
+Nonlinear solve did not converge due to DIVERGED_LINE_SEARCH iterations 4
+[31m Solve Did NOT Converge![39m
+Aborting as solve did not converge
+
+Solve failed, cutting timestep.
+
+Time Step 2, time = 0.502833, dt = 0.00283342
+Computing initial residual                                                                 [[33m  1.02 s[39m]
+ 0 Nonlinear |R| = [32m8.940285e-01[39m
+      0 Linear |R| = [32m8.940285e-01[39m
+      1 Linear |R| = [32m7.907984e-02[39m
+      2 Linear |R| = [32m8.719727e-03[39m
+      3 Linear |R| = [32m1.839795e-03[39m
+      4 Linear |R| = [32m4.614229e-04[39m
+      5 Linear |R| = [32m1.225672e-04[39m
+      6 Linear |R| = [32m3.024462e-05[39m
+      7 Linear |R| = [32m8.847114e-06[39m
+  Linear solve converged due to CONVERGED_RTOL iterations 7
+ 1 Nonlinear |R| = [32m8.848024e-06[39m
+      0 Linear |R| = [32m8.848024e-06[39m
+      1 Linear |R| = [32m2.885983e-06[39m
+      2 Linear |R| = [32m6.887796e-07[39m
+      3 Linear |R| = [32m1.912947e-07[39m
+      4 Linear |R| = [32m4.495012e-08[39m
+      5 Linear |R| = [32m1.232483e-08[39m
+      6 Linear |R| = [32m3.535740e-09[39m
+      7 Linear |R| = [32m7.462825e-10[39m
+      8 Linear |R| = [32m2.209133e-10[39m
+      9 Linear |R| = [32m6.379985e-11[39m
+  Linear solve converged due to CONVERGED_RTOL iterations 9

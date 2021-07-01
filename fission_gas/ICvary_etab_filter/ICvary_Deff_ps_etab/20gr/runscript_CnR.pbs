@@ -1,0 +1,14 @@
+#!/bin/bash
+#PBS -N Def20g
+#PBS -M donguk.kim@ufl.edu
+#PBS -m bea
+#PBS -j oe
+#PBS -l select=8:ncpus=8:mpiprocs=8
+#PBS -l walltime=96:00:0
+##PBS -l place=excl
+#PBS -P moose
+
+APPPATH=$MYPRJ_DIR/MOOSE/projects/coupling_xolotl
+RUNPATH=/home/kimdong/scratch/ICvary_Deff/20gr
+mpirun $APPPATH/coupling_xolotl-opt -i $RUNPATH/GPM_GT_ic_from_file.i
+#mpirun $APPPATH/coupling_xolotl_new-opt -i $RUNPATH/Postprocs_pore_frac_CnR.i

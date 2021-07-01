@@ -1,0 +1,71 @@
+Warning: Permanently added 'r6i6n16.ib0.ice.inl.gov,10.148.7.18' (ECDSA) to the list of known hosts.
+Warning: Permanently added 'r7i0n16.ib0.ice.inl.gov,10.148.7.90' (ECDSA) to the list of known hosts.
+Warning: Permanently added 'r4i3n3.ib0.ice.inl.gov,10.148.5.193' (ECDSA) to the list of known hosts.
+Warning: Permanently added 'r6i6n10.ib0.ice.inl.gov,10.148.7.12' (ECDSA) to the list of known hosts.
+Warning: Permanently added 'r7i0n15.ib0.ice.inl.gov,10.148.7.89' (ECDSA) to the list of known hosts.
+Warning: Permanently added 'r6i6n15.ib0.ice.inl.gov,10.148.7.17' (ECDSA) to the list of known hosts.
+Warning: Process to core binding is enabled and OMP_NUM_THREADS is set to non-zero (16) value
+If your program has OpenMP sections, this can cause over-subscription of cores and consequently poor performance
+To avoid this, please re-run your application after setting MV2_ENABLE_AFFINITY=0
+Use MV2_USE_THREAD_WARNING=0 to suppress this message
+
+
+[36m
+*** Info ***
+Using  for recovery.[39m
+ERROR: Neither one of the following files can be located:
+	'_mesh.cpr/1/header.cpr' nor
+	'_mesh.cpr'
+If you are running a parallel job, double check that you've created a split for 1 ranks.
+Note: One of paths above may refer to a valid directory on your system, however we are attempting to read a valid header file.
+[0] /projects/NE_SciDAC/MOOSE/projects/moose/scripts/../libmesh/src/mesh/checkpoint_io.C, line 211, compiled Sep 15 2020 at 09:01:18
+
+[31m
+*** ERROR ***
+ERROR: Neither one of the following files can be located:
+	'_mesh.cpr/1/header.cpr' nor
+	'_mesh.cpr'
+If you are running a parallel job, double check that you've created a split for 1 ranks.
+Note: One of paths above may refer to a valid directory on your system, however we are attempting to read a valid header file.[39m
+
+[cli_0]: aborting job:
+application called MPI_Abort(MPI_COMM_WORLD, 1) - process 0
+
+===================================================================================
+=   BAD TERMINATION OF ONE OF YOUR APPLICATION PROCESSES
+=   PID 36067 RUNNING AT r2i0n8.ib0.ice.inl.gov
+=   EXIT CODE: 1
+=   CLEANING UP REMAINING PROCESSES
+=   YOU CAN IGNORE THE BELOW CLEANUP MESSAGES
+===================================================================================
+[proxy:0:3@r1i6n17] HYD_pmcd_pmip_control_cmd_cb (pm/pmiserv/pmip_cb.c:909): assert (!closed) failed
+[proxy:0:3@r1i6n17] HYDT_dmxu_poll_wait_for_event (tools/demux/demux_poll.c:76): callback returned error status
+[proxy:0:3@r1i6n17] main (pm/pmiserv/pmip.c:206): demux engine error waiting for event
+[proxy:0:6@r6i6n10] HYD_pmcd_pmip_control_cmd_cb (pm/pmiserv/pmip_cb.c:909): assert (!closed) failed
+[proxy:0:6@r6i6n10] HYDT_dmxu_poll_wait_for_event (tools/demux/demux_poll.c:76): callback returned error status
+[proxy:0:6@r6i6n10] main (pm/pmiserv/pmip.c:206): demux engine error waiting for event
+[proxy:0:4@r7i0n16] HYD_pmcd_pmip_control_cmd_cb (pm/pmiserv/pmip_cb.c:909): assert (!closed) failed
+[proxy:0:4@r7i0n16] HYDT_dmxu_poll_wait_for_event (tools/demux/demux_poll.c:76): callback returned error status
+[proxy:0:4@r7i0n16] main (pm/pmiserv/pmip.c:206): demux engine error waiting for event
+[proxy:0:9@r6i6n16] HYD_pmcd_pmip_control_cmd_cb (pm/pmiserv/pmip_cb.c:909): assert (!closed) failed
+[proxy:0:9@r6i6n16] HYDT_dmxu_poll_wait_for_event (tools/demux/demux_poll.c:76): callback returned error status
+[proxy:0:9@r6i6n16] main (pm/pmiserv/pmip.c:206): demux engine error waiting for event
+[proxy:0:8@r6i6n15] HYD_pmcd_pmip_control_cmd_cb (pm/pmiserv/pmip_cb.c:909): assert (!closed) failed
+[proxy:0:8@r6i6n15] HYDT_dmxu_poll_wait_for_event (tools/demux/demux_poll.c:76): callback returned error status
+[proxy:0:8@r6i6n15] main (pm/pmiserv/pmip.c:206): demux engine error waiting for event
+[proxy:0:2@r5i5n16] HYD_pmcd_pmip_control_cmd_cb (pm/pmiserv/pmip_cb.c:909): assert (!closed) failed
+[proxy:0:2@r5i5n16] HYDT_dmxu_poll_wait_for_event (tools/demux/demux_poll.c:76): callback returned error status
+[proxy:0:2@r5i5n16] main (pm/pmiserv/pmip.c:206): demux engine error waiting for event
+[proxy:0:5@r6i5n16] HYD_pmcd_pmip_control_cmd_cb (pm/pmiserv/pmip_cb.c:909): assert (!closed) failed
+[proxy:0:5@r6i5n16] HYDT_dmxu_poll_wait_for_event (tools/demux/demux_poll.c:76): callback returned error status
+[proxy:0:5@r6i5n16] main (pm/pmiserv/pmip.c:206): demux engine error waiting for event
+[proxy:0:1@r4i3n3] HYD_pmcd_pmip_control_cmd_cb (pm/pmiserv/pmip_cb.c:909): assert (!closed) failed
+[proxy:0:1@r4i3n3] HYDT_dmxu_poll_wait_for_event (tools/demux/demux_poll.c:76): callback returned error status
+[proxy:0:1@r4i3n3] main (pm/pmiserv/pmip.c:206): demux engine error waiting for event
+[proxy:0:7@r7i0n15] HYD_pmcd_pmip_control_cmd_cb (pm/pmiserv/pmip_cb.c:909): assert (!closed) failed
+[proxy:0:7@r7i0n15] HYDT_dmxu_poll_wait_for_event (tools/demux/demux_poll.c:76): callback returned error status
+[proxy:0:7@r7i0n15] main (pm/pmiserv/pmip.c:206): demux engine error waiting for event
+[mpiexec@r2i0n8] HYDT_bscu_wait_for_completion (tools/bootstrap/utils/bscu_wait.c:76): one of the processes terminated badly; aborting
+[mpiexec@r2i0n8] HYDT_bsci_wait_for_completion (tools/bootstrap/src/bsci_wait.c:23): launcher returned error waiting for completion
+[mpiexec@r2i0n8] HYD_pmci_wait_for_completion (pm/pmiserv/pmiserv_pmci.c:218): launcher returned error waiting for completion
+[mpiexec@r2i0n8] main (ui/mpich/mpiexec.c:344): process manager error waiting for completion

@@ -1,0 +1,920 @@
+Warning: Permanently added 'r3i5n11.ib0.ice.inl.gov,10.148.5.111' (ECDSA) to the list of known hosts.
+Warning: Permanently added 'r3i7n14.ib0.ice.inl.gov,10.148.5.150' (ECDSA) to the list of known hosts.
+Warning: Permanently added 'r3i5n4.ib0.ice.inl.gov,10.148.5.104' (ECDSA) to the list of known hosts.
+Warning: Permanently added 'r3i5n1.ib0.ice.inl.gov,10.148.5.101' (ECDSA) to the list of known hosts.
+Warning: Permanently added 'r3i7n11.ib0.ice.inl.gov,10.148.5.147' (ECDSA) to the list of known hosts.
+Warning: Permanently added 'r3i6n5.ib0.ice.inl.gov,10.148.5.123' (ECDSA) to the list of known hosts.
+Warning: Permanently added 'r3i6n1.ib0.ice.inl.gov,10.148.5.119' (ECDSA) to the list of known hosts.
+Warning: Permanently added 'r3i7n8.ib0.ice.inl.gov,10.148.5.144' (ECDSA) to the list of known hosts.
+Warning: Permanently added 'r3i7n2.ib0.ice.inl.gov,10.148.5.138' (ECDSA) to the list of known hosts.
+Warning: Permanently added 'r3i7n7.ib0.ice.inl.gov,10.148.5.143' (ECDSA) to the list of known hosts.
+Warning: Permanently added 'r3i7n15.ib0.ice.inl.gov,10.148.5.151' (ECDSA) to the list of known hosts.
+Warning: Process to core binding is enabled and OMP_NUM_THREADS is set to non-zero (16) value
+If your program has OpenMP sections, this can cause over-subscription of cores and consequently poor performance
+To avoid this, please re-run your application after setting MV2_ENABLE_AFFINITY=0
+Use MV2_USE_THREAD_WARNING=0 to suppress this message
+
+Building mesh ..                                                                           [[33m  3.34 s[39m]
+
+[33m
+*** Warning ***
+MultiAppTransfer execute_on flags do not match associated Multiapp execute_on flags[39m
+Initializing equation system .............................................................
+.............................................                                              [[33m107.26 s[39m]
+
+Running App: main
+
+Framework Information:
+MOOSE Version:           git commit 34fb8fad8f on 2020-08-05
+LibMesh Version:         fafa16ee6fbff83f917a574b9bb41c2954f4cef1
+PETSc Version:           3.12.1
+Current Time:            Mon Nov  9 09:01:31 2020
+Executable Timestamp:    Wed Oct  7 01:44:38 2020
+
+Parallelism:
+  Num Processors:          256
+  Num Threads:             1
+
+Mesh: 
+  Parallel Type:           replicated
+  Mesh Dimension:          2
+  Spatial Dimension:       2
+  Nodes:                   
+    Total:                 40401
+    Local:                 184
+  Elems:                   
+    Total:                 40000
+    Local:                 154
+  Num Subdomains:          1
+  Num Partitions:          256
+  Partitioner:             metis
+
+Nonlinear System:
+  Num DOFs:                565614
+  Num Local DOFs:          2576
+  Variables:               { "wv" "wg" "etab" "eta0" "eta1" ... "eta6" "eta7" "eta8" "eta9" "eta10" } 
+  Finite Element Types:    "LAGRANGE" 
+  Approximation Orders:    "FIRST" 
+
+Auxiliary System:
+  Num DOFs:                2322005
+  Num Local DOFs:          9082
+  Variables:               { "bnds" "XolotlXeRate" "XolotlXeMono" "XolotlVolumeFraction" "time" } { "cg" 
+                             "cv" "unique_grains" "var_indices" "halos" ... "halo6" "halo7" "halo8" "halo9" 
+                             "halo10" } { "VacRate0" "XeRate" "XeRate0" "cg_from_rhog" "cv_from_rhov" 
+                             } 
+  Finite Element Types:    "LAGRANGE" "MONOMIAL" "MONOMIAL" 
+  Approximation Orders:    "FIRST" "FIRST" "CONSTANT" 
+
+Execution Information:
+  Executioner:             Transient
+  TimeStepper:             IterationAdaptiveDT
+  Solver Mode:             Preconditioned JFNK
+  MOOSE Preconditioner:    SMP
+
+[31mLEGACY MODES ENABLED:[39m
+ This application uses the legacy material output option: material properties are output only on TIMESTEP_END, not INITIAL. To remove this message, set 'use_legacy_material_output' to false in this application. If there are gold output files that contain material property output for which output occurs on INITIAL, then these will generate diffs due to zero values being stored, and these tests should be re-golded.
+[39m
+[36mInitializing All MultiApps[39m
+[36mCreating MultiApp sub_app of type coupling_xolotl_newApp of level 1 and number 0:[39m
+[36msub_app0: [39m
+Starting Xolotl Plasma-Surface Interactions Simulator
+Mon Nov  9 09:01:36 2020
+
+Factory Message: Master loaded network of size 994.
+0 100 200 300 400 500 600 700 800 900 1000 1100 1200 1300 1400 1500 1600 1700 1800 1900 2000 2100 2200 2300 2400 2500 2600 2700 2800 2900 3000 3100 3200 3300 3400 3500 3600 3700 3800 3900 4000 4100 4200 4300 4400 4500 4600 4700 4800 4900 5000 5100 5200 5300 5400 5500 5600 5700 5800 5900 6000 6100 6200 6300 6400 6500 6600 6700 6800 6900 7000 7100 7200 7300 7400 7500 7600 7700 7800 7900 8000 8100 8200 8300 8400 8500 8600 8700 8800 8900 9000 9100 9200 9300 9400 9500 9600 9700 9800 9900 10000 10100 10200 10300 10400 10500 10600 10700 10800 10900 11000 11100 11200 11300 11400 11500 11600 11700 11800 11900 12000 12100 12200 12300 12400 12500 12600 12700 12800 12900 13000 13100 13200 13300 13400 13500 13600 13700 13800 13900 14000 14100 14200 14300 14400 14500 14600 14700 14800 14900 15000 15100 15200 15300 15400 15500 15600 15700 15800 15900 16000 16100 16200 16300 16400 16500 16600 16700 16800 16900 17000 17100 17200 17300 17400 17500 17600 17700 17800 17900 18000 18100 18200 18300 18400 18500 18600 18700 18800 18900 19000 19100 19200 19300 19400 19500 19600 19700 19800 19900 20000 
+The modified trap-mutation won't happen because the interstitial clusters are missing or He type is missing.
+[36msub_app0: [39mInitializing equation system .                                                             [[33m  2.66 s[39m]
+[36msub_app0: [39m
+[36msub_app0: [39mRunning App: sub_app0
+[36msub_app0: [39mParallelism:
+[36msub_app0: [39m  Num Processors:          256
+[36msub_app0: [39m  Num Threads:             1
+[36msub_app0: [39m
+[36msub_app0: [39mMesh: 
+[36msub_app0: [39m  Parallel Type:           distributed
+[36msub_app0: [39m  Mesh Dimension:          2
+[36msub_app0: [39m  Spatial Dimension:       2
+[36msub_app0: [39m  Nodes:                   
+[36msub_app0: [39m    Total:                 40401
+[36msub_app0: [39m    Local:                 169
+[36msub_app0: [39m  Elems:                   
+[36msub_app0: [39m    Total:                 40000
+[36msub_app0: [39m    Local:                 144
+[36msub_app0: [39m  Num Subdomains:          1
+[36msub_app0: [39m  Num Partitions:          1
+[36msub_app0: [39m  Partitioner:             parmetis
+[36msub_app0: [39m
+[36msub_app0: [39mNonlinear System:
+[36msub_app0: [39m  Num DOFs:                40401
+[36msub_app0: [39m  Num Local DOFs:          169
+[36msub_app0: [39m  Variables:               "d" 
+[36msub_app0: [39m  Finite Element Types:    "LAGRANGE" 
+[36msub_app0: [39m  Approximation Orders:    "FIRST" 
+[36msub_app0: [39m
+[36msub_app0: [39mAuxiliary System:
+[36msub_app0: [39m  Num DOFs:                161604
+[36msub_app0: [39m  Num Local DOFs:          676
+[36msub_app0: [39m  Variables:               { "Auxv" "AuxGB" "AuxMono" "AuxFrac" } 
+[36msub_app0: [39m  Finite Element Types:    "LAGRANGE" 
+[36msub_app0: [39m  Approximation Orders:    "FIRST" 
+[36msub_app0: [39m
+[36msub_app0: [39mExecution Information:
+[36msub_app0: [39m  Executioner:             Transient
+[36msub_app0: [39m  TimeStepper:             ConstantDT
+[36msub_app0: [39m  Solver Mode:             Preconditioned JFNK
+[36msub_app0: [39m
+[36msub_app0: [39m[31mLEGACY MODES ENABLED:[39m
+[36msub_app0: [39m This application uses the legacy material output option: material properties are output only on TIMESTEP_END, not INITIAL. To remove this message, set 'use_legacy_material_output' to false in this application. If there are gold output files that contain material property output for which output occurs on INITIAL, then these will generate diffs due to zero values being stored, and these tests should be re-golded.
+[36msub_app0: [39m[39m
+[36msub_app0: [39m
+[36msub_app0: [39mTime Step 0, time = 0
+[36mFinished Initializing All MultiApps[39m
+Finished inside of GrainTracker
+
+
+Time Step 0, time = 0
+
+Postprocessor Values:
++----------------+----------------+----------------+----------------+----------------+----------------+----------------+
+| time           | gas_conc_interg| gas_conc_intrag| grain_tracker  | numgrain       | porefrac_intrag| porosity       |
++----------------+----------------+----------------+----------------+----------------+----------------+----------------+
+|   0.000000e+00 |   0.000000e+00 |   0.000000e+00 |   2.900000e+01 |   0.000000e+00 |   0.000000e+00 |   0.000000e+00 |
++----------------+----------------+----------------+----------------+----------------+----------------+----------------+
+
+
+Time Step 1, time = 0.5, dt = 0.5
+[36m
+Backing Up MultiApps on TIMESTEP_END[39m
+Beginning backing up MultiApp sub_app
+Finished backing up MultiApp sub_app
+[36mFinished Backing Up MultiApps on TIMESTEP_END
+[39m
+[36m
+Starting Transfers on TIMESTEP_BEGIN To MultiApps[39m
+Beginning InterpolationTransfer tosub
+End InterpolationTransfer tosub
+[36mTransfers on TIMESTEP_BEGIN Are Finished
+[39m
+ 0 Nonlinear |R| = [32m8.232308e-02[39m
+      0 Linear |R| = [32m8.232308e-02[39m
+      1 Linear |R| = [33m8.191891e-02[39m
+      2 Linear |R| = [32m7.636709e-02[39m
+      3 Linear |R| = [32m2.675456e-02[39m
+      4 Linear |R| = [32m6.398625e-03[39m
+      5 Linear |R| = [32m1.640790e-03[39m
+      6 Linear |R| = [32m3.704902e-04[39m
+      7 Linear |R| = [32m1.213068e-04[39m
+      8 Linear |R| = [32m3.531102e-05[39m
+      9 Linear |R| = [32m1.006858e-05[39m
+     10 Linear |R| = [32m2.865795e-06[39m
+     11 Linear |R| = [32m1.017403e-06[39m
+     12 Linear |R| = [32m3.051084e-07[39m
+  Linear solve converged due to CONVERGED_RTOL iterations 12
+ 1 Nonlinear |R| = [32m7.324026e-07[39m
+      0 Linear |R| = [32m7.324026e-07[39m
+      1 Linear |R| = [32m1.525176e-07[39m
+      2 Linear |R| = [32m4.364619e-08[39m
+      3 Linear |R| = [32m1.408824e-08[39m
+      4 Linear |R| = [32m3.197122e-09[39m
+      5 Linear |R| = [32m8.980776e-10[39m
+      6 Linear |R| = [32m3.080468e-10[39m
+      7 Linear |R| = [32m7.991834e-11[39m
+      8 Linear |R| = [32m2.011916e-11[39m
+      9 Linear |R| = [32m6.874171e-12[39m
+  Linear solve converged due to CONVERGED_RTOL iterations 9
+ 2 Nonlinear |R| = [32m1.297751e-10[39m
+Nonlinear solve converged due to CONVERGED_FNORM_RELATIVE iterations 2
+[32m Solve Converged![39m
+
+Grain Tracker Status:
+Grains active index 0: 2 -> 2
+Grains active index 1: 4 -> 4
+Grains active index 2: 2 -> 2
+Grains active index 3: 4 -> 4
+Grains active index 4: 2 -> 2
+Grains active index 5: 3 -> 3
+Grains active index 6: 3 -> 3
+Grains active index 7: 2 -> 2
+Grains active index 8: 2 -> 2
+Grains active index 9: 2 -> 2
+Grains active index 10: 3 -> 3
+
+Finished inside of GrainTracker
+
+[36m
+No Transfers on TIMESTEP_END To MultiApps
+[39m
+[36m
+Executing MultiApps on TIMESTEP_END[39m
+[36mSolving MultiApp 'sub_app' with target time 0.5 and dt 0.5 with auto-advance on[39m
+[36msub_app0: [39m
+[36msub_app0: [39mTime Step 1, time = 0.5, dt = 0.5
+0 TS dt 0.1 time 0.
+
+Time: 0
+Xenon concentration = 0
+Xenon GB = 0
+
+1 TS dt 0.4 time 0.1
+
+Time: 0.1
+Xenon concentration = 2.711536451697497e-06
+Xenon GB = 0
+
+2 TS dt 0.5 time 0.5
+
+Time: 0.5
+Xenon concentration = 1.355756553076685e-05
+Xenon GB = 4.594501720325669e-11
+
+[36msub_app0: [39m[32m Solve Converged![39m
+Successfully Solved MultiApp sub_app.
+[36mFinished Executing MultiApps on TIMESTEP_END
+[39m
+[36m
+Starting Transfers on TIMESTEP_END From MultiApps[39m
+Beginning InterpolationTransfer fromsubrate
+End InterpolationTransfer fromsubrate
+Beginning InterpolationTransfer fromsubmono
+End InterpolationTransfer fromsubmono
+Beginning InterpolationTransfer fromsubfrac
+End InterpolationTransfer fromsubfrac
+[36mTransfers on TIMESTEP_END Are Finished
+[39m
+
+Outlier Variable Residual Norms:
+  wv: [33m8.628554e-11[39m
+  wg: [33m7.174659e-11[39m
+
+Postprocessor Values:
++----------------+----------------+----------------+----------------+----------------+----------------+----------------+
+| time           | gas_conc_interg| gas_conc_intrag| grain_tracker  | numgrain       | porefrac_intrag| porosity       |
++----------------+----------------+----------------+----------------+----------------+----------------+----------------+
+|   0.000000e+00 |   0.000000e+00 |   0.000000e+00 |   2.900000e+01 |   0.000000e+00 |   0.000000e+00 |   0.000000e+00 |
+|   5.000000e-01 |   6.807329e-03 |   0.000000e+00 |   2.900000e+01 |   2.800000e+01 |   0.000000e+00 |   1.742072e-02 |
++----------------+----------------+----------------+----------------+----------------+----------------+----------------+
+
+
+Time Step 2, time = 1.1, dt = 0.6
+[36m
+Backing Up MultiApps on TIMESTEP_END[39m
+Beginning backing up MultiApp sub_app
+Finished backing up MultiApp sub_app
+[36mFinished Backing Up MultiApps on TIMESTEP_END
+[39m
+[36m
+Starting Transfers on TIMESTEP_BEGIN To MultiApps[39m
+Beginning InterpolationTransfer tosub
+End InterpolationTransfer tosub
+[36mTransfers on TIMESTEP_BEGIN Are Finished
+[39m
+ 0 Nonlinear |R| = [32m1.271988e-01[39m
+      0 Linear |R| = [32m1.271988e-01[39m
+      1 Linear |R| = [33m1.265643e-01[39m
+      2 Linear |R| = [32m1.179802e-01[39m
+      3 Linear |R| = [32m4.134031e-02[39m
+      4 Linear |R| = [32m9.886669e-03[39m
+      5 Linear |R| = [32m2.534581e-03[39m
+      6 Linear |R| = [32m5.724982e-04[39m
+      7 Linear |R| = [32m1.871700e-04[39m
+      8 Linear |R| = [32m5.445442e-05[39m
+      9 Linear |R| = [32m1.552045e-05[39m
+     10 Linear |R| = [32m4.411610e-06[39m
+     11 Linear |R| = [32m1.560013e-06[39m
+     12 Linear |R| = [32m4.674007e-07[39m
+  Linear solve converged due to CONVERGED_RTOL iterations 12
+ 1 Nonlinear |R| = [32m1.315786e-06[39m
+      0 Linear |R| = [32m1.315786e-06[39m
+      1 Linear |R| = [32m2.493272e-07[39m
+      2 Linear |R| = [32m6.831679e-08[39m
+      3 Linear |R| = [32m2.224113e-08[39m
+      4 Linear |R| = [32m5.114957e-09[39m
+      5 Linear |R| = [32m1.393368e-09[39m
+      6 Linear |R| = [32m4.769626e-10[39m
+      7 Linear |R| = [32m1.218997e-10[39m
+      8 Linear |R| = [32m3.151144e-11[39m
+      9 Linear |R| = [32m1.043398e-11[39m
+  Linear solve converged due to CONVERGED_RTOL iterations 9
+ 2 Nonlinear |R| = [32m3.017611e-10[39m
+Nonlinear solve converged due to CONVERGED_FNORM_RELATIVE iterations 2
+[32m Solve Converged![39m
+
+Grain Tracker Status:
+Grains active index 0: 2 -> 2
+Grains active index 1: 4 -> 4
+Grains active index 2: 2 -> 2
+Grains active index 3: 4 -> 4
+Grains active index 4: 2 -> 2
+Grains active index 5: 3 -> 3
+Grains active index 6: 3 -> 3
+Grains active index 7: 2 -> 2
+Grains active index 8: 2 -> 2
+Grains active index 9: 2 -> 2
+Grains active index 10: 3 -> 3
+
+Finished inside of GrainTracker
+
+[36m
+No Transfers on TIMESTEP_END To MultiApps
+[39m
+[36m
+Executing MultiApps on TIMESTEP_END[39m
+[36mSolving MultiApp 'sub_app' with target time 1.1 and dt 0.6 with auto-advance on[39m
+[36msub_app0: [39m
+[36msub_app0: [39mTime Step 2, time = 1.1, dt = 0.6
+0 TS dt 0.5 time 0.5
+
+Time: 0.5
+Xenon concentration = 1.355756553043915e-05
+Xenon GB = 4.594501720325669e-11
+
+1 TS dt 0.1 time 1.
+
+Time: 1
+Xenon concentration = 2.711483928478547e-05
+Xenon GB = 3.330729394138569e-10
+
+2 TS dt 0.6 time 1.1
+
+Time: 1.1
+Xenon concentration = 2.982625902869479e-05
+Xenon GB = 4.479098923387677e-10
+
+[36msub_app0: [39m[32m Solve Converged![39m
+Successfully Solved MultiApp sub_app.
+[36mFinished Executing MultiApps on TIMESTEP_END
+[39m
+[36m
+Starting Transfers on TIMESTEP_END From MultiApps[39m
+Beginning InterpolationTransfer fromsubrate
+End InterpolationTransfer fromsubrate
+Beginning InterpolationTransfer fromsubmono
+End InterpolationTransfer fromsubmono
+Beginning InterpolationTransfer fromsubfrac
+End InterpolationTransfer fromsubfrac
+[36mTransfers on TIMESTEP_END Are Finished
+[39m
+
+Outlier Variable Residual Norms:
+  wv: [33m1.915908e-10[39m
+  wg: [33m1.593081e-10[39m
+
+Postprocessor Values:
++----------------+----------------+----------------+----------------+----------------+----------------+----------------+
+| time           | gas_conc_interg| gas_conc_intrag| grain_tracker  | numgrain       | porefrac_intrag| porosity       |
++----------------+----------------+----------------+----------------+----------------+----------------+----------------+
+|   0.000000e+00 |   0.000000e+00 |   0.000000e+00 |   2.900000e+01 |   0.000000e+00 |   0.000000e+00 |   0.000000e+00 |
+|   5.000000e-01 |   6.807329e-03 |   0.000000e+00 |   2.900000e+01 |   2.800000e+01 |   0.000000e+00 |   1.742072e-02 |
+|   1.100000e+00 |   6.807329e-03 |   6.754427e-10 |   2.900000e+01 |   2.800000e+01 |   7.639077e-11 |   1.742073e-02 |
++----------------+----------------+----------------+----------------+----------------+----------------+----------------+
+
+
+Time Step 3, time = 1.82, dt = 0.72
+[36m
+Backing Up MultiApps on TIMESTEP_END[39m
+Beginning backing up MultiApp sub_app
+Finished backing up MultiApp sub_app
+[36mFinished Backing Up MultiApps on TIMESTEP_END
+[39m
+[36m
+Starting Transfers on TIMESTEP_BEGIN To MultiApps[39m
+Beginning InterpolationTransfer tosub
+End InterpolationTransfer tosub
+[36mTransfers on TIMESTEP_BEGIN Are Finished
+[39m
+Computing initial residual                                                                 [[33m  1.08 s[39m]
+ 0 Nonlinear |R| = [32m1.271703e-01[39m
+      0 Linear |R| = [32m1.271703e-01[39m
+      1 Linear |R| = [33m1.265254e-01[39m
+      2 Linear |R| = [32m1.179329e-01[39m
+      3 Linear |R| = [32m4.131371e-02[39m
+      4 Linear |R| = [32m9.874652e-03[39m
+      5 Linear |R| = [32m2.533425e-03[39m
+      6 Linear |R| = [32m5.720016e-04[39m
+      7 Linear |R| = [32m1.872223e-04[39m
+      8 Linear |R| = [32m5.449720e-05[39m
+      9 Linear |R| = [32m1.553824e-05[39m
+     10 Linear |R| = [32m4.420635e-06[39m
+     11 Linear |R| = [32m1.567474e-06[39m
+     12 Linear |R| = [32m4.699945e-07[39m
+  Linear solve converged due to CONVERGED_RTOL iterations 12
+ 1 Nonlinear |R| = [32m1.544902e-06[39m
+      0 Linear |R| = [32m1.544902e-06[39m
+      1 Linear |R| = [32m2.761932e-07[39m
+      2 Linear |R| = [32m7.101986e-08[39m
+      3 Linear |R| = [32m2.422134e-08[39m
+      4 Linear |R| = [32m5.476954e-09[39m
+      5 Linear |R| = [32m1.504226e-09[39m
+      6 Linear |R| = [32m4.965781e-10[39m
+      7 Linear |R| = [32m1.284703e-10[39m
+      8 Linear |R| = [32m3.325846e-11[39m
+      9 Linear |R| = [32m1.076625e-11[39m
+  Linear solve converged due to CONVERGED_RTOL iterations 9
+ 2 Nonlinear |R| = [32m2.527231e-10[39m
+Nonlinear solve converged due to CONVERGED_FNORM_RELATIVE iterations 2
+[32m Solve Converged![39m
+
+Grain Tracker Status:
+Grains active index 0: 2 -> 2
+Grains active index 1: 4 -> 4
+Grains active index 2: 2 -> 2
+Grains active index 3: 4 -> 4
+Grains active index 4: 2 -> 2
+Grains active index 5: 3 -> 3
+Grains active index 6: 3 -> 3
+Grains active index 7: 2 -> 2
+Grains active index 8: 2 -> 2
+Grains active index 9: 2 -> 2
+Grains active index 10: 3 -> 3
+
+Finished inside of GrainTracker
+
+[36m
+No Transfers on TIMESTEP_END To MultiApps
+[39m
+[36m
+Executing MultiApps on TIMESTEP_END[39m
+[36mSolving MultiApp 'sub_app' with target time 1.82 and dt 0.72 with auto-advance on[39m
+[36msub_app0: [39m
+[36msub_app0: [39mTime Step 3, time = 1.82, dt = 0.72
+0 TS dt 0.6 time 1.1
+
+Time: 1.1
+Xenon concentration = 2.982625902819503e-05
+Xenon GB = 4.479098923387677e-10
+
+1 TS dt 0.12 time 1.7
+
+Time: 1.7
+Xenon concentration = 4.609453249307736e-05
+Xenon GB = 1.205815018367572e-09
+
+2 TS dt 0.72 time 1.82
+
+Time: 1.82
+Xenon concentration = 4.934813679275202e-05
+Xenon GB = 1.440041805861874e-09
+
+[36msub_app0: [39m[32m Solve Converged![39m
+Successfully Solved MultiApp sub_app.
+[36mFinished Executing MultiApps on TIMESTEP_END
+[39m
+[36m
+Starting Transfers on TIMESTEP_END From MultiApps[39m
+Beginning InterpolationTransfer fromsubrate
+End InterpolationTransfer fromsubrate
+Beginning InterpolationTransfer fromsubmono
+End InterpolationTransfer fromsubmono
+Beginning InterpolationTransfer fromsubfrac
+End InterpolationTransfer fromsubfrac
+[36mTransfers on TIMESTEP_END Are Finished
+[39m
+
+Outlier Variable Residual Norms:
+  wv: [33m1.609735e-10[39m
+  wg: [33m1.338498e-10[39m
+
+Postprocessor Values:
++----------------+----------------+----------------+----------------+----------------+----------------+----------------+
+| time           | gas_conc_interg| gas_conc_intrag| grain_tracker  | numgrain       | porefrac_intrag| porosity       |
++----------------+----------------+----------------+----------------+----------------+----------------+----------------+
+|   0.000000e+00 |   0.000000e+00 |   0.000000e+00 |   2.900000e+01 |   0.000000e+00 |   0.000000e+00 |   0.000000e+00 |
+|   5.000000e-01 |   6.807329e-03 |   0.000000e+00 |   2.900000e+01 |   2.800000e+01 |   0.000000e+00 |   1.742072e-02 |
+|   1.100000e+00 |   6.807329e-03 |   6.754427e-10 |   2.900000e+01 |   2.800000e+01 |   7.639077e-11 |   1.742073e-02 |
+|   1.820000e+00 |   6.807329e-03 |   1.485955e-09 |   2.900000e+01 |   2.800000e+01 |   1.680575e-10 |   1.742073e-02 |
++----------------+----------------+----------------+----------------+----------------+----------------+----------------+
+
+
+Time Step 4, time = 2.684, dt = 0.864
+[36m
+Backing Up MultiApps on TIMESTEP_END[39m
+Beginning backing up MultiApp sub_app
+Finished backing up MultiApp sub_app
+[36mFinished Backing Up MultiApps on TIMESTEP_END
+[39m
+[36m
+Starting Transfers on TIMESTEP_BEGIN To MultiApps[39m
+Beginning InterpolationTransfer tosub
+End InterpolationTransfer tosub
+[36mTransfers on TIMESTEP_BEGIN Are Finished
+[39m
+ 0 Nonlinear |R| = [32m1.271345e-01[39m
+      0 Linear |R| = [32m1.271345e-01[39m
+      1 Linear |R| = [33m1.264760e-01[39m
+      2 Linear |R| = [32m1.178728e-01[39m
+      3 Linear |R| = [32m4.128015e-02[39m
+      4 Linear |R| = [32m9.859527e-03[39m
+      5 Linear |R| = [32m2.531950e-03[39m
+      6 Linear |R| = [32m5.713830e-04[39m
+      7 Linear |R| = [32m1.872826e-04[39m
+      8 Linear |R| = [32m5.454819e-05[39m
+      9 Linear |R| = [32m1.555980e-05[39m
+     10 Linear |R| = [32m4.431537e-06[39m
+     11 Linear |R| = [32m1.576348e-06[39m
+     12 Linear |R| = [32m4.730088e-07[39m
+  Linear solve converged due to CONVERGED_RTOL iterations 12
+ 1 Nonlinear |R| = [32m1.823585e-06[39m
+      0 Linear |R| = [32m1.823585e-06[39m
+      1 Linear |R| = [32m3.097147e-07[39m
+      2 Linear |R| = [32m7.448378e-08[39m
+      3 Linear |R| = [32m2.630549e-08[39m
+      4 Linear |R| = [32m5.926304e-09[39m
+      5 Linear |R| = [32m1.602992e-09[39m
+      6 Linear |R| = [32m5.148793e-10[39m
+      7 Linear |R| = [32m1.364674e-10[39m
+      8 Linear |R| = [32m3.563081e-11[39m
+      9 Linear |R| = [32m1.115194e-11[39m
+  Linear solve converged due to CONVERGED_RTOL iterations 9
+ 2 Nonlinear |R| = [32m2.210102e-10[39m
+Nonlinear solve converged due to CONVERGED_FNORM_RELATIVE iterations 2
+[32m Solve Converged![39m
+
+Grain Tracker Status:
+Grains active index 0: 2 -> 2
+Grains active index 1: 4 -> 4
+Grains active index 2: 2 -> 2
+Grains active index 3: 4 -> 4
+Grains active index 4: 2 -> 2
+Grains active index 5: 3 -> 3
+Grains active index 6: 3 -> 3
+Grains active index 7: 2 -> 2
+Grains active index 8: 2 -> 2
+Grains active index 9: 2 -> 2
+Grains active index 10: 3 -> 3
+
+Finished inside of GrainTracker
+
+[36m
+No Transfers on TIMESTEP_END To MultiApps
+[39m
+[36m
+Executing MultiApps on TIMESTEP_END[39m
+[36mSolving MultiApp 'sub_app' with target time 2.684 and dt 0.864 with auto-advance on[39m
+[36msub_app0: [39m
+[36msub_app0: [39mTime Step 4, time = 2.684, dt = 0.864
+0 TS dt 0.72 time 1.82
+
+Time: 1.82
+Xenon concentration = 4.934813679203422e-05
+Xenon GB = 1.440041805861874e-09
+
+1 TS dt 0.144 time 2.54
+
+Time: 2.54
+Xenon concentration = 6.886940992403548e-05
+Xenon GB = 2.94455976501253e-09
+
+2 TS dt 0.864 time 2.684
+
+Time: 2.684
+Xenon concentration = 7.27735920129416e-05
+Xenon GB = 3.364427283372374e-09
+
+[36msub_app0: [39m[32m Solve Converged![39m
+Successfully Solved MultiApp sub_app.
+[36mFinished Executing MultiApps on TIMESTEP_END
+[39m
+[36m
+Starting Transfers on TIMESTEP_END From MultiApps[39m
+Beginning InterpolationTransfer fromsubrate
+End InterpolationTransfer fromsubrate
+Beginning InterpolationTransfer fromsubmono
+End InterpolationTransfer fromsubmono
+Beginning InterpolationTransfer fromsubfrac
+End InterpolationTransfer fromsubfrac
+[36mTransfers on TIMESTEP_END Are Finished
+[39m
+
+Outlier Variable Residual Norms:
+  wv: [33m1.429692e-10[39m
+  wg: [33m1.188791e-10[39m
+
+Postprocessor Values:
++----------------+----------------+----------------+----------------+----------------+----------------+----------------+
+| time           | gas_conc_interg| gas_conc_intrag| grain_tracker  | numgrain       | porefrac_intrag| porosity       |
++----------------+----------------+----------------+----------------+----------------+----------------+----------------+
+|   0.000000e+00 |   0.000000e+00 |   0.000000e+00 |   2.900000e+01 |   0.000000e+00 |   0.000000e+00 |   0.000000e+00 |
+|   5.000000e-01 |   6.807329e-03 |   0.000000e+00 |   2.900000e+01 |   2.800000e+01 |   0.000000e+00 |   1.742072e-02 |
+|   1.100000e+00 |   6.807329e-03 |   6.754427e-10 |   2.900000e+01 |   2.800000e+01 |   7.639077e-11 |   1.742073e-02 |
+|   1.820000e+00 |   6.807329e-03 |   1.485955e-09 |   2.900000e+01 |   2.800000e+01 |   1.680575e-10 |   1.742073e-02 |
+|   2.684000e+00 |   6.807329e-03 |   2.458541e-09 |   2.900000e+01 |   2.800000e+01 |   2.780545e-10 |   1.742073e-02 |
++----------------+----------------+----------------+----------------+----------------+----------------+----------------+
+
+
+Time Step 5, time = 3.7208, dt = 1.0368
+[36m
+Backing Up MultiApps on TIMESTEP_END[39m
+Beginning backing up MultiApp sub_app
+Finished backing up MultiApp sub_app
+[36mFinished Backing Up MultiApps on TIMESTEP_END
+[39m
+[36m
+Starting Transfers on TIMESTEP_BEGIN To MultiApps[39m
+Beginning InterpolationTransfer tosub
+End InterpolationTransfer tosub
+[36mTransfers on TIMESTEP_BEGIN Are Finished
+[39m
+ 0 Nonlinear |R| = [32m1.270922e-01[39m
+      0 Linear |R| = [32m1.270922e-01[39m
+      1 Linear |R| = [33m1.264169e-01[39m
+      2 Linear |R| = [32m1.178003e-01[39m
+      3 Linear |R| = [32m4.123942e-02[39m
+      4 Linear |R| = [32m9.841177e-03[39m
+      5 Linear |R| = [32m2.530169e-03[39m
+      6 Linear |R| = [32m5.706412e-04[39m
+      7 Linear |R| = [32m1.873608e-04[39m
+      8 Linear |R| = [32m5.461103e-05[39m
+      9 Linear |R| = [32m1.558655e-05[39m
+     10 Linear |R| = [32m4.444878e-06[39m
+     11 Linear |R| = [32m1.586934e-06[39m
+     12 Linear |R| = [32m4.765037e-07[39m
+  Linear solve converged due to CONVERGED_RTOL iterations 12
+ 1 Nonlinear |R| = [32m2.159145e-06[39m
+      0 Linear |R| = [32m2.159145e-06[39m
+      1 Linear |R| = [32m3.507812e-07[39m
+      2 Linear |R| = [32m7.887923e-08[39m
+      3 Linear |R| = [32m2.875596e-08[39m
+      4 Linear |R| = [32m6.518498e-09[39m
+      5 Linear |R| = [32m1.825315e-09[39m
+      6 Linear |R| = [32m5.444837e-10[39m
+      7 Linear |R| = [32m1.450476e-10[39m
+      8 Linear |R| = [32m3.805407e-11[39m
+      9 Linear |R| = [32m1.171558e-11[39m
+  Linear solve converged due to CONVERGED_RTOL iterations 9
+ 2 Nonlinear |R| = [32m1.708267e-10[39m
+Nonlinear solve converged due to CONVERGED_FNORM_RELATIVE iterations 2
+[32m Solve Converged![39m
+
+Grain Tracker Status:
+Grains active index 0: 2 -> 2
+Grains active index 1: 4 -> 4
+Grains active index 2: 2 -> 2
+Grains active index 3: 4 -> 4
+Grains active index 4: 2 -> 2
+Grains active index 5: 3 -> 3
+Grains active index 6: 3 -> 3
+Grains active index 7: 2 -> 2
+Grains active index 8: 2 -> 2
+Grains active index 9: 2 -> 2
+Grains active index 10: 3 -> 3
+
+Finished inside of GrainTracker
+
+[36m
+No Transfers on TIMESTEP_END To MultiApps
+[39m
+[36m
+Executing MultiApps on TIMESTEP_END[39m
+[36mSolving MultiApp 'sub_app' with target time 3.7208 and dt 1.0368 with auto-advance on[39m
+[36msub_app0: [39m
+[36msub_app0: [39mTime Step 5, time = 3.7208, dt = 1.0368
+0 TS dt 0.864 time 2.684
+
+Time: 2.684
+Xenon concentration = 7.277359201191096e-05
+Xenon GB = 3.364427283372374e-09
+
+1 TS dt 0.1728 time 3.548
+
+Time: 3.548
+Xenon concentration = 9.6198176934405e-05
+Xenon GB = 6.026358560236031e-09
+
+2 TS dt 1.0368 time 3.7208
+
+Time: 3.7208
+Xenon concentration = 0.0001008829895147161
+Xenon GB = 6.729973448555927e-09
+
+[36msub_app0: [39m[32m Solve Converged![39m
+Successfully Solved MultiApp sub_app.
+[36mFinished Executing MultiApps on TIMESTEP_END
+[39m
+[36m
+Starting Transfers on TIMESTEP_END From MultiApps[39m
+Beginning InterpolationTransfer fromsubrate
+End InterpolationTransfer fromsubrate
+Beginning InterpolationTransfer fromsubmono
+End InterpolationTransfer fromsubmono
+Beginning InterpolationTransfer fromsubfrac
+End InterpolationTransfer fromsubfrac
+[36mTransfers on TIMESTEP_END Are Finished
+[39m
+
+Outlier Variable Residual Norms:
+  wv: [33m1.073697e-10[39m
+  wg: [33m8.927814e-11[39m
+
+Postprocessor Values:
++----------------+----------------+----------------+----------------+----------------+----------------+----------------+
+| time           | gas_conc_interg| gas_conc_intrag| grain_tracker  | numgrain       | porefrac_intrag| porosity       |
++----------------+----------------+----------------+----------------+----------------+----------------+----------------+
+|   0.000000e+00 |   0.000000e+00 |   0.000000e+00 |   2.900000e+01 |   0.000000e+00 |   0.000000e+00 |   0.000000e+00 |
+|   5.000000e-01 |   6.807329e-03 |   0.000000e+00 |   2.900000e+01 |   2.800000e+01 |   0.000000e+00 |   1.742072e-02 |
+|   1.100000e+00 |   6.807329e-03 |   6.754427e-10 |   2.900000e+01 |   2.800000e+01 |   7.639077e-11 |   1.742073e-02 |
+|   1.820000e+00 |   6.807329e-03 |   1.485955e-09 |   2.900000e+01 |   2.800000e+01 |   1.680575e-10 |   1.742073e-02 |
+|   2.684000e+00 |   6.807329e-03 |   2.458541e-09 |   2.900000e+01 |   2.800000e+01 |   2.780545e-10 |   1.742073e-02 |
+|   3.720800e+00 |   6.807329e-03 |   3.625604e-09 |   2.900000e+01 |   2.800000e+01 |   4.100463e-10 |   1.742073e-02 |
++----------------+----------------+----------------+----------------+----------------+----------------+----------------+
+
+
+Time Step 6, time = 4.96496, dt = 1.24416
+[36m
+Backing Up MultiApps on TIMESTEP_END[39m
+Beginning backing up MultiApp sub_app
+Finished backing up MultiApp sub_app
+[36mFinished Backing Up MultiApps on TIMESTEP_END
+[39m
+[36m
+Starting Transfers on TIMESTEP_BEGIN To MultiApps[39m
+Beginning InterpolationTransfer tosub
+End InterpolationTransfer tosub
+[36mTransfers on TIMESTEP_BEGIN Are Finished
+[39m
+Computing initial residual                                                                 [[33m  1.09 s[39m]
+ 0 Nonlinear |R| = [32m1.270436e-01[39m
+      0 Linear |R| = [32m1.270436e-01[39m
+      1 Linear |R| = [33m1.263477e-01[39m
+      2 Linear |R| = [32m1.177146e-01[39m
+      3 Linear |R| = [32m4.119058e-02[39m
+      4 Linear |R| = [32m9.819156e-03[39m
+      5 Linear |R| = [32m2.528062e-03[39m
+      6 Linear |R| = [32m5.697633e-04[39m
+      7 Linear |R| = [32m1.874661e-04[39m
+      8 Linear |R| = [32m5.468939e-05[39m
+      9 Linear |R| = [32m1.562001e-05[39m
+     10 Linear |R| = [32m4.461279e-06[39m
+     11 Linear |R| = [32m1.599547e-06[39m
+     12 Linear |R| = [32m4.805321e-07[39m
+  Linear solve converged due to CONVERGED_RTOL iterations 12
+ 1 Nonlinear |R| = [32m2.563623e-06[39m
+      0 Linear |R| = [32m2.563623e-06[39m
+      1 Linear |R| = [32m4.012609e-07[39m
+      2 Linear |R| = [32m8.447046e-08[39m
+      3 Linear |R| = [32m3.126586e-08[39m
+      4 Linear |R| = [32m7.202199e-09[39m
+      5 Linear |R| = [32m2.039552e-09[39m
+      6 Linear |R| = [32m5.776999e-10[39m
+      7 Linear |R| = [32m1.576472e-10[39m
+      8 Linear |R| = [32m4.156326e-11[39m
+      9 Linear |R| = [32m1.255165e-11[39m
+  Linear solve converged due to CONVERGED_RTOL iterations 9
+ 2 Nonlinear |R| = [32m1.449718e-10[39m
+Nonlinear solve converged due to CONVERGED_FNORM_RELATIVE iterations 2
+[32m Solve Converged![39m
+
+Grain Tracker Status:
+Grains active index 0: 2 -> 2
+Grains active index 1: 4 -> 4
+Grains active index 2: 2 -> 2
+Grains active index 3: 4 -> 4
+Grains active index 4: 2 -> 2
+Grains active index 5: 3 -> 3
+Grains active index 6: 3 -> 3
+Grains active index 7: 2 -> 2
+Grains active index 8: 2 -> 2
+Grains active index 9: 2 -> 2
+Grains active index 10: 3 -> 3
+
+Finished inside of GrainTracker
+
+[36m
+No Transfers on TIMESTEP_END To MultiApps
+[39m
+[36m
+Executing MultiApps on TIMESTEP_END[39m
+[36mSolving MultiApp 'sub_app' with target time 4.96496 and dt 1.24416 with auto-advance on[39m
+[36msub_app0: [39m
+[36msub_app0: [39mTime Step 6, time = 4.96496, dt = 1.24416
+0 TS dt 1.0368 time 3.7208
+
+Time: 3.7208
+Xenon concentration = 0.0001008829895132374
+Xenon GB = 6.729973448555927e-09
+
+1 TS dt 0.20736 time 4.7576
+
+Time: 4.7576
+Xenon concentration = 0.0001289911344301131
+Xenon GB = 1.115708437052242e-08
+
+2 TS dt 1.24416 time 4.96496
+
+Time: 4.96496
+Xenon concentration = 0.0001346126131573779
+Xenon GB = 1.228893858221207e-08
+
+[36msub_app0: [39m[32m Solve Converged![39m
+Successfully Solved MultiApp sub_app.
+[36mFinished Executing MultiApps on TIMESTEP_END
+[39m
+[36m
+Starting Transfers on TIMESTEP_END From MultiApps[39m
+Beginning InterpolationTransfer fromsubrate
+End InterpolationTransfer fromsubrate
+Beginning InterpolationTransfer fromsubmono
+End InterpolationTransfer fromsubmono
+Beginning InterpolationTransfer fromsubfrac
+End InterpolationTransfer fromsubfrac
+[36mTransfers on TIMESTEP_END Are Finished
+[39m
+
+Outlier Variable Residual Norms:
+  wv: [33m9.185967e-11[39m
+  wg: [33m7.638147e-11[39m
+
+Postprocessor Values:
++----------------+----------------+----------------+----------------+----------------+----------------+----------------+
+| time           | gas_conc_interg| gas_conc_intrag| grain_tracker  | numgrain       | porefrac_intrag| porosity       |
++----------------+----------------+----------------+----------------+----------------+----------------+----------------+
+|   0.000000e+00 |   0.000000e+00 |   0.000000e+00 |   2.900000e+01 |   0.000000e+00 |   0.000000e+00 |   0.000000e+00 |
+|   5.000000e-01 |   6.807329e-03 |   0.000000e+00 |   2.900000e+01 |   2.800000e+01 |   0.000000e+00 |   1.742072e-02 |
+|   1.100000e+00 |   6.807329e-03 |   6.754427e-10 |   2.900000e+01 |   2.800000e+01 |   7.639077e-11 |   1.742073e-02 |
+|   1.820000e+00 |   6.807329e-03 |   1.485955e-09 |   2.900000e+01 |   2.800000e+01 |   1.680575e-10 |   1.742073e-02 |
+|   2.684000e+00 |   6.807329e-03 |   2.458541e-09 |   2.900000e+01 |   2.800000e+01 |   2.780545e-10 |   1.742073e-02 |
+|   3.720800e+00 |   6.807329e-03 |   3.625604e-09 |   2.900000e+01 |   2.800000e+01 |   4.100463e-10 |   1.742073e-02 |
+|   4.964960e+00 |   6.807329e-03 |   5.026021e-09 |   2.900000e+01 |   2.800000e+01 |   5.684301e-10 |   1.742074e-02 |
++----------------+----------------+----------------+----------------+----------------+----------------+----------------+
+
+
+Time Step 7, time = 6.45795, dt = 1.49299
+[36m
+Backing Up MultiApps on TIMESTEP_END[39m
+Beginning backing up MultiApp sub_app
+Finished backing up MultiApp sub_app
+[36mFinished Backing Up MultiApps on TIMESTEP_END
+[39m
+[36m
+Starting Transfers on TIMESTEP_BEGIN To MultiApps[39m
+Beginning InterpolationTransfer tosub
+End InterpolationTransfer tosub
+[36mTransfers on TIMESTEP_BEGIN Are Finished
+[39m
+Computing initial residual                                                                 [[33m  1.02 s[39m]
+ 0 Nonlinear |R| = [32m1.269885e-01[39m
+      0 Linear |R| = [32m1.269885e-01[39m
+      1 Linear |R| = [33m1.262675e-01[39m
+      2 Linear |R| = [32m1.176142e-01[39m
+      3 Linear |R| = [32m4.113226e-02[39m
+      4 Linear |R| = [32m9.792832e-03[39m
+      5 Linear |R| = [32m2.525588e-03[39m
+      6 Linear |R| = [32m5.687314e-04[39m
+      7 Linear |R| = [32m1.876098e-04[39m
+      8 Linear |R| = [32m5.478754e-05[39m
+      9 Linear |R| = [32m1.566203e-05[39m
+     10 Linear |R| = [32m4.481481e-06[39m
+     11 Linear |R| = [32m1.614534e-06[39m
+     12 Linear |R| = [32m4.851402e-07[39m
+  Linear solve converged due to CONVERGED_RTOL iterations 12
+ 1 Nonlinear |R| = [32m3.048533e-06[39m
+      0 Linear |R| = [32m3.048533e-06[39m
+      1 Linear |R| = [32m4.626140e-07[39m
+      2 Linear |R| = [32m9.157108e-08[39m
+      3 Linear |R| = [32m3.405826e-08[39m
+      4 Linear |R| = [32m7.967194e-09[39m
+      5 Linear |R| = [32m2.312735e-09[39m
+      6 Linear |R| = [32m6.138335e-10[39m
+      7 Linear |R| = [32m1.698361e-10[39m
+      8 Linear |R| = [32m4.536270e-11[39m
+      9 Linear |R| = [32m1.336911e-11[39m
+  Linear solve converged due to CONVERGED_RTOL iterations 9
+ 2 Nonlinear |R| = [32m1.226432e-10[39m
+Nonlinear solve converged due to CONVERGED_FNORM_RELATIVE iterations 2
+[32m Solve Converged![39m
+
+Grain Tracker Status:
+Grains active index 0: 2 -> 2
+Grains active index 1: 4 -> 4
+Grains active index 2: 2 -> 2
+Grains active index 3: 4 -> 4
+Grains active index 4: 2 -> 2
+Grains active index 5: 3 -> 3
+Grains active index 6: 3 -> 3
+Grains active index 7: 2 -> 2
+Grains active index 8: 2 -> 2
+Grains active index 9: 2 -> 2
+Grains active index 10: 3 -> 3
+
+Finished inside of GrainTracker
+
+[36m
+No Transfers on TIMESTEP_END To MultiApps
+[39m
+[36m
+Executing MultiApps on TIMESTEP_END[39m
+[36mSolving MultiApp 'sub_app' with target time 6.45795 and dt 1.49299 with auto-advance on[39m
+[36msub_app0: [39m
+[36msub_app0: [39mTime Step 7, time = 6.45795, dt = 1.49299
+0 TS dt 1.24416 time 4.96496
+
+Time: 4.96496
+Xenon concentration = 0.0001346126131552576
+Xenon GB = 1.228893858221207e-08
+
+1 TS dt 0.248832 time 6.20912
+
+Time: 6.20912
+Xenon concentration = 0.0001683404341884357
+Xenon GB = 1.937569113351721e-08
+

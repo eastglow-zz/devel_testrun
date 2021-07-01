@@ -1,0 +1,858 @@
+Warning: Permanently added 'r6i4n1.ib0.ice.inl.gov,10.148.6.223' (ECDSA) to the list of known hosts.
+Warning: Permanently added 'r6i3n14.ib0.ice.inl.gov,10.148.6.218' (ECDSA) to the list of known hosts.
+Warning: Permanently added 'r6i6n9.ib0.ice.inl.gov,10.148.7.11' (ECDSA) to the list of known hosts.
+Warning: Process to core binding is enabled and OMP_NUM_THREADS is set to non-zero (8) value
+If your program has OpenMP sections, this can cause over-subscription of cores and consequently poor performance
+To avoid this, please re-run your application after setting MV2_ENABLE_AFFINITY=0
+Use MV2_USE_THREAD_WARNING=0 to suppress this message
+
+
+[33m
+*** Warning ***
+MultiAppTransfer execute_on flags do not match associated Multiapp execute_on flags[39m
+Initializing equation system                                                               [[33m  1.77 s[39m]
+
+Running App: main
+
+Framework Information:
+MOOSE Version:           git commit 34fb8fad8f on 2020-08-05
+LibMesh Version:         fafa16ee6fbff83f917a574b9bb41c2954f4cef1
+PETSc Version:           3.12.1
+Current Time:            Wed Oct 21 02:16:31 2020
+Executable Timestamp:    Wed Oct 14 04:24:46 2020
+
+Parallelism:
+  Num Processors:          64
+  Num Threads:             1
+
+Mesh: 
+  Parallel Type:           replicated
+  Mesh Dimension:          2
+  Spatial Dimension:       2
+  Nodes:                   
+    Total:                 40401
+    Local:                 668
+  Elems:                   
+    Total:                 40000
+    Local:                 610
+  Num Subdomains:          1
+  Num Partitions:          64
+  Partitioner:             metis
+
+Nonlinear System:
+  Num DOFs:                565614
+  Num Local DOFs:          9352
+  Variables:               { "wv" "wg" "etab" "eta0" "eta1" ... "eta6" "eta7" "eta8" "eta9" "eta10" } 
+  Finite Element Types:    "LAGRANGE" 
+  Approximation Orders:    "FIRST" 
+
+Auxiliary System:
+  Num DOFs:                2322005
+  Num Local DOFs:          35670
+  Variables:               { "bnds" "XolotlXeRate" "XolotlXeMono" "XolotlVolumeFraction" "time" } { "cg" 
+                             "cv" "unique_grains" "var_indices" "halos" ... "halo6" "halo7" "halo8" "halo9" 
+                             "halo10" } { "VacRate0" "XeRate" "XeRate0" "cg_from_rhog" "cv_from_rhov" 
+                             } 
+  Finite Element Types:    "LAGRANGE" "MONOMIAL" "MONOMIAL" 
+  Approximation Orders:    "FIRST" "FIRST" "CONSTANT" 
+
+Execution Information:
+  Executioner:             Transient
+  TimeStepper:             IterationAdaptiveDT
+  Solver Mode:             Preconditioned JFNK
+  MOOSE Preconditioner:    SMP
+
+[36mInitializing All MultiApps[39m
+
+[33m
+*** Warning ***
+Unable to open library file "lib/libcoupling_xolotl_new-opt.la". Double check for spelling errors.[39m
+
+[31m
+*** ERROR ***
+Unable to locate library for "coupling_xolotl_newApp".
+We attempted to locate the library "libcoupling_xolotl_new-opt.la" in the following paths:
+	
+
+Make sure you have compiled the library and either set the "library_path" variable in your input file or exported "MOOSE_LIBRARY_PATH".
+Compiled in debug mode to see the list of libraries checked for dynamic loading methods.[39m
+
+
+[31m
+*** ERROR ***
+Unable to locate library for "coupling_xolotl_newApp".
+We attempted to locate the library "libcoupling_xolotl_new-opt.la" in the following paths:
+	
+
+Make sure you have compiled the library and either set the "library_path" variable in your input file or exported "MOOSE_LIBRARY_PATH".
+Compiled in debug mode to see the list of libraries checked for dynamic loading methods.[39m
+
+
+[31m
+*** ERROR ***
+Unable to locate library for "coupling_xolotl_newApp".
+We attempted to locate the library "libcoupling_xolotl_new-opt.la" in the following paths:
+	
+
+Make sure you have compiled the library and either set the "library_path" variable in your input file or exported "MOOSE_LIBRARY_PATH".
+Compiled in debug mode to see the list of libraries checked for dynamic loading methods.[39m
+
+
+[31m
+*** ERROR ***
+Unable to locate library for "coupling_xolotl_newApp".
+We attempted to locate the library "libcoupling_xolotl_new-opt.la" in the following paths:
+	
+
+Make sure you have compiled the library and either set the "library_path" variable in your input file or exported "MOOSE_LIBRARY_PATH".
+Compiled in debug mode to see the list of libraries checked for dynamic loading methods.[39m
+
+
+[31m
+*** ERROR ***
+Unable to locate library for "coupling_xolotl_newApp".
+We attempted to locate the library "libcoupling_xolotl_new-opt.la" in the following paths:
+	
+
+Make sure you have compiled the library and either set the "library_path" variable in your input file or exported "MOOSE_LIBRARY_PATH".
+Compiled in debug mode to see the list of libraries checked for dynamic loading methods.[39m
+
+
+[31m
+*** ERROR ***
+Unable to locate library for "coupling_xolotl_newApp".
+We attempted to locate the library "libcoupling_xolotl_new-opt.la" in the following paths:
+	
+
+Make sure you have compiled the library and either set the "library_path" variable in your input file or exported "MOOSE_LIBRARY_PATH".
+Compiled in debug mode to see the list of libraries checked for dynamic loading methods.[39m
+
+
+[31m
+*** ERROR ***
+Unable to locate library for "coupling_xolotl_newApp".
+We attempted to locate the library "libcoupling_xolotl_new-opt.la" in the following paths:
+	
+
+Make sure you have compiled the library and either set the "library_path" variable in your input file or exported "MOOSE_LIBRARY_PATH".
+Compiled in debug mode to see the list of libraries checked for dynamic loading methods.[39m
+
+
+[31m
+*** ERROR ***
+Unable to locate library for "coupling_xolotl_newApp".
+We attempted to locate the library "libcoupling_xolotl_new-opt.la" in the following paths:
+	
+
+Make sure you have compiled the library and either set the "library_path" variable in your input file or exported "MOOSE_LIBRARY_PATH".
+Compiled in debug mode to see the list of libraries checked for dynamic loading methods.[39m
+
+[cli_0]: [cli_2]: aborting job:
+application called MPI_Abort(MPI_COMM_WORLD, 1) - process 2
+[cli_3]: aborting job:
+application called MPI_Abort(MPI_COMM_WORLD, 1) - process 3
+[cli_5]: aborting job:
+application called MPI_Abort(MPI_COMM_WORLD, 1) - process 5
+[cli_6]: aborting job:
+application called MPI_Abort(MPI_COMM_WORLD, 1) - process 6
+[cli_7]: aborting job:
+application called MPI_Abort(MPI_COMM_WORLD, 1) - process 7
+[cli_1]: aborting job:
+application called MPI_Abort(MPI_COMM_WORLD, 1) - process 1
+aborting job:
+application called MPI_Abort(MPI_COMM_WORLD, 1) - process 0
+[cli_4]: aborting job:
+application called MPI_Abort(MPI_COMM_WORLD, 1) - process 4
+
+[31m
+*** ERROR ***
+Unable to locate library for "coupling_xolotl_newApp".
+We attempted to locate the library "libcoupling_xolotl_new-opt.la" in the following paths:
+	
+
+Make sure you have compiled the library and either set the "library_path" variable in your input file or exported "MOOSE_LIBRARY_PATH".
+Compiled in debug mode to see the list of libraries checked for dynamic loading methods.[39m
+
+
+[31m
+*** ERROR ***
+Unable to locate library for "coupling_xolotl_newApp".
+We attempted to locate the library "libcoupling_xolotl_new-opt.la" in the following paths:
+	
+
+Make sure you have compiled the library and either set the "library_path" variable in your input file or exported "MOOSE_LIBRARY_PATH".
+Compiled in debug mode to see the list of libraries checked for dynamic loading methods.[39m
+
+
+[31m
+*** ERROR ***
+Unable to locate library for "coupling_xolotl_newApp".
+We attempted to locate the library "libcoupling_xolotl_new-opt.la" in the following paths:
+	
+
+Make sure you have compiled the library and either set the "library_path" variable in your input file or exported "MOOSE_LIBRARY_PATH".
+Compiled in debug mode to see the list of libraries checked for dynamic loading methods.[39m
+
+
+[31m
+*** ERROR ***
+Unable to locate library for "coupling_xolotl_newApp".
+We attempted to locate the library "libcoupling_xolotl_new-opt.la" in the following paths:
+	
+
+Make sure you have compiled the library and either set the "library_path" variable in your input file or exported "MOOSE_LIBRARY_PATH".
+Compiled in debug mode to see the list of libraries checked for dynamic loading methods.[39m
+
+
+[31m
+*** ERROR ***
+Unable to locate library for "coupling_xolotl_newApp".
+We attempted to locate the library "libcoupling_xolotl_new-opt.la" in the following paths:
+	
+
+Make sure you have compiled the library and either set the "library_path" variable in your input file or exported "MOOSE_LIBRARY_PATH".
+Compiled in debug mode to see the list of libraries checked for dynamic loading methods.[39m
+
+
+[31m
+*** ERROR ***
+Unable to locate library for "coupling_xolotl_newApp".
+We attempted to locate the library "libcoupling_xolotl_new-opt.la" in the following paths:
+	
+
+Make sure you have compiled the library and either set the "library_path" variable in your input file or exported "MOOSE_LIBRARY_PATH".
+Compiled in debug mode to see the list of libraries checked for dynamic loading methods.[39m
+
+
+[31m
+*** ERROR ***
+Unable to locate library for "coupling_xolotl_newApp".
+We attempted to locate the library "libcoupling_xolotl_new-opt.la" in the following paths:
+	
+
+Make sure you have compiled the library and either set the "library_path" variable in your input file or exported "MOOSE_LIBRARY_PATH".
+Compiled in debug mode to see the list of libraries checked for dynamic loading methods.[39m
+
+
+[31m
+*** ERROR ***
+Unable to locate library for "coupling_xolotl_newApp".
+We attempted to locate the library "libcoupling_xolotl_new-opt.la" in the following paths:
+	
+
+Make sure you have compiled the library and either set the "library_path" variable in your input file or exported "MOOSE_LIBRARY_PATH".
+Compiled in debug mode to see the list of libraries checked for dynamic loading methods.[39m
+
+[cli_8]: aborting job:
+application called MPI_Abort(MPI_COMM_WORLD, 1) - process 8
+[cli_9]: aborting job:
+application called MPI_Abort(MPI_COMM_WORLD, 1) - process 9
+[cli_10]: [cli_11]: aborting job:
+application called MPI_Abort(MPI_COMM_WORLD, 1) - process 11
+[cli_13]: aborting job:
+application called MPI_Abort(MPI_COMM_WORLD, 1) - process 13
+[cli_14]: aborting job:
+application called MPI_Abort(MPI_COMM_WORLD, 1) - process 14
+[cli_15]: aborting job:
+application called MPI_Abort(MPI_COMM_WORLD, 1) - process 15
+[cli_12]: aborting job:
+application called MPI_Abort(MPI_COMM_WORLD, 1) - process 12
+aborting job:
+application called MPI_Abort(MPI_COMM_WORLD, 1) - process 10
+
+[31m
+*** ERROR ***
+Unable to locate library for "coupling_xolotl_newApp".
+We attempted to locate the library "libcoupling_xolotl_new-opt.la" in the following paths:
+	
+
+Make sure you have compiled the library and either set the "library_path" variable in your input file or exported "MOOSE_LIBRARY_PATH".
+Compiled in debug mode to see the list of libraries checked for dynamic loading methods.[39m
+
+
+[31m
+*** ERROR ***
+Unable to locate library for "coupling_xolotl_newApp".
+We attempted to locate the library "libcoupling_xolotl_new-opt.la" in the following paths:
+	
+
+Make sure you have compiled the library and either set the "library_path" variable in your input file or exported "MOOSE_LIBRARY_PATH".
+Compiled in debug mode to see the list of libraries checked for dynamic loading methods.[39m
+
+
+[31m
+*** ERROR ***
+Unable to locate library for "coupling_xolotl_newApp".
+We attempted to locate the library "libcoupling_xolotl_new-opt.la" in the following paths:
+	
+
+Make sure you have compiled the library and either set the "library_path" variable in your input file or exported "MOOSE_LIBRARY_PATH".
+Compiled in debug mode to see the list of libraries checked for dynamic loading methods.[39m
+
+
+[31m
+*** ERROR ***
+Unable to locate library for "coupling_xolotl_newApp".
+We attempted to locate the library "libcoupling_xolotl_new-opt.la" in the following paths:
+	
+
+Make sure you have compiled the library and either set the "library_path" variable in your input file or exported "MOOSE_LIBRARY_PATH".
+Compiled in debug mode to see the list of libraries checked for dynamic loading methods.[39m
+
+
+[31m
+*** ERROR ***
+Unable to locate library for "coupling_xolotl_newApp".
+We attempted to locate the library "libcoupling_xolotl_new-opt.la" in the following paths:
+	
+
+Make sure you have compiled the library and either set the "library_path" variable in your input file or exported "MOOSE_LIBRARY_PATH".
+Compiled in debug mode to see the list of libraries checked for dynamic loading methods.[39m
+
+
+[31m
+*** ERROR ***
+Unable to locate library for "coupling_xolotl_newApp".
+We attempted to locate the library "libcoupling_xolotl_new-opt.la" in the following paths:
+	
+
+Make sure you have compiled the library and either set the "library_path" variable in your input file or exported "MOOSE_LIBRARY_PATH".
+Compiled in debug mode to see the list of libraries checked for dynamic loading methods.[39m
+
+
+[31m
+*** ERROR ***
+Unable to locate library for "coupling_xolotl_newApp".
+We attempted to locate the library "libcoupling_xolotl_new-opt.la" in the following paths:
+	
+
+Make sure you have compiled the library and either set the "library_path" variable in your input file or exported "MOOSE_LIBRARY_PATH".
+Compiled in debug mode to see the list of libraries checked for dynamic loading methods.[39m
+
+
+[31m
+*** ERROR ***
+Unable to locate library for "coupling_xolotl_newApp".
+We attempted to locate the library "libcoupling_xolotl_new-opt.la" in the following paths:
+	
+
+Make sure you have compiled the library and either set the "library_path" variable in your input file or exported "MOOSE_LIBRARY_PATH".
+Compiled in debug mode to see the list of libraries checked for dynamic loading methods.[39m
+
+[cli_33]: [cli_34]: [cli_35]: aborting job:
+application called MPI_Abort(MPI_COMM_WORLD, 1) - process 35
+[cli_36]: aborting job:
+application called MPI_Abort(MPI_COMM_WORLD, 1) - process 36
+[cli_37]: aborting job:
+application called MPI_Abort(MPI_COMM_WORLD, 1) - process 37
+[cli_38]: aborting job:
+application called MPI_Abort(MPI_COMM_WORLD, 1) - process 38
+[cli_39]: aborting job:
+application called MPI_Abort(MPI_COMM_WORLD, 1) - process 39
+aborting job:
+application called MPI_Abort(MPI_COMM_WORLD, 1) - process 33
+aborting job:
+application called MPI_Abort(MPI_COMM_WORLD, 1) - process 34
+[cli_32]: aborting job:
+application called MPI_Abort(MPI_COMM_WORLD, 1) - process 32
+
+[31m
+*** ERROR ***
+Unable to locate library for "coupling_xolotl_newApp".
+We attempted to locate the library "libcoupling_xolotl_new-opt.la" in the following paths:
+	
+
+Make sure you have compiled the library and either set the "library_path" variable in your input file or exported "MOOSE_LIBRARY_PATH".
+Compiled in debug mode to see the list of libraries checked for dynamic loading methods.[39m
+
+
+[31m
+*** ERROR ***
+Unable to locate library for "coupling_xolotl_newApp".
+We attempted to locate the library "libcoupling_xolotl_new-opt.la" in the following paths:
+	
+
+Make sure you have compiled the library and either set the "library_path" variable in your input file or exported "MOOSE_LIBRARY_PATH".
+Compiled in debug mode to see the list of libraries checked for dynamic loading methods.[39m
+
+
+[31m
+*** ERROR ***
+Unable to locate library for "coupling_xolotl_newApp".
+We attempted to locate the library "libcoupling_xolotl_new-opt.la" in the following paths:
+	
+
+Make sure you have compiled the library and either set the "library_path" variable in your input file or exported "MOOSE_LIBRARY_PATH".
+Compiled in debug mode to see the list of libraries checked for dynamic loading methods.[39m
+
+
+[31m
+*** ERROR ***
+Unable to locate library for "coupling_xolotl_newApp".
+We attempted to locate the library "libcoupling_xolotl_new-opt.la" in the following paths:
+	
+
+Make sure you have compiled the library and either set the "library_path" variable in your input file or exported "MOOSE_LIBRARY_PATH".
+Compiled in debug mode to see the list of libraries checked for dynamic loading methods.[39m
+
+
+[31m
+*** ERROR ***
+Unable to locate library for "coupling_xolotl_newApp".
+We attempted to locate the library "libcoupling_xolotl_new-opt.la" in the following paths:
+	
+
+Make sure you have compiled the library and either set the "library_path" variable in your input file or exported "MOOSE_LIBRARY_PATH".
+Compiled in debug mode to see the list of libraries checked for dynamic loading methods.[39m
+
+
+[31m
+*** ERROR ***
+Unable to locate library for "coupling_xolotl_newApp".
+We attempted to locate the library "libcoupling_xolotl_new-opt.la" in the following paths:
+	
+
+Make sure you have compiled the library and either set the "library_path" variable in your input file or exported "MOOSE_LIBRARY_PATH".
+Compiled in debug mode to see the list of libraries checked for dynamic loading methods.[39m
+
+
+[31m
+*** ERROR ***
+Unable to locate library for "coupling_xolotl_newApp".
+We attempted to locate the library "libcoupling_xolotl_new-opt.la" in the following paths:
+	
+
+Make sure you have compiled the library and either set the "library_path" variable in your input file or exported "MOOSE_LIBRARY_PATH".
+Compiled in debug mode to see the list of libraries checked for dynamic loading methods.[39m
+
+
+[31m
+*** ERROR ***
+Unable to locate library for "coupling_xolotl_newApp".
+We attempted to locate the library "libcoupling_xolotl_new-opt.la" in the following paths:
+	
+
+Make sure you have compiled the library and either set the "library_path" variable in your input file or exported "MOOSE_LIBRARY_PATH".
+Compiled in debug mode to see the list of libraries checked for dynamic loading methods.[39m
+
+[cli_56]: aborting job:
+application called MPI_Abort(MPI_COMM_WORLD, 1) - process 56
+[cli_57]: aborting job:
+application called MPI_Abort(MPI_COMM_WORLD, 1) - process 57
+[cli_58]: aborting job:
+application called MPI_Abort(MPI_COMM_WORLD, 1) - process 58
+[cli_60]: aborting job:
+application called MPI_Abort(MPI_COMM_WORLD, 1) - process 60
+[cli_61]: aborting job:
+application called MPI_Abort(MPI_COMM_WORLD, 1) - process 61
+[cli_62]: [cli_63]: aborting job:
+application called MPI_Abort(MPI_COMM_WORLD, 1) - process 63
+[cli_59]: aborting job:
+application called MPI_Abort(MPI_COMM_WORLD, 1) - process 62
+aborting job:
+application called MPI_Abort(MPI_COMM_WORLD, 1) - process 59
+
+[31m
+*** ERROR ***
+Unable to locate library for "coupling_xolotl_newApp".
+We attempted to locate the library "libcoupling_xolotl_new-opt.la" in the following paths:
+	
+
+Make sure you have compiled the library and either set the "library_path" variable in your input file or exported "MOOSE_LIBRARY_PATH".
+Compiled in debug mode to see the list of libraries checked for dynamic loading methods.[39m
+
+
+[31m
+*** ERROR ***
+Unable to locate library for "coupling_xolotl_newApp".
+We attempted to locate the library "libcoupling_xolotl_new-opt.la" in the following paths:
+	
+
+Make sure you have compiled the library and either set the "library_path" variable in your input file or exported "MOOSE_LIBRARY_PATH".
+Compiled in debug mode to see the list of libraries checked for dynamic loading methods.[39m
+
+
+[31m
+*** ERROR ***
+Unable to locate library for "coupling_xolotl_newApp".
+We attempted to locate the library "libcoupling_xolotl_new-opt.la" in the following paths:
+	
+
+Make sure you have compiled the library and either set the "library_path" variable in your input file or exported "MOOSE_LIBRARY_PATH".
+Compiled in debug mode to see the list of libraries checked for dynamic loading methods.[39m
+
+
+[31m
+*** ERROR ***
+Unable to locate library for "coupling_xolotl_newApp".
+We attempted to locate the library "libcoupling_xolotl_new-opt.la" in the following paths:
+	
+
+Make sure you have compiled the library and either set the "library_path" variable in your input file or exported "MOOSE_LIBRARY_PATH".
+Compiled in debug mode to see the list of libraries checked for dynamic loading methods.[39m
+
+
+[31m
+*** ERROR ***
+Unable to locate library for "coupling_xolotl_newApp".
+We attempted to locate the library "libcoupling_xolotl_new-opt.la" in the following paths:
+	
+
+Make sure you have compiled the library and either set the "library_path" variable in your input file or exported "MOOSE_LIBRARY_PATH".
+Compiled in debug mode to see the list of libraries checked for dynamic loading methods.[39m
+
+
+[31m
+*** ERROR ***
+Unable to locate library for "coupling_xolotl_newApp".
+We attempted to locate the library "libcoupling_xolotl_new-opt.la" in the following paths:
+	
+
+Make sure you have compiled the library and either set the "library_path" variable in your input file or exported "MOOSE_LIBRARY_PATH".
+Compiled in debug mode to see the list of libraries checked for dynamic loading methods.[39m
+
+
+[31m
+*** ERROR ***
+Unable to locate library for "coupling_xolotl_newApp".
+We attempted to locate the library "libcoupling_xolotl_new-opt.la" in the following paths:
+	
+
+Make sure you have compiled the library and either set the "library_path" variable in your input file or exported "MOOSE_LIBRARY_PATH".
+Compiled in debug mode to see the list of libraries checked for dynamic loading methods.[39m
+
+
+[31m
+*** ERROR ***
+Unable to locate library for "coupling_xolotl_newApp".
+We attempted to locate the library "libcoupling_xolotl_new-opt.la" in the following paths:
+	
+
+Make sure you have compiled the library and either set the "library_path" variable in your input file or exported "MOOSE_LIBRARY_PATH".
+Compiled in debug mode to see the list of libraries checked for dynamic loading methods.[39m
+
+[cli_24]: [cli_25]: [cli_26]: aborting job:
+application called MPI_Abort(MPI_COMM_WORLD, 1) - process 26
+[cli_28]: aborting job:
+application called MPI_Abort(MPI_COMM_WORLD, 1) - process 28
+[cli_29]: aborting job:
+application called MPI_Abort(MPI_COMM_WORLD, 1) - process 29
+[cli_30]: aborting job:
+application called MPI_Abort(MPI_COMM_WORLD, 1) - process 30
+[cli_31]: aborting job:
+application called MPI_Abort(MPI_COMM_WORLD, 1) - process 31
+aborting job:
+application called MPI_Abort(MPI_COMM_WORLD, 1) - process 24
+aborting job:
+application called MPI_Abort(MPI_COMM_WORLD, 1) - process 25
+[cli_27]: aborting job:
+application called MPI_Abort(MPI_COMM_WORLD, 1) - process 27
+
+[31m
+*** ERROR ***
+Unable to locate library for "coupling_xolotl_newApp".
+We attempted to locate the library "libcoupling_xolotl_new-opt.la" in the following paths:
+	
+
+Make sure you have compiled the library and either set the "library_path" variable in your input file or exported "MOOSE_LIBRARY_PATH".
+Compiled in debug mode to see the list of libraries checked for dynamic loading methods.[39m
+
+
+[31m
+*** ERROR ***
+Unable to locate library for "coupling_xolotl_newApp".
+We attempted to locate the library "libcoupling_xolotl_new-opt.la" in the following paths:
+	
+
+Make sure you have compiled the library and either set the "library_path" variable in your input file or exported "MOOSE_LIBRARY_PATH".
+Compiled in debug mode to see the list of libraries checked for dynamic loading methods.[39m
+
+
+[31m
+*** ERROR ***
+Unable to locate library for "coupling_xolotl_newApp".
+We attempted to locate the library "libcoupling_xolotl_new-opt.la" in the following paths:
+	
+
+Make sure you have compiled the library and either set the "library_path" variable in your input file or exported "MOOSE_LIBRARY_PATH".
+Compiled in debug mode to see the list of libraries checked for dynamic loading methods.[39m
+
+
+[31m
+*** ERROR ***
+Unable to locate library for "coupling_xolotl_newApp".
+We attempted to locate the library "libcoupling_xolotl_new-opt.la" in the following paths:
+	
+
+Make sure you have compiled the library and either set the "library_path" variable in your input file or exported "MOOSE_LIBRARY_PATH".
+Compiled in debug mode to see the list of libraries checked for dynamic loading methods.[39m
+
+
+[31m
+*** ERROR ***
+Unable to locate library for "coupling_xolotl_newApp".
+We attempted to locate the library "libcoupling_xolotl_new-opt.la" in the following paths:
+	
+
+Make sure you have compiled the library and either set the "library_path" variable in your input file or exported "MOOSE_LIBRARY_PATH".
+Compiled in debug mode to see the list of libraries checked for dynamic loading methods.[39m
+
+
+[31m
+*** ERROR ***
+Unable to locate library for "coupling_xolotl_newApp".
+We attempted to locate the library "libcoupling_xolotl_new-opt.la" in the following paths:
+	
+
+Make sure you have compiled the library and either set the "library_path" variable in your input file or exported "MOOSE_LIBRARY_PATH".
+Compiled in debug mode to see the list of libraries checked for dynamic loading methods.[39m
+
+
+[31m
+*** ERROR ***
+Unable to locate library for "coupling_xolotl_newApp".
+We attempted to locate the library "libcoupling_xolotl_new-opt.la" in the following paths:
+	
+
+Make sure you have compiled the library and either set the "library_path" variable in your input file or exported "MOOSE_LIBRARY_PATH".
+Compiled in debug mode to see the list of libraries checked for dynamic loading methods.[39m
+
+
+[31m
+*** ERROR ***
+Unable to locate library for "coupling_xolotl_newApp".
+We attempted to locate the library "libcoupling_xolotl_new-opt.la" in the following paths:
+	
+
+Make sure you have compiled the library and either set the "library_path" variable in your input file or exported "MOOSE_LIBRARY_PATH".
+Compiled in debug mode to see the list of libraries checked for dynamic loading methods.[39m
+
+[cli_40]: [cli_42]: aborting job:
+application called MPI_Abort(MPI_COMM_WORLD, 1) - process 42
+[cli_43]: aborting job:
+application called MPI_Abort(MPI_COMM_WORLD, 1) - process 43
+[cli_44]: aborting job:
+application called MPI_Abort(MPI_COMM_WORLD, 1) - process 44
+[cli_45]: aborting job:
+application called MPI_Abort(MPI_COMM_WORLD, 1) - process 45
+[cli_46]: aborting job:
+application called MPI_Abort(MPI_COMM_WORLD, 1) - process 46
+[cli_47]: aborting job:
+application called MPI_Abort(MPI_COMM_WORLD, 1) - process 47
+aborting job:
+application called MPI_Abort(MPI_COMM_WORLD, 1) - process 40
+[cli_41]: aborting job:
+application called MPI_Abort(MPI_COMM_WORLD, 1) - process 41
+
+[31m
+*** ERROR ***
+Unable to locate library for "coupling_xolotl_newApp".
+We attempted to locate the library "libcoupling_xolotl_new-opt.la" in the following paths:
+	
+
+Make sure you have compiled the library and either set the "library_path" variable in your input file or exported "MOOSE_LIBRARY_PATH".
+Compiled in debug mode to see the list of libraries checked for dynamic loading methods.[39m
+
+
+[31m
+*** ERROR ***
+Unable to locate library for "coupling_xolotl_newApp".
+We attempted to locate the library "libcoupling_xolotl_new-opt.la" in the following paths:
+	
+
+Make sure you have compiled the library and either set the "library_path" variable in your input file or exported "MOOSE_LIBRARY_PATH".
+Compiled in debug mode to see the list of libraries checked for dynamic loading methods.[39m
+
+
+[31m
+*** ERROR ***
+Unable to locate library for "coupling_xolotl_newApp".
+We attempted to locate the library "libcoupling_xolotl_new-opt.la" in the following paths:
+	
+
+Make sure you have compiled the library and either set the "library_path" variable in your input file or exported "MOOSE_LIBRARY_PATH".
+Compiled in debug mode to see the list of libraries checked for dynamic loading methods.[39m
+
+
+[31m
+*** ERROR ***
+Unable to locate library for "coupling_xolotl_newApp".
+We attempted to locate the library "libcoupling_xolotl_new-opt.la" in the following paths:
+	
+
+Make sure you have compiled the library and either set the "library_path" variable in your input file or exported "MOOSE_LIBRARY_PATH".
+Compiled in debug mode to see the list of libraries checked for dynamic loading methods.[39m
+
+
+[31m
+*** ERROR ***
+Unable to locate library for "coupling_xolotl_newApp".
+We attempted to locate the library "libcoupling_xolotl_new-opt.la" in the following paths:
+	
+
+Make sure you have compiled the library and either set the "library_path" variable in your input file or exported "MOOSE_LIBRARY_PATH".
+Compiled in debug mode to see the list of libraries checked for dynamic loading methods.[39m
+
+
+[31m
+*** ERROR ***
+Unable to locate library for "coupling_xolotl_newApp".
+We attempted to locate the library "libcoupling_xolotl_new-opt.la" in the following paths:
+	
+
+Make sure you have compiled the library and either set the "library_path" variable in your input file or exported "MOOSE_LIBRARY_PATH".
+Compiled in debug mode to see the list of libraries checked for dynamic loading methods.[39m
+
+
+[31m
+*** ERROR ***
+Unable to locate library for "coupling_xolotl_newApp".
+We attempted to locate the library "libcoupling_xolotl_new-opt.la" in the following paths:
+	
+
+Make sure you have compiled the library and either set the "library_path" variable in your input file or exported "MOOSE_LIBRARY_PATH".
+Compiled in debug mode to see the list of libraries checked for dynamic loading methods.[39m
+
+
+[31m
+*** ERROR ***
+Unable to locate library for "coupling_xolotl_newApp".
+We attempted to locate the library "libcoupling_xolotl_new-opt.la" in the following paths:
+	
+
+Make sure you have compiled the library and either set the "library_path" variable in your input file or exported "MOOSE_LIBRARY_PATH".
+Compiled in debug mode to see the list of libraries checked for dynamic loading methods.[39m
+
+[cli_48]: aborting job:
+application called MPI_Abort(MPI_COMM_WORLD, 1) - process 48
+[cli_49]: [cli_50]: aborting job:
+application called MPI_Abort(MPI_COMM_WORLD, 1) - process 50
+[cli_51]: aborting job:
+application called MPI_Abort(MPI_COMM_WORLD, 1) - process 51
+[cli_52]: aborting job:
+application called MPI_Abort(MPI_COMM_WORLD, 1) - process 52
+[cli_54]: aborting job:
+application called MPI_Abort(MPI_COMM_WORLD, 1) - process 54
+[cli_55]: aborting job:
+application called MPI_Abort(MPI_COMM_WORLD, 1) - process 55
+[cli_53]: aborting job:
+application called MPI_Abort(MPI_COMM_WORLD, 1) - process 53
+aborting job:
+application called MPI_Abort(MPI_COMM_WORLD, 1) - process 49
+
+[31m
+*** ERROR ***
+Unable to locate library for "coupling_xolotl_newApp".
+We attempted to locate the library "libcoupling_xolotl_new-opt.la" in the following paths:
+	
+
+Make sure you have compiled the library and either set the "library_path" variable in your input file or exported "MOOSE_LIBRARY_PATH".
+Compiled in debug mode to see the list of libraries checked for dynamic loading methods.[39m
+
+
+[31m
+*** ERROR ***
+Unable to locate library for "coupling_xolotl_newApp".
+We attempted to locate the library "libcoupling_xolotl_new-opt.la" in the following paths:
+	
+
+Make sure you have compiled the library and either set the "library_path" variable in your input file or exported "MOOSE_LIBRARY_PATH".
+Compiled in debug mode to see the list of libraries checked for dynamic loading methods.[39m
+
+
+[31m
+*** ERROR ***
+Unable to locate library for "coupling_xolotl_newApp".
+We attempted to locate the library "libcoupling_xolotl_new-opt.la" in the following paths:
+	
+
+Make sure you have compiled the library and either set the "library_path" variable in your input file or exported "MOOSE_LIBRARY_PATH".
+Compiled in debug mode to see the list of libraries checked for dynamic loading methods.[39m
+
+
+[31m
+*** ERROR ***
+Unable to locate library for "coupling_xolotl_newApp".
+We attempted to locate the library "libcoupling_xolotl_new-opt.la" in the following paths:
+	
+
+Make sure you have compiled the library and either set the "library_path" variable in your input file or exported "MOOSE_LIBRARY_PATH".
+Compiled in debug mode to see the list of libraries checked for dynamic loading methods.[39m
+
+
+[31m
+*** ERROR ***
+Unable to locate library for "coupling_xolotl_newApp".
+We attempted to locate the library "libcoupling_xolotl_new-opt.la" in the following paths:
+	
+
+Make sure you have compiled the library and either set the "library_path" variable in your input file or exported "MOOSE_LIBRARY_PATH".
+Compiled in debug mode to see the list of libraries checked for dynamic loading methods.[39m
+
+
+[31m
+*** ERROR ***
+Unable to locate library for "coupling_xolotl_newApp".
+We attempted to locate the library "libcoupling_xolotl_new-opt.la" in the following paths:
+	
+
+Make sure you have compiled the library and either set the "library_path" variable in your input file or exported "MOOSE_LIBRARY_PATH".
+Compiled in debug mode to see the list of libraries checked for dynamic loading methods.[39m
+
+
+[31m
+*** ERROR ***
+Unable to locate library for "coupling_xolotl_newApp".
+We attempted to locate the library "libcoupling_xolotl_new-opt.la" in the following paths:
+	
+
+Make sure you have compiled the library and either set the "library_path" variable in your input file or exported "MOOSE_LIBRARY_PATH".
+Compiled in debug mode to see the list of libraries checked for dynamic loading methods.[39m
+
+
+[31m
+*** ERROR ***
+Unable to locate library for "coupling_xolotl_newApp".
+We attempted to locate the library "libcoupling_xolotl_new-opt.la" in the following paths:
+	
+
+Make sure you have compiled the library and either set the "library_path" variable in your input file or exported "MOOSE_LIBRARY_PATH".
+Compiled in debug mode to see the list of libraries checked for dynamic loading methods.[39m
+
+[cli_16]: [cli_17]: aborting job:
+application called MPI_Abort(MPI_COMM_WORLD, 1) - process 17
+[cli_18]: aborting job:
+application called MPI_Abort(MPI_COMM_WORLD, 1) - process 18
+[cli_19]: aborting job:
+application called MPI_Abort(MPI_COMM_WORLD, 1) - process 19
+[cli_20]: [cli_21]: aborting job:
+application called MPI_Abort(MPI_COMM_WORLD, 1) - process 21
+[cli_23]: aborting job:
+application called MPI_Abort(MPI_COMM_WORLD, 1) - process 23
+aborting job:
+application called MPI_Abort(MPI_COMM_WORLD, 1) - process 16
+[cli_22]: aborting job:
+application called MPI_Abort(MPI_COMM_WORLD, 1) - process 22
+aborting job:
+application called MPI_Abort(MPI_COMM_WORLD, 1) - process 20
+
+===================================================================================
+=   BAD TERMINATION OF ONE OF YOUR APPLICATION PROCESSES
+=   PID 30099 RUNNING AT r6i3n9.ib0.ice.inl.gov
+=   EXIT CODE: 1
+=   CLEANING UP REMAINING PROCESSES
+=   YOU CAN IGNORE THE BELOW CLEANUP MESSAGES
+===================================================================================
+[proxy:0:6@r6i4n1] HYD_pmcd_pmip_control_cmd_cb (pm/pmiserv/pmip_cb.c:909): assert (!closed) failed
+[proxy:0:6@r6i4n1] HYDT_dmxu_poll_wait_for_event (tools/demux/demux_poll.c:76): callback returned error status
+[proxy:0:6@r6i4n1] main (pm/pmiserv/pmip.c:256): demux engine error waiting for event
+[proxy:0:5@r6i6n9] HYD_pmcd_pmip_control_cmd_cb (pm/pmiserv/pmip_cb.c:909): assert (!closed) failed
+[proxy:0:5@r6i6n9] HYDT_dmxu_poll_wait_for_event (tools/demux/demux_poll.c:76): callback returned error status
+[proxy:0:5@r6i6n9] main (pm/pmiserv/pmip.c:256): demux engine error waiting for event
+[proxy:0:3@r6i3n14] HYD_pmcd_pmip_control_cmd_cb (pm/pmiserv/pmip_cb.c:909): assert (!closed) failed
+[proxy:0:3@r6i3n14] HYDT_dmxu_poll_wait_for_event (tools/demux/demux_poll.c:76): callback returned error status
+[proxy:0:3@r6i3n14] main (pm/pmiserv/pmip.c:256): demux engine error waiting for event
+[mpiexec@r6i3n9] HYDT_bscu_wait_for_completion (tools/bootstrap/utils/bscu_wait.c:76): one of the processes terminated badly; aborting
+[mpiexec@r6i3n9] HYDT_bsci_wait_for_completion (tools/bootstrap/src/bsci_wait.c:23): launcher returned error waiting for completion
+[mpiexec@r6i3n9] HYD_pmci_wait_for_completion (pm/pmiserv/pmiserv_pmci.c:218): launcher returned error waiting for completion
+[mpiexec@r6i3n9] main (ui/mpich/mpiexec.c:344): process manager error waiting for completion

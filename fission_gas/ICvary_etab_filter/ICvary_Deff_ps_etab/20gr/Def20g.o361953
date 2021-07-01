@@ -1,0 +1,8 @@
+Warning: Permanently added 'r4i2n1.ib0.ice.inl.gov,10.148.5.173' (ECDSA) to the list of known hosts.
+Warning: Permanently added 'r4i2n0.ib0.ice.inl.gov,10.148.5.172' (ECDSA) to the list of known hosts.
+Warning: Process to core binding is enabled and OMP_NUM_THREADS is set to non-zero (8) value
+If your program has OpenMP sections, this can cause over-subscription of cores and consequently poor performance
+To avoid this, please re-run your application after setting MV2_ENABLE_AFFINITY=0
+Use MV2_USE_THREAD_WARNING=0 to suppress this message
+
+Initializing equation system ....................................................
